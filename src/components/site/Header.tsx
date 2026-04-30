@@ -11,7 +11,6 @@ const navItems = [
   { to: "/about", key: "nav.about" },
   { to: "/services", key: "nav.services" },
   { to: "/process", key: "nav.process" },
-  { to: "/partner", key: "nav.partner" },
   { to: "/contact", key: "nav.contact" },
 ] as const;
 
@@ -45,7 +44,7 @@ export function Header() {
             <img
               src={logo}
               alt="Skill Spark Consulting"
-              className="h-10 md:h-11 w-auto transition-smooth group-hover:scale-[1.03]"
+              className="h-14 md:h-16 w-auto transition-smooth group-hover:scale-[1.03]"
             />
           </Link>
 
@@ -75,7 +74,7 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <Button asChild variant="hero" size="sm" className="hidden md:inline-flex">
-              <Link to="/partner">{t("cta.consult")}</Link>
+              <Link to="/contact">{t("cta.consult")}</Link>
             </Button>
 
             <button
@@ -105,7 +104,7 @@ export function Header() {
             ))}
             <div className="pt-3">
               <Button asChild variant="hero" size="sm" className="flex-1">
-                <Link to="/partner">{t("cta.consult")}</Link>
+                <Link to="/contact">{t("cta.consult")}</Link>
               </Button>
             </div>
           </div>

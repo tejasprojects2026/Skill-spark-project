@@ -36,7 +36,7 @@ export function Footer() {
               {[
                 ["/about", "About Us"],
                 ["/services", "Services"],
-                ["/partner", "Partner With Us"],
+                ["/process", "Our Process"],
                 ["/contact", "Contact"],
               ].map(([to, label]) => (
                 <li key={to}>
@@ -70,7 +70,10 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <Mail className="w-4 h-4 mt-0.5 text-gold shrink-0" />
-                <a href="mailto:skillsparkconsulting@gmail.com" className="hover:text-gold transition-smooth break-all">
+                <a
+                  href="mailto:skillsparkconsulting@gmail.com"
+                  className="hover:text-gold transition-smooth break-all"
+                >
                   skillsparkconsulting@gmail.com
                 </a>
               </li>
@@ -85,10 +88,16 @@ export function Footer() {
         </div>
 
         <div className="border-t border-primary-foreground/10 mt-14 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-primary-foreground/50">
-          <p>© {new Date().getFullYear()} Skill Spark Consulting. {t("footer.rights")}</p>
+          <p>
+            © {new Date().getFullYear()} Skill Spark Consulting. {t("footer.rights")}
+          </p>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-gold transition-smooth">Privacy</a>
-            <a href="#" className="hover:text-gold transition-smooth">Terms</a>
+            <a href="#" className="hover:text-gold transition-smooth">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-gold transition-smooth">
+              Terms
+            </a>
           </div>
         </div>
       </div>

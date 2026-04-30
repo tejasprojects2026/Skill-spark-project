@@ -8,11 +8,12 @@ import {
   CalendarDays,
   Factory,
   Globe,
+  HeartPulse,
   MapPin,
   Package,
   Quote,
-  Search,
   ShieldCheck,
+  Stethoscope,
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -118,6 +119,7 @@ const sectors = [
   { icon: Factory, label: "Manufacturing & Engineering" },
   { icon: MapPin, label: "Industrial & Infrastructure" },
   { icon: Package, label: "Logistics & Supply Chain" },
+  { icon: HeartPulse, label: "Healthcare & Nursing" },
   { icon: Building2, label: "Corporate & Admin" },
   { icon: Briefcase, label: "BFSI & Sales" },
 ] as const;
@@ -165,15 +167,13 @@ function Index() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
-                to="/partner"
-                hash="employer"
+                to="/contact"
                 className="inline-flex items-center justify-center bg-gold text-gold-foreground font-semibold px-8 py-3 rounded-md hover:opacity-90 transition-smooth"
               >
                 Hire Talent <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
               <Link
-                to="/partner"
-                hash="candidate"
+                to="/contact"
                 className="inline-flex items-center justify-center border-2 border-accent text-accent font-semibold px-8 py-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-smooth"
               >
                 Find a Job <ArrowRight className="w-4 h-4 ml-2" />
@@ -212,7 +212,7 @@ function Index() {
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary mb-6">
               We Don&apos;t Just Fill Positions. We Build Teams.
             </h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-black leading-relaxed mb-6">
               Skill Spark Consulting is a Pune-based recruitment consultancy with deep roots in the
               PCMC and Pune industrial belt. We work closely with companies to understand their
               culture, goals, and hiring challenges - and with candidates to understand their
@@ -254,7 +254,7 @@ function Index() {
                 <h3 className="font-display text-xl font-semibold text-primary mb-3">
                   {service.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{service.desc}</p>
+                <p className="text-black text-sm leading-relaxed">{service.desc}</p>
               </div>
             ))}
           </div>
@@ -291,7 +291,7 @@ function Index() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-4">
             Our Recruitment Process
           </h2>
-          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-12">
+          <p className="text-black text-center max-w-2xl mx-auto mb-12">
             A clear, structured approach to find and place the right talent - every time.
           </p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -304,7 +304,7 @@ function Index() {
                 <h3 className="font-display text-lg font-semibold text-primary mt-2 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                <p className="text-black text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -316,7 +316,7 @@ function Index() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Sectors We Specialize In
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-6">
             {sectors.map((sector) => (
               <div
                 key={sector.label}
@@ -332,6 +332,44 @@ function Index() {
         </div>
       </section>
 
+      <section className="bg-secondary/55 py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-stretch">
+            <div className="rounded-3xl bg-primary text-primary-foreground p-8 md:p-10 shadow-elegant">
+              <div className="w-14 h-14 rounded-2xl bg-primary-foreground/10 flex items-center justify-center mb-6">
+                <Stethoscope className="w-7 h-7 text-gold" />
+              </div>
+              <p className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-3">
+                Healthcare Staffing
+              </p>
+              <h2 className="font-display text-3xl md:text-4xl font-semibold">
+                Nursing and medical support hiring, handled with care.
+              </h2>
+              <p className="mt-5 text-primary-foreground/75 leading-relaxed">
+                We also source and shortlist dependable blue-collar healthcare talent for hospitals,
+                clinics, diagnostic centers, and care facilities across Pune and PCMC.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {[
+                "Staff nurses and nursing assistants",
+                "Ward boys, attendants, and patient care staff",
+                "Lab technicians and diagnostic support teams",
+                "Front desk, billing, and hospital admin staff",
+              ].map((role) => (
+                <div
+                  key={role}
+                  className="rounded-2xl bg-card border border-border/60 p-6 shadow-card hover-lift"
+                >
+                  <HeartPulse className="w-6 h-6 text-accent mb-4" />
+                  <p className="font-semibold text-primary leading-snug">{role}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="grid md:grid-cols-2">
         <div className="bg-primary text-primary-foreground py-16 px-8 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
@@ -342,22 +380,19 @@ function Index() {
             lifting.
           </p>
           <Button asChild variant="gold" size="lg" className="w-fit">
-            <Link to="/partner" hash="employer">
-              Submit Hiring Requirement
-            </Link>
+            <Link to="/contact">Submit Hiring Requirement</Link>
           </Button>
         </div>
         <div className="bg-accent text-accent-foreground py-16 px-8 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
             Are You a Job Seeker?
           </h3>
-          <p className="text-accent-foreground/80 mb-6">
+          <p className="text-black mb-6">
             Looking for your next big opportunity? Register with us and get placed with the right
             company.
           </p>
           <Link
-            to="/partner"
-            hash="candidate"
+            to="/contact"
             className="inline-flex items-center justify-center bg-card text-accent font-semibold px-8 py-3 rounded-md hover:opacity-90 transition-smooth w-fit"
           >
             Register as a Candidate
@@ -374,9 +409,7 @@ function Index() {
             {testimonials.map((item, index) => (
               <div key={index} className="bg-card rounded-lg p-8 border border-border shadow-soft">
                 <Quote className="w-6 h-6 text-gold mb-4" />
-                <p className="text-muted-foreground italic leading-relaxed mb-4">
-                  &quot;{item.quote}&quot;
-                </p>
+                <p className="text-black italic leading-relaxed mb-4">&quot;{item.quote}&quot;</p>
                 <p className="text-sm font-semibold text-primary">- {item.author}</p>
               </div>
             ))}

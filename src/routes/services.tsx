@@ -6,9 +6,11 @@ import {
   CalendarDays,
   Check,
   Factory,
+  HeartPulse,
   Landmark,
   Package,
   ShieldCheck,
+  Stethoscope,
   Users,
 } from "lucide-react";
 import contractStaffingImg from "@/assets/services/contract-staffing.jpg";
@@ -73,6 +75,18 @@ const services = [
       "Quick turnaround",
     ],
   },
+  {
+    icon: Stethoscope,
+    title: "Healthcare & Nursing Staffing",
+    image: contractStaffingImg,
+    desc: "We source and shortlist dependable blue-collar healthcare talent for hospitals, clinics, diagnostic centers, and care facilities. Our focus is on reliable, pre-screened staff for patient care, diagnostics, facility operations, and administrative support.",
+    points: [
+      "Nurses and nursing assistants",
+      "Medical attendants and ward support staff",
+      "Lab technicians and diagnostic staff",
+      "Hospital front office, billing, and admin support",
+    ],
+  },
 ] as const;
 
 const industries = [
@@ -80,6 +94,7 @@ const industries = [
   { icon: Factory, label: "Manufacturing & Engineering" },
   { icon: Landmark, label: "Industrial & Infrastructure" },
   { icon: Package, label: "Logistics & Supply Chain" },
+  { icon: HeartPulse, label: "Healthcare & Nursing" },
   { icon: Building2, label: "Corporate & Admin" },
   { icon: Briefcase, label: "BFSI & Sales" },
 ] as const;
@@ -113,10 +128,10 @@ function ServicesPage() {
                 <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary mt-6">
                   {service.title}
                 </h2>
-                <p className="mt-5 text-muted-foreground leading-relaxed">{service.desc}</p>
+                <p className="mt-5 text-black leading-relaxed">{service.desc}</p>
                 <ul className="mt-6 space-y-3">
                   {service.points.map((point) => (
-                    <li key={point} className="flex items-start gap-3 text-foreground/85">
+                    <li key={point} className="flex items-start gap-3 text-black">
                       <Check className="w-4 h-4 text-gold shrink-0 mt-1" />
                       <span>{point}</span>
                     </li>
@@ -146,7 +161,7 @@ function ServicesPage() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Industries We Serve
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-6">
             {industries.map((industry) => (
               <div
                 key={industry.label}
@@ -169,7 +184,7 @@ function ServicesPage() {
             Let&apos;s discuss your hiring needs and find the perfect talent for your team.
           </p>
           <Button asChild variant="gold" size="xl">
-            <Link to="/partner" hash="employer">
+            <Link to="/contact">
               Submit Hiring Requirement <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>

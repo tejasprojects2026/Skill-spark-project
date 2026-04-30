@@ -66,9 +66,7 @@ function ContactPage() {
         <div className="grid lg:grid-cols-5 gap-10 -mt-14">
           <div className="lg:col-span-3 bg-card rounded-2xl p-8 md:p-10 shadow-elegant border border-border/50">
             <h3 className="font-display text-2xl text-primary">Send Us a Message</h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              We typically respond within one business day.
-            </p>
+            <p className="text-sm text-black mt-1">We typically respond within one business day.</p>
             <form onSubmit={submit} className="mt-6 space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>

@@ -111,7 +111,7 @@ function ProcessPage() {
                   Step {step.n}
                 </div>
                 <h3 className="mt-3 font-display text-2xl text-primary">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
+                <p className="mt-3 text-sm leading-relaxed text-black">{step.desc}</p>
               </div>
             </div>
           ))}
@@ -131,7 +131,7 @@ function ProcessPage() {
               className="flex items-start gap-3 rounded-2xl border border-border/50 bg-card p-6 shadow-card"
             >
               <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-              <p className="text-foreground/85">{item}</p>
+              <p className="text-black">{item}</p>
             </div>
           ))}
         </div>
@@ -140,8 +140,8 @@ function ProcessPage() {
       <Section title="Ready to start hiring with a clearer process?" align="center">
         <div className="flex justify-center gap-4 flex-wrap">
           <Button asChild variant="hero" size="xl">
-            <Link to="/partner" hash="employer">
-              Partner With Us <ArrowRight className="w-4 h-4" />
+            <Link to="/contact">
+              Start Hiring <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="xl">

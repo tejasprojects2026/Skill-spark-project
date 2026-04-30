@@ -24,7 +24,9 @@ export function Section({
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${containerClassName}`}>
         <div className={align === "center" ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}>
           {tag && (
-            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent ${align === "center" ? "mx-auto" : ""}`}>
+            <div
+              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent ${align === "center" ? "mx-auto" : ""}`}
+            >
               {tag}
             </div>
           )}
@@ -32,9 +34,7 @@ export function Section({
             {title}
           </h2>
           {subtitle && (
-            <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed">
-              {subtitle}
-            </p>
+            <p className="mt-5 text-base md:text-lg text-black leading-relaxed">{subtitle}</p>
           )}
         </div>
         {children && <div className="mt-14">{children}</div>}

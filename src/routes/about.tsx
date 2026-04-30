@@ -85,7 +85,7 @@ function AboutPage() {
               className="rounded-2xl shadow-elegant w-full"
             />
           </div>
-          <div className="space-y-5 text-muted-foreground leading-relaxed">
+          <div className="space-y-5 text-black leading-relaxed">
             <p>
               Born from a deep understanding of Pune's evolving industrial and corporate landscape,
               Skill Spark Consulting was established to deliver recruitment solutions that are
@@ -116,7 +116,7 @@ function AboutPage() {
                 <v.icon className="w-6 h-6 text-primary-foreground" />
               </div>
               <h3 className="font-display text-2xl mt-6 text-primary">{v.title}</h3>
-              <p className="mt-3 text-muted-foreground leading-relaxed">{v.text}</p>
+              <p className="mt-3 text-black leading-relaxed">{v.text}</p>
             </div>
           ))}
         </div>
@@ -137,7 +137,7 @@ function AboutPage() {
                 <w.icon className="w-6 h-6 text-gold-foreground" />
               </div>
               <h3 className="font-display text-xl mt-6 text-primary">{w.title}</h3>
-              <p className="mt-3 text-muted-foreground leading-relaxed">{w.text}</p>
+              <p className="mt-3 text-black leading-relaxed">{w.text}</p>
             </div>
           ))}
         </div>
@@ -153,7 +153,7 @@ function AboutPage() {
           </p>
           <div className="mt-8 flex justify-center gap-4 flex-wrap">
             <Button asChild variant="gold" size="xl">
-              <Link to="/partner" hash="employer">
+              <Link to="/contact">
                 Submit Hiring Requirement <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
