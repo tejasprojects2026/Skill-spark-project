@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/skill spark.png";
 
 export function Footer() {
   const { t } = useI18n();
@@ -35,7 +35,7 @@ export function Footer() {
             <ul className="space-y-3 text-sm">
               {[
                 ["/about", "About Us"],
-                ["/services", "Services"],
+                ["/employer", "Employer"],
                 ["/process", "Our Process"],
                 ["/contact", "Contact"],
               ].map(([to, label]) => (
@@ -52,7 +52,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-base mb-5 text-gold">Services</h4>
+            <h4 className="font-display text-base mb-5 text-gold">Employer</h4>
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li>Permanent Staffing</li>
               <li>Executive Search</li>

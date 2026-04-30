@@ -70,8 +70,8 @@
   --input: oklch(0.92 0.013 255);
   --ring: oklch(0.74 0.13 215);
 
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Raleway', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Raleway', 'Nunito', system-ui, -apple-system, sans-serif;
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, oklch(0.27 0.13 268), oklch(0.55 0.15 220));
@@ -100,8 +100,28 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
     font-feature-settings: "ss01", "cv01";
     -webkit-font-smoothing: antialiased;
+  }
+  p {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  p.text-sm {
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+  p.text-base {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  p.text-lg {
+    line-height: 1.7;
+  }
+  p.text-xl {
+    line-height: 1.65;
   }
   h1, h2, h3, h4, h5 {
     font-family: var(--font-display);

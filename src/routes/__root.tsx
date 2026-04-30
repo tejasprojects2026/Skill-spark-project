@@ -1,6 +1,7 @@
 import { createRootRoute, HeadContent, Link, Outlet, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import favicon from "@/assets/favicon .png";
 import { I18nProvider } from "@/lib/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -18,7 +19,7 @@ function NotFoundComponent() {
         </p>
         <Link
           to="/"
-          className="inline-flex mt-6 items-center justify-center rounded-lg gradient-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-soft hover:shadow-elegant transition-smooth"
+          className="inline-flex mt-6 items-center justify-center rounded-lg bg-[#f3a900] px-5 py-2.5 text-sm font-medium text-primary shadow-soft hover:bg-[#d89500] hover:shadow-elegant transition-smooth"
         >
           Back home
         </Link>
@@ -41,13 +42,13 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "apple-touch-icon", href: "/favicon.png" },
+      { rel: "icon", type: "image/png", href: favicon },
+      { rel: "apple-touch-icon", href: favicon },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap",
       },
     ],
   }),

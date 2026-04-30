@@ -4,12 +4,12 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/skill spark.png";
 
 const navItems = [
   { to: "/", key: "nav.home" },
   { to: "/about", key: "nav.about" },
-  { to: "/services", key: "nav.services" },
+  { to: "/employer", key: "nav.services" },
   { to: "/process", key: "nav.process" },
   { to: "/contact", key: "nav.contact" },
 ] as const;

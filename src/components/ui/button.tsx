@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        default: "bg-[#f3a900] text-primary shadow hover:bg-[#d89500]",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+          "border border-[#f3a900] bg-transparent text-[#f3a900] shadow-sm hover:bg-[#f3a900] hover:text-primary",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-[#f3a900] hover:text-primary",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "gradient-primary text-primary-foreground shadow-soft hover:shadow-elegant hover:-translate-y-0.5",
-        gold: "gradient-gold text-gold-foreground shadow-soft hover:shadow-gold hover:-translate-y-0.5 font-semibold",
-        outlineLight: "border-2 border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary",
+        hero: "bg-[#f3a900] text-primary shadow-soft hover:bg-[#d89500] hover:shadow-elegant hover:-translate-y-0.5",
+        gold: "bg-[#f3a900] text-primary shadow-soft hover:bg-[#d89500] hover:shadow-gold hover:-translate-y-0.5 font-semibold",
+        outlineLight: "border-2 border-[#f3a900] bg-[#f3a900] text-primary hover:bg-[#d89500] hover:border-[#d89500]",
       },
       size: {
         default: "h-10 px-5 py-2",

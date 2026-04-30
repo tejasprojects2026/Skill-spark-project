@@ -5,12 +5,12 @@ type Lang = "en" | "mr";
 const dict: Record<string, { en: string; mr: string }> = {
   "nav.home": { en: "Home", mr: "Home" },
   "nav.about": { en: "About Us", mr: "About Us" },
-  "nav.services": { en: "Our Services", mr: "Our Services" },
+  "nav.services": { en: "Employer", mr: "Employer" },
   "nav.process": { en: "Our Process", mr: "Our Process" },
   "nav.contact": { en: "Contact Us", mr: "Contact Us" },
   "cta.consult": { en: "Get Consultation", mr: "Get Consultation" },
   "cta.learn": { en: "Learn More", mr: "Learn More" },
-  "cta.explore": { en: "Explore Services", mr: "Explore Services" },
+  "cta.explore": { en: "Explore Employer Solutions", mr: "Explore Employer Solutions" },
   "cta.apply": { en: "Apply Now", mr: "Apply Now" },
   "cta.send": { en: "Send Message", mr: "Send Message" },
   "hero.tag": { en: "Premium Consulting Firm", mr: "Premium Consulting Firm" },
@@ -31,8 +31,8 @@ const dict: Record<string, { en: string; mr: string }> = {
     en: "Skill Spark Consulting partners with ambitious organizations to design strategies, develop leaders, and unlock measurable growth.",
     mr: "Skill Spark Consulting partners with ambitious organizations to design strategies, develop leaders, and unlock measurable growth.",
   },
-  "services.tag": { en: "Our Services", mr: "Our Services" },
-  "services.title": { en: "Solutions Crafted for Impact", mr: "Solutions Crafted for Impact" },
+  "services.tag": { en: "Employer", mr: "Employer" },
+  "services.title": { en: "Employer Solutions Crafted for Impact", mr: "Employer Solutions Crafted for Impact" },
   "industries.tag": { en: "Industries", mr: "Industries" },
   "industries.title": { en: "Trusted Across Sectors", mr: "Trusted Across Sectors" },
   "why.tag": { en: "Why Choose Us", mr: "Why Choose Us" },
@@ -43,8 +43,8 @@ const dict: Record<string, { en: string; mr: string }> = {
   "contact.title": { en: "Let's Discuss Your Vision", mr: "Let's Discuss Your Vision" },
   "footer.rights": { en: "All rights reserved.", mr: "All rights reserved." },
   "footer.tagline": {
-    en: "Premium consulting for ambitious organizations.",
-    mr: "Premium consulting for ambitious organizations.",
+    en: "People • Purpose • Placements",
+    mr: "People • Purpose • Placements",
   },
 };
 

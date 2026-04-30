@@ -3,7 +3,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
 import aboutImg from "@/assets/about.jpg";
-import { Target, Eye, Heart, Award, ShieldCheck, Users, ArrowRight } from "lucide-react";
+import { Target, Eye, Heart, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -43,21 +43,14 @@ const pillars = [
   },
 ];
 
-const why = [
+const founders = [
   {
-    icon: Award,
-    title: "Industry Expertise",
-    text: "Deep knowledge across IT, manufacturing, industrial, and corporate sectors in Pune and PCMC.",
+    name: "Founder Name",
+    image: aboutImg,
   },
   {
-    icon: ShieldCheck,
-    title: "Quality Assurance",
-    text: "Every candidate undergoes rigorous screening before being presented to your team.",
-  },
-  {
-    icon: Users,
-    title: "Relationship-First",
-    text: "We build lasting partnerships, not transactional vendor relationships.",
+    name: "Co-Founder Name",
+    image: aboutImg,
   },
 ];
 
@@ -105,7 +98,11 @@ function AboutPage() {
         </div>
       </Section>
 
-      <Section tag="What Drives Us" title="Mission, Vision & Values" className="gradient-soft">
+      <Section
+        tag="What Drives Us"
+        title="Mission, Vision & Values"
+        className="gradient-soft -mt-20 md:-mt-28"
+      >
         <div className="grid md:grid-cols-3 gap-6">
           {pillars.map((v) => (
             <div
@@ -122,22 +119,24 @@ function AboutPage() {
         </div>
       </Section>
 
-      <Section
-        tag="Why Choose Us"
-        title="Why Choose Skill Spark?"
-        subtitle="Three reasons companies and candidates keep coming back."
-      >
-        <div className="grid md:grid-cols-3 gap-6">
-          {why.map((w) => (
+      <Section tag="Leadership" title="Meet Our Founders">
+        <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {founders.map((founder) => (
             <div
-              key={w.title}
-              className="bg-card rounded-2xl p-8 shadow-card border border-border/50 hover-lift text-center"
+              key={founder.name}
+              className="bg-card rounded-2xl overflow-hidden shadow-card border border-border/50 hover-lift text-center"
             >
-              <div className="w-14 h-14 mx-auto rounded-xl gradient-gold flex items-center justify-center shadow-gold">
-                <w.icon className="w-6 h-6 text-gold-foreground" />
+              <div className="aspect-[4/3] bg-secondary/60">
+                <img
+                  src={founder.image}
+                  alt={founder.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="font-display text-xl mt-6 text-primary">{w.title}</h3>
-              <p className="mt-3 text-black leading-relaxed">{w.text}</p>
+              <div className="p-6">
+                <h3 className="font-display text-2xl text-primary">{founder.name}</h3>
+              </div>
             </div>
           ))}
         </div>
@@ -158,7 +157,7 @@ function AboutPage() {
               </Link>
             </Button>
             <Button asChild variant="outlineLight" size="xl">
-              <Link to="/services">Explore Services</Link>
+              <Link to="/employer">Explore Employer Solutions</Link>
             </Button>
           </div>
         </div>

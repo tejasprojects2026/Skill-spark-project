@@ -13,7 +13,6 @@ import {
   Package,
   Quote,
   ShieldCheck,
-  Stethoscope,
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -81,43 +80,9 @@ const why = [
   },
 ] as const;
 
-const process = [
-  {
-    step: "01",
-    title: "Understanding",
-    desc: "We begin with a deep-dive into your hiring requirements, business culture, team dynamics, and long-term goals.",
-  },
-  {
-    step: "02",
-    title: "Sourcing",
-    desc: "Talent is sourced through job portals, internal databases, referral networks, and targeted headhunting tailored to your industry.",
-  },
-  {
-    step: "03",
-    title: "Screening",
-    desc: "Every candidate is assessed for qualifications, experience, attitude, communication, and company-culture alignment.",
-  },
-  {
-    step: "04",
-    title: "Interview Scheduling",
-    desc: "We coordinate interviews with minimal friction - managing candidate availability, reminders, and manager calendars.",
-  },
-  {
-    step: "05",
-    title: "Feedback & Shortlisting",
-    desc: "Post-interview, we gather structured feedback from both sides to support informed decisions and improve the cycle.",
-  },
-  {
-    step: "06",
-    title: "Offer & Onboarding",
-    desc: "We assist with offer negotiation, acceptance coordination, and smooth onboarding to ensure a confident start.",
-  },
-] as const;
-
 const sectors = [
   { icon: Users, label: "Information Technology" },
   { icon: Factory, label: "Manufacturing & Engineering" },
-  { icon: MapPin, label: "Industrial & Infrastructure" },
   { icon: Package, label: "Logistics & Supply Chain" },
   { icon: HeartPulse, label: "Healthcare & Nursing" },
   { icon: Building2, label: "Corporate & Admin" },
@@ -167,14 +132,14 @@ function Index() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
-                to="/contact"
-                className="inline-flex items-center justify-center bg-gold text-gold-foreground font-semibold px-8 py-3 rounded-md hover:opacity-90 transition-smooth"
+                to="/employer"
+                className="inline-flex items-center justify-center bg-[#f3a900] text-primary font-semibold px-8 py-3 rounded-md hover:bg-[#d89500] transition-smooth"
               >
                 Hire Talent <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center border-2 border-accent text-accent font-semibold px-8 py-3 rounded-md hover:bg-accent hover:text-accent-foreground transition-smooth"
+                className="inline-flex items-center justify-center border-2 border-[#f3a900] bg-[#f3a900] text-primary font-semibold px-8 py-3 rounded-md hover:bg-[#d89500] hover:border-[#d89500] transition-smooth"
               >
                 Find a Job <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
@@ -219,12 +184,11 @@ function Index() {
               ambitions, skills, and fitment. Our promise: every candidate we send to you has
               already been screened, assessed, and vetted by us. You receive quality, not quantity.
             </p>
-            <Link
-              to="/about"
-              className="inline-flex items-center text-accent font-semibold hover:underline"
-            >
-              Learn About Us <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
+            <Button asChild variant="gold" size="lg">
+              <Link to="/about">
+                Learn About Us <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
           <div className="overflow-hidden rounded-2xl h-64 md:h-80 shadow-card border border-border/40 bg-card">
             <img
@@ -240,7 +204,7 @@ function Index() {
       <section className="py-16 md:py-20 bg-card">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
-            Our Core Services
+            Employer Hiring Solutions
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service) => (
@@ -259,12 +223,11 @@ function Index() {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link
-              to="/services"
-              className="inline-flex items-center text-accent font-semibold hover:underline"
-            >
-              View All Services <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
+            <Button asChild variant="gold" size="lg">
+              <Link to="/employer">
+                View Employer Solutions <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -283,30 +246,12 @@ function Index() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20 bg-secondary/55">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-4">
-            Our Recruitment Process
-          </h2>
-          <p className="text-black text-center max-w-2xl mx-auto mb-12">
-            A clear, structured approach to find and place the right talent - every time.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {process.map((item) => (
-              <div
-                key={item.step}
-                className="bg-card rounded-lg p-6 border border-border hover:shadow-md transition-smooth"
-              >
-                <span className="text-gold font-display text-2xl font-semibold">{item.step}</span>
-                <h3 className="font-display text-lg font-semibold text-primary mt-2 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-black text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+          <div className="text-center mt-10">
+            <Button asChild variant="gold" size="lg">
+              <Link to="/process">
+                See Our Process <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -316,11 +261,11 @@ function Index() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Sectors We Specialize In
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6">
             {sectors.map((sector) => (
               <div
                 key={sector.label}
-                className="bg-secondary/55 rounded-lg p-6 flex flex-col items-center text-center border border-border hover:shadow-md transition-smooth"
+                className="min-h-[168px] bg-secondary/55 rounded-lg p-6 flex flex-col items-center justify-center text-center border border-border hover:shadow-md transition-smooth"
               >
                 <div className="text-accent mb-3">
                   <sector.icon className="w-8 h-8" />
@@ -329,43 +274,12 @@ function Index() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="bg-secondary/55 py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-stretch">
-            <div className="rounded-3xl bg-primary text-primary-foreground p-8 md:p-10 shadow-elegant">
-              <div className="w-14 h-14 rounded-2xl bg-primary-foreground/10 flex items-center justify-center mb-6">
-                <Stethoscope className="w-7 h-7 text-gold" />
-              </div>
-              <p className="text-gold uppercase tracking-[0.2em] text-xs font-semibold mb-3">
-                Healthcare Staffing
-              </p>
-              <h2 className="font-display text-3xl md:text-4xl font-semibold">
-                Nursing and medical support hiring, handled with care.
-              </h2>
-              <p className="mt-5 text-primary-foreground/75 leading-relaxed">
-                We also source and shortlist dependable blue-collar healthcare talent for hospitals,
-                clinics, diagnostic centers, and care facilities across Pune and PCMC.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {[
-                "Staff nurses and nursing assistants",
-                "Ward boys, attendants, and patient care staff",
-                "Lab technicians and diagnostic support teams",
-                "Front desk, billing, and hospital admin staff",
-              ].map((role) => (
-                <div
-                  key={role}
-                  className="rounded-2xl bg-card border border-border/60 p-6 shadow-card hover-lift"
-                >
-                  <HeartPulse className="w-6 h-6 text-accent mb-4" />
-                  <p className="font-semibold text-primary leading-snug">{role}</p>
-                </div>
-              ))}
-            </div>
+          <div className="text-center mt-10">
+            <Button asChild variant="gold" size="lg">
+              <Link to="/employer">
+                Explore Employer Solutions <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -380,7 +294,7 @@ function Index() {
             lifting.
           </p>
           <Button asChild variant="gold" size="lg" className="w-fit">
-            <Link to="/contact">Submit Hiring Requirement</Link>
+            <Link to="/employer">Submit Hiring Requirement</Link>
           </Button>
         </div>
         <div className="bg-accent text-accent-foreground py-16 px-8 md:px-16 flex flex-col justify-center">
@@ -393,7 +307,7 @@ function Index() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center bg-card text-accent font-semibold px-8 py-3 rounded-md hover:opacity-90 transition-smooth w-fit"
+            className="inline-flex items-center justify-center bg-[#f3a900] text-primary font-semibold px-8 py-3 rounded-md hover:bg-[#d89500] transition-smooth w-fit"
           >
             Register as a Candidate
           </Link>
@@ -413,6 +327,13 @@ function Index() {
                 <p className="text-sm font-semibold text-primary">- {item.author}</p>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <Button asChild variant="gold" size="lg">
+              <Link to="/contact">
+                Talk to Our Team <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

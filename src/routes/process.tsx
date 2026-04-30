@@ -71,13 +71,6 @@ const steps = [
   },
 ];
 
-const highlights = [
-  "Clear communication at every stage",
-  "Pre-screened and relevant candidate submissions",
-  "Faster coordination between employers and candidates",
-  "Support through closure and onboarding",
-];
-
 function ProcessPage() {
   return (
     <>
@@ -113,25 +106,6 @@ function ProcessPage() {
                 <h3 className="mt-3 font-display text-2xl text-primary">{step.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-black">{step.desc}</p>
               </div>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        tag="Why It Works"
-        title="Built for Clarity, Speed, and Better Hiring Outcomes"
-        subtitle="We keep the process disciplined so employers save time and candidates stay engaged throughout the cycle."
-        className="gradient-soft"
-      >
-        <div className="grid md:grid-cols-2 gap-4">
-          {highlights.map((item) => (
-            <div
-              key={item}
-              className="flex items-start gap-3 rounded-2xl border border-border/50 bg-card p-6 shadow-card"
-            >
-              <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-              <p className="text-black">{item}</p>
             </div>
           ))}
         </div>
