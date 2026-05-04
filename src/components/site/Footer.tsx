@@ -56,7 +56,6 @@ export function Footer() {
             <ul className="space-y-3 text-sm text-primary-foreground/70">
               <li>Permanent Staffing</li>
               <li>Executive Search</li>
-              <li>Contract & Temp Staffing</li>
               <li>Talent Consulting</li>
             </ul>
           </div>

@@ -5,7 +5,6 @@ import {
   ArrowRight,
   Briefcase,
   Building2,
-  CalendarDays,
   Factory,
   Globe,
   HeartPulse,
@@ -49,11 +48,6 @@ const services = [
     icon: ShieldCheck,
     title: "Executive Search",
     desc: "Identifying and approaching high-caliber leadership talent who aren't actively job-seeking. Confidential, strategic, result-driven.",
-  },
-  {
-    icon: CalendarDays,
-    title: "Contract & Temp Staffing",
-    desc: "Flexible workforce solutions for project-based requirements, seasonal demand, or bridging critical gaps.",
   },
 ] as const;
 

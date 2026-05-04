@@ -3,22 +3,27 @@ import { useState } from "react";
 import {
   Briefcase,
   Building2,
-  CalendarDays,
   Check,
   CheckCircle2,
   Factory,
   HeartPulse,
-  Landmark,
   Package,
   Send,
   ShieldCheck,
   Stethoscope,
   Users,
 } from "lucide-react";
-import contractStaffingImg from "@/assets/services/contract-staffing.jpg";
 import executiveSearchImg from "@/assets/services/executive-search.jpg";
 import permanentStaffingImg from "@/assets/services/permanent-staffing.jpg";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
@@ -31,13 +36,13 @@ export const Route = createFileRoute("/employer")({
       {
         name: "description",
         content:
-          "Employer hiring solutions from permanent placements to executive search to contract staffing.",
+          "Employer hiring solutions from permanent placements to executive search and healthcare recruitment.",
       },
       { property: "og:title", content: "Employer Solutions That Deliver - Skill Spark" },
       {
         property: "og:description",
         content:
-          "Permanent staffing, executive search, and contract & temp staffing across Pune and PCMC.",
+          "Permanent staffing, executive search, and healthcare recruitment across Pune and PCMC.",
       },
     ],
   }),
@@ -70,21 +75,9 @@ const services = [
     ],
   },
   {
-    icon: CalendarDays,
-    title: "Contract & Temp Staffing",
-    image: contractStaffingImg,
-    desc: "Flexible workforce solutions for project-based requirements, seasonal demand, or bridging critical gaps. We handle compliance, payroll, and workforce management so you can focus on business.",
-    points: [
-      "Project-based staffing",
-      "Seasonal workforce augmentation",
-      "Compliance & payroll management",
-      "Quick turnaround",
-    ],
-  },
-  {
     icon: Stethoscope,
     title: "Healthcare & Nursing Staffing",
-    image: contractStaffingImg,
+    image: permanentStaffingImg,
     desc: "We source and shortlist dependable blue-collar healthcare talent for hospitals, clinics, diagnostic centers, and care facilities. Our focus is on reliable, pre-screened staff for patient care, diagnostics, facility operations, and administrative support.",
     points: [
       "Nurses and nursing assistants",
@@ -96,13 +89,289 @@ const services = [
 ] as const;
 
 const industries = [
-  { icon: Users, label: "Information Technology" },
-  { icon: Factory, label: "Manufacturing & Engineering" },
-  { icon: Landmark, label: "Industrial & Infrastructure" },
-  { icon: Package, label: "Logistics & Supply Chain" },
-  { icon: HeartPulse, label: "Healthcare & Nursing" },
-  { icon: Building2, label: "Corporate & Admin" },
-  { icon: Briefcase, label: "BFSI & Sales" },
+  {
+    icon: Users,
+    label: "Information Technology",
+    seoTitle: "IT Recruitment Services for Software, Cloud, Data, and Support Roles",
+    overview:
+      "Skill Spark supports IT hiring for startups, product companies, IT services firms, and enterprise technology teams across Pune, PCMC, and India. We help employers hire screened technology talent for permanent staffing, specialized recruitment, and leadership search.",
+    services: [
+      "Permanent staffing for software and IT support teams",
+      "Specialized recruitment for technology project teams",
+      "Executive search for engineering, product, and technology leaders",
+    ],
+    roleGroups: [
+      {
+        title: "Software & Web Development",
+        roles: [
+          "Frontend Developer",
+          "Backend Developer",
+          "Full Stack Developer",
+          "React Developer",
+          "Node.js Developer",
+          "Python Developer",
+        ],
+      },
+      {
+        title: "Cloud, Data & Infrastructure",
+        roles: [
+          "DevOps Engineer",
+          "Cloud Engineer",
+          "Data Analyst",
+          "Data Engineer",
+          "Database Administrator",
+          "Network Engineer",
+        ],
+      },
+      {
+        title: "Product, QA & Support",
+        roles: [
+          "QA Engineer",
+          "Automation Tester",
+          "Product Manager",
+          "Business Analyst",
+          "Technical Support Executive",
+          "IT Helpdesk Engineer",
+        ],
+      },
+    ],
+  },
+  {
+    icon: Factory,
+    label: "Manufacturing & Engineering",
+    seoTitle: "Manufacturing and Engineering Recruitment for Plant, Production, and Quality Teams",
+    overview:
+      "We provide manufacturing recruitment and engineering staffing for factories, industrial units, fabrication businesses, and production-led companies. Our hiring support covers shop-floor, technical, supervisory, and senior plant roles.",
+    services: [
+      "Permanent staffing for production and engineering departments",
+      "Specialized recruitment for plant operations and project demand",
+      "Executive search for plant heads and operations leaders",
+    ],
+    roleGroups: [
+      {
+        title: "Production & Operations",
+        roles: [
+          "Production Manager",
+          "Production Supervisor",
+          "Machine Operator",
+          "CNC Operator",
+          "Assembly Line Supervisor",
+          "Shift Incharge",
+        ],
+      },
+      {
+        title: "Quality, Maintenance & EHS",
+        roles: [
+          "Quality Engineer",
+          "QA/QC Inspector",
+          "Maintenance Engineer",
+          "EHS Officer",
+          "Safety Officer",
+          "Utility Technician",
+        ],
+      },
+      {
+        title: "Engineering & Plant Leadership",
+        roles: [
+          "Design Engineer",
+          "Process Engineer",
+          "Plant Head",
+          "Operations Manager",
+          "Tool Room Engineer",
+          "Industrial Engineer",
+        ],
+      },
+    ],
+  },
+  {
+    icon: Package,
+    label: "Logistics & Supply Chain",
+    seoTitle: "Logistics and Supply Chain Hiring for Warehouse, Procurement, and Transport Roles",
+    overview:
+      "Skill Spark helps companies hire dependable logistics and supply chain professionals for warehousing, dispatch, procurement, inventory, and last-mile operations. We focus on practical screening, communication skills, and operational reliability.",
+    services: [
+      "Permanent staffing for logistics and supply chain functions",
+      "Bulk hiring support for warehouse and dispatch operations",
+      "Leadership hiring for procurement, warehouse, and distribution teams",
+    ],
+    roleGroups: [
+      {
+        title: "Warehouse & Inventory",
+        roles: [
+          "Warehouse Manager",
+          "Inventory Executive",
+          "Store Keeper",
+          "Picker Packer",
+          "Warehouse Supervisor",
+          "Stock Auditor",
+        ],
+      },
+      {
+        title: "Transport & Dispatch",
+        roles: [
+          "Dispatch Executive",
+          "Logistics Coordinator",
+          "Fleet Supervisor",
+          "Transport Manager",
+          "Delivery Operations Executive",
+          "Route Planner",
+        ],
+      },
+      {
+        title: "Procurement & Supply Chain",
+        roles: [
+          "Purchase Executive",
+          "Procurement Manager",
+          "Supply Chain Analyst",
+          "Vendor Development Executive",
+          "Import Export Executive",
+          "MIS Executive",
+        ],
+      },
+    ],
+  },
+  {
+    icon: HeartPulse,
+    label: "Healthcare & Nursing",
+    seoTitle: "Healthcare and Nursing Staffing for Hospitals, Clinics, and Care Facilities",
+    overview:
+      "We support healthcare recruitment for hospitals, clinics, diagnostic centers, home-care providers, and medical facilities. Our process focuses on verified experience, patient-care attitude, shift readiness, and role-specific screening.",
+    services: [
+      "Permanent staffing for clinical and hospital support roles",
+      "Focused recruitment for ward, patient-care, and facility requirements",
+      "Focused sourcing for nursing, diagnostics, and healthcare operations",
+    ],
+    roleGroups: [
+      {
+        title: "Nursing & Patient Care",
+        roles: [
+          "Staff Nurse",
+          "GNM Nurse",
+          "ANM Nurse",
+          "ICU Nurse",
+          "Nursing Assistant",
+          "Patient Care Attendant",
+        ],
+      },
+      {
+        title: "Diagnostics & Clinical Support",
+        roles: [
+          "Lab Technician",
+          "Radiology Technician",
+          "Phlebotomist",
+          "OT Technician",
+          "Dialysis Technician",
+          "Medical Records Executive",
+        ],
+      },
+      {
+        title: "Hospital Operations",
+        roles: [
+          "Hospital Administrator",
+          "Front Office Executive",
+          "Billing Executive",
+          "Ward Boy",
+          "Housekeeping Supervisor",
+          "Facility Coordinator",
+        ],
+      },
+    ],
+  },
+  {
+    icon: Building2,
+    label: "Corporate & Admin",
+    seoTitle: "Corporate and Admin Recruitment for HR, Finance, Back Office, and Office Operations",
+    overview:
+      "Skill Spark recruits corporate and administrative talent for growing businesses that need dependable back-office, HR, finance, operations, and office support teams. We prioritize communication, stability, documentation accuracy, and role fit.",
+    services: [
+      "Permanent staffing for corporate and back-office functions",
+      "Focused hiring support for documentation, operations, and admin workload",
+      "Search support for HR, finance, and administration leadership",
+    ],
+    roleGroups: [
+      {
+        title: "Human Resources & Admin",
+        roles: [
+          "HR Executive",
+          "Recruiter",
+          "Admin Executive",
+          "Office Coordinator",
+          "Payroll Executive",
+          "Facility Executive",
+        ],
+      },
+      {
+        title: "Finance & Accounts",
+        roles: [
+          "Accountant",
+          "Accounts Executive",
+          "Billing Executive",
+          "Finance Executive",
+          "Tax Assistant",
+          "Accounts Manager",
+        ],
+      },
+      {
+        title: "Back Office & Operations",
+        roles: [
+          "Data Entry Operator",
+          "MIS Executive",
+          "Operations Executive",
+          "Customer Support Executive",
+          "Documentation Executive",
+          "Executive Assistant",
+        ],
+      },
+    ],
+  },
+  {
+    icon: Briefcase,
+    label: "BFSI & Sales",
+    seoTitle:
+      "BFSI and Sales Recruitment for Banking, Insurance, Field Sales, and Business Development",
+    overview:
+      "We help banking, financial services, insurance, fintech, and sales-led organizations hire target-driven professionals. Our screening focuses on communication, product understanding, field readiness, customer handling, and performance orientation.",
+    services: [
+      "Permanent staffing for sales, banking, and insurance teams",
+      "Bulk hiring support for field sales and customer acquisition",
+      "Leadership hiring for branch, sales, and business development roles",
+    ],
+    roleGroups: [
+      {
+        title: "Banking, Finance & Insurance",
+        roles: [
+          "Relationship Manager",
+          "Loan Officer",
+          "Credit Executive",
+          "Insurance Advisor",
+          "Branch Operations Executive",
+          "KYC Executive",
+        ],
+      },
+      {
+        title: "Sales & Business Development",
+        roles: [
+          "Sales Executive",
+          "Business Development Executive",
+          "Area Sales Manager",
+          "Field Sales Officer",
+          "Inside Sales Executive",
+          "Key Account Manager",
+        ],
+      },
+      {
+        title: "Customer & Revenue Operations",
+        roles: [
+          "Telecaller",
+          "Customer Service Executive",
+          "Collection Executive",
+          "Sales Coordinator",
+          "Channel Sales Executive",
+          "Team Leader Sales",
+        ],
+      },
+    ],
+  },
 ] as const;
 
 const processHighlights = [
@@ -157,7 +426,7 @@ function ServicesPage() {
             Employer Solutions That Deliver
           </h1>
           <p className="text-primary-foreground/80 text-lg max-w-3xl mx-auto">
-            From permanent placements to executive search to contract staffing - we cover the full
+            From permanent placements to executive search and healthcare hiring - we cover the full
             spectrum of talent acquisition.
           </p>
         </div>
@@ -168,17 +437,105 @@ function ServicesPage() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Industries We Serve
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-6">
+          <div className="flex flex-wrap lg:flex-nowrap justify-center gap-6">
             {industries.map((industry) => (
-              <div
-                key={industry.label}
-                className="bg-secondary/45 rounded-2xl p-6 flex flex-col items-center text-center border border-border shadow-card hover-lift"
-              >
-                <div className="text-accent mb-3">
-                  <industry.icon className="w-8 h-8" />
-                </div>
-                <p className="text-sm font-semibold text-primary">{industry.label}</p>
-              </div>
+              <Dialog key={industry.label}>
+                <DialogTrigger asChild>
+                  <button
+                    type="button"
+                    className="w-[calc(50%-0.75rem)] sm:w-[198px] min-h-[166px] bg-secondary/45 rounded-2xl p-6 flex flex-col items-center justify-center text-center border border-border shadow-card hover-lift cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                    aria-label={`View ${industry.label} recruitment roles and services`}
+                  >
+                    <div className="text-accent mb-3">
+                      <industry.icon className="w-8 h-8" />
+                    </div>
+                    <p className="text-sm font-semibold text-primary">{industry.label}</p>
+                    <span className="mt-3 text-xs font-semibold uppercase tracking-wide text-gold">
+                      View Roles
+                    </span>
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-h-[90vh] max-w-5xl overflow-y-auto rounded-2xl border-border p-0">
+                  <article>
+                    <div className="bg-primary px-6 py-7 text-primary-foreground md:px-8">
+                      <DialogHeader className="text-left">
+                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gold text-primary shadow-soft">
+                          <industry.icon className="h-7 w-7" />
+                        </div>
+                        <DialogTitle className="font-display text-3xl font-semibold leading-tight md:text-4xl">
+                          {industry.label} Recruitment Roles
+                        </DialogTitle>
+                        <DialogDescription className="max-w-3xl text-base leading-relaxed text-primary-foreground/80">
+                          {industry.seoTitle}
+                        </DialogDescription>
+                      </DialogHeader>
+                    </div>
+
+                    <div className="space-y-8 p-6 md:p-8">
+                      <p className="text-black leading-relaxed">{industry.overview}</p>
+
+                      <section aria-labelledby={`${industry.label}-services`}>
+                        <h3
+                          id={`${industry.label}-services`}
+                          className="font-display text-2xl font-semibold text-primary"
+                        >
+                          Services We Provide
+                        </h3>
+                        <div className="mt-4 grid gap-3 md:grid-cols-3">
+                          {industry.services.map((item) => (
+                            <div
+                              key={item}
+                              className="rounded-xl border border-gold/25 bg-gold/10 p-4 text-sm font-medium leading-relaxed text-primary"
+                            >
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      </section>
+
+                      <section aria-labelledby={`${industry.label}-roles`}>
+                        <h3
+                          id={`${industry.label}-roles`}
+                          className="font-display text-2xl font-semibold text-primary"
+                        >
+                          Sector Wise Roles We Hire
+                        </h3>
+                        <div className="mt-4 grid gap-4 md:grid-cols-3">
+                          {industry.roleGroups.map((group) => (
+                            <div
+                              key={group.title}
+                              className="rounded-2xl border border-border bg-secondary/45 p-5"
+                            >
+                              <h4 className="font-display text-xl font-semibold text-primary">
+                                {group.title}
+                              </h4>
+                              <ul className="mt-4 space-y-2">
+                                {group.roles.map((role) => (
+                                  <li
+                                    key={role}
+                                    className="flex items-start gap-2 text-sm text-black"
+                                  >
+                                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                                    <span>{role}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </section>
+
+                      <div className="rounded-2xl bg-primary/5 p-5">
+                        <p className="text-sm leading-relaxed text-black">
+                          Looking for {industry.label.toLowerCase()} recruitment in Pune, PCMC, or
+                          across India? Share your required roles, experience level, location, and
+                          timeline so Skill Spark Consulting can prepare a focused shortlist.
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </DialogContent>
+              </Dialog>
             ))}
           </div>
         </div>
