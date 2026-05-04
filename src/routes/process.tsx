@@ -88,36 +88,75 @@ function ProcessPage() {
         className="bg-background"
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step) => (
+          {steps.map((step, index) => (
             <div
               key={step.n}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-6 shadow-card transition-smooth hover:-translate-y-1 hover:border-gold/35 hover:shadow-elegant sm:p-7"
+              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card transition-smooth hover:-translate-y-1 hover:border-gold/40 hover:shadow-elegant"
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-gold" />
-              <div className="absolute -right-5 -top-6 font-display text-8xl font-bold leading-none text-primary/[0.06] transition-smooth group-hover:text-gold/15">
-                {step.n}
+              <div className="relative bg-primary px-6 py-5 text-primary-foreground sm:px-7">
+                <div className="absolute inset-y-0 right-0 w-24 bg-gold/15" />
+                <div className="relative flex items-center justify-between gap-4">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gold text-primary shadow-soft transition-smooth group-hover:scale-105">
+                    <step.icon className="h-6 w-6" />
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+                      Step
+                    </div>
+                    <div className="font-display text-4xl font-semibold leading-none text-primary-foreground">
+                      {step.n}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="relative">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-soft transition-smooth group-hover:bg-gold group-hover:text-primary">
-                    <step.icon className="h-5 w-5" />
+
+              <div className="relative p-6 sm:p-7">
+                <div className="absolute right-6 top-6 font-display text-7xl font-bold leading-none text-primary/[0.04]">
+                  {step.n}
+                </div>
+                <div className="relative">
+                  <div className="mb-5 flex items-center gap-2">
+                    {steps.map((dot) => (
+                      <span
+                        key={dot.n}
+                        className={`h-2 rounded-full transition-smooth ${
+                          Number(dot.n) <= Number(step.n)
+                            ? "w-6 bg-gold"
+                            : "w-2 bg-primary/15"
+                        }`}
+                      />
+                    ))}
                   </div>
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/35 bg-gold/10 font-display text-xl font-semibold leading-none text-primary">
-                    {step.n}
+
+                  <h3 className="font-display text-xl font-semibold leading-tight text-primary sm:text-2xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-black">{step.desc}</p>
+
+                  <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-4">
+                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                      {index === steps.length - 1 ? "Complete" : "Next Step"}
+                    </span>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-smooth group-hover:bg-gold group-hover:text-primary">
+                      {index === steps.length - 1 ? (
+                        <CheckCircle2 className="h-4 w-4" />
+                      ) : (
+                        <ArrowRight className="h-4 w-4" />
+                      )}
+                    </span>
                   </div>
                 </div>
-                <div className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                  Step {step.n}
-                </div>
-                <h3 className="mt-3 font-display text-xl text-primary sm:text-2xl">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-black">{step.desc}</p>
               </div>
             </div>
           ))}
         </div>
       </Section>
 
-      <Section title="Ready to start hiring with a clearer process?" align="center">
+      <Section
+        title="Ready to start hiring with a clearer process?"
+        align="center"
+        className="bg-primary text-primary-foreground [&_h2]:text-primary-foreground"
+      >
         <div className="flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
           <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
             <Link to="/contact">
