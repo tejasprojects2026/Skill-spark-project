@@ -200,7 +200,7 @@ function Index() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Employer Hiring Solutions
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
             {services.map((service) => (
               <div
                 key={service.title}
