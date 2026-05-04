@@ -87,20 +87,26 @@ function ProcessPage() {
         subtitle="Each step is deliberate, collaborative, and built to keep hiring organized from the first brief to the final offer."
         className="bg-background"
       >
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {steps.map((step) => (
             <div
               key={step.n}
-              className="relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 shadow-card hover-lift sm:p-8"
+              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card p-6 shadow-card transition-smooth hover:-translate-y-1 hover:border-gold/35 hover:shadow-elegant sm:p-7"
             >
-              <div className="absolute -top-5 -right-3 font-display text-7xl font-bold text-primary/8">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gold" />
+              <div className="absolute -right-5 -top-6 font-display text-8xl font-bold leading-none text-primary/[0.06] transition-smooth group-hover:text-gold/15">
                 {step.n}
               </div>
               <div className="relative">
-                <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center shadow-soft">
-                  <step.icon className="w-5 h-5 text-primary-foreground" />
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-soft transition-smooth group-hover:bg-gold group-hover:text-primary">
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold/35 bg-gold/10 font-display text-xl font-semibold leading-none text-primary">
+                    {step.n}
+                  </div>
                 </div>
-                <div className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                <div className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
                   Step {step.n}
                 </div>
                 <h3 className="mt-3 font-display text-xl text-primary sm:text-2xl">{step.title}</h3>
