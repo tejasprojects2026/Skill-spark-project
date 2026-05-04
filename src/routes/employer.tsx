@@ -417,33 +417,33 @@ function ServicesPage() {
 
   return (
     <>
-      <section className="bg-primary text-primary-foreground py-16 md:py-24">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <p className="text-accent uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+      <section className="bg-primary py-12 text-primary-foreground sm:py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">
             Employer
           </p>
-          <h1 className="font-display text-4xl md:text-5xl font-semibold mb-6">
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mb-5 md:mb-6">
             Employer Solutions That Deliver
           </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-3xl mx-auto">
+          <p className="text-primary-foreground/80 text-base md:text-lg max-w-3xl mx-auto">
             From permanent placements to executive search and healthcare hiring - we cover the full
             spectrum of talent acquisition.
           </p>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-14 sm:py-16 md:py-20 bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Industries We Serve
           </h2>
-          <div className="flex flex-wrap lg:flex-nowrap justify-center gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
             {industries.map((industry) => (
               <Dialog key={industry.label}>
                 <DialogTrigger asChild>
                   <button
                     type="button"
-                    className="w-[calc(50%-0.75rem)] sm:w-[198px] min-h-[166px] bg-secondary/45 rounded-2xl p-6 flex flex-col items-center justify-center text-center border border-border shadow-card hover-lift cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                    className="min-h-[150px] w-full rounded-2xl border border-border bg-secondary/45 p-5 text-center shadow-card hover-lift cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 sm:min-h-[166px] sm:p-6 flex flex-col items-center justify-center"
                     aria-label={`View ${industry.label} recruitment roles and services`}
                   >
                     <div className="text-accent mb-3">
@@ -455,14 +455,14 @@ function ServicesPage() {
                     </span>
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-h-[88vh] max-w-3xl overflow-y-auto rounded-3xl border-border bg-card p-0 shadow-elegant [&>button]:flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white/10 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:ring-offset-primary hover:[&>button]:bg-white/20 [&>button>svg]:h-5 [&>button>svg]:w-5">
+                <DialogContent className="max-h-[88vh] w-[calc(100%-1rem)] max-w-3xl overflow-y-auto rounded-2xl border-border bg-card p-0 shadow-elegant sm:w-[calc(100%-2rem)] sm:rounded-3xl [&>button]:flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white/10 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:ring-offset-primary hover:[&>button]:bg-white/20 [&>button>svg]:h-5 [&>button>svg]:w-5">
                   <article>
-                    <div className="bg-primary px-6 py-7 text-primary-foreground md:px-7">
+                    <div className="bg-primary px-5 py-7 pr-14 text-primary-foreground sm:px-6 md:px-7">
                       <DialogHeader className="text-left">
                         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gold text-primary shadow-soft">
                           <industry.icon className="h-6 w-6" />
                         </div>
-                        <DialogTitle className="font-display text-3xl font-semibold leading-tight">
+                        <DialogTitle className="font-display text-2xl font-semibold leading-tight sm:text-3xl">
                           {industry.label} Recruitment Roles
                         </DialogTitle>
                         <DialogDescription className="max-w-2xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">
@@ -471,13 +471,13 @@ function ServicesPage() {
                       </DialogHeader>
                     </div>
 
-                    <div className="space-y-7 p-6 md:p-7">
+                    <div className="space-y-7 p-5 sm:p-6 md:p-7">
                       <p className="text-black leading-relaxed">{industry.overview}</p>
 
                       <section aria-labelledby={`${industry.label}-services`}>
                         <h3
                           id={`${industry.label}-services`}
-                          className="font-display text-2xl font-semibold text-primary"
+                          className="font-display text-xl font-semibold text-primary sm:text-2xl"
                         >
                           Services We Provide
                         </h3>
@@ -496,7 +496,7 @@ function ServicesPage() {
                       <section aria-labelledby={`${industry.label}-roles`}>
                         <h3
                           id={`${industry.label}-roles`}
-                          className="font-display text-2xl font-semibold text-primary"
+                          className="font-display text-xl font-semibold text-primary sm:text-2xl"
                         >
                           Sector Wise Roles We Hire
                         </h3>
@@ -541,15 +541,15 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-secondary/55">
-        <div className="max-w-7xl mx-auto px-4 space-y-16">
+      <section className="py-14 sm:py-16 md:py-20 bg-secondary/55">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 md:space-y-16">
           {services.map((service, index) => (
-            <div key={service.title} className="grid md:grid-cols-2 gap-10 items-center">
+            <div key={service.title} className="grid md:grid-cols-2 gap-8 lg:gap-10 items-center">
               <div className={index % 2 === 1 ? "md:order-2" : undefined}>
                 <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center shadow-soft">
                   <service.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary mt-6">
+                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-primary mt-6">
                   {service.title}
                 </h2>
                 <p className="mt-5 text-black leading-relaxed">{service.desc}</p>
@@ -564,14 +564,14 @@ function ServicesPage() {
               </div>
 
               <div
-                className={`rounded-3xl border border-border/60 bg-card shadow-card min-h-72 flex items-center justify-center ${
+                className={`rounded-2xl md:rounded-3xl border border-border/60 bg-card shadow-card min-h-56 sm:min-h-72 flex items-center justify-center ${
                   index % 2 === 1 ? "md:order-1" : ""
                 }`}
               >
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="h-full min-h-72 w-full rounded-3xl object-cover"
+                  className="h-full min-h-56 w-full rounded-2xl object-cover sm:min-h-72 md:rounded-3xl"
                   loading="lazy"
                 />
               </div>
@@ -580,8 +580,8 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="gradient-soft py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="gradient-soft py-14 sm:py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent">
               Why It Works
@@ -598,7 +598,7 @@ function ServicesPage() {
             {processHighlights.map((item) => (
               <div
                 key={item}
-                className="flex items-start gap-3 rounded-2xl border border-border/50 bg-card p-6 shadow-card"
+              className="flex items-start gap-3 rounded-2xl border border-border/50 bg-card p-5 sm:p-6 shadow-card"
               >
                 <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                 <p className="text-black">{item}</p>
@@ -608,8 +608,8 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section id="hiring-form" className="bg-primary py-16 md:py-20 text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4">
+      <section id="hiring-form" className="bg-primary py-14 sm:py-16 md:py-20 text-primary-foreground">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-display text-3xl md:text-5xl font-semibold">
               Ready to start hiring with a clearer process?
@@ -621,7 +621,7 @@ function ServicesPage() {
 
           <form
             onSubmit={submit}
-            className="mt-10 bg-card text-foreground rounded-2xl p-6 md:p-8 shadow-elegant border border-primary-foreground/10"
+            className="mt-8 rounded-2xl border border-primary-foreground/10 bg-card p-5 text-foreground shadow-elegant sm:p-6 md:mt-10 md:p-8"
           >
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
@@ -680,7 +680,7 @@ function ServicesPage() {
                 placeholder="Tell us about location, experience level, timeline, and number of openings..."
               />
             </div>
-            <Button type="submit" variant="hero" size="lg" disabled={loading} className="mt-6">
+            <Button type="submit" variant="hero" size="lg" disabled={loading} className="mt-6 w-full sm:w-auto">
               {loading ? (
                 "Sending..."
               ) : (

@@ -111,29 +111,29 @@ const testimonials = [
 function Index() {
   return (
     <>
-      <section className="bg-primary text-primary-foreground py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+      <section className="bg-primary py-14 text-primary-foreground sm:py-20 md:py-28">
+        <div className="max-w-7xl mx-auto grid items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div className="text-center md:text-left">
-            <p className="text-accent uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">
               Pune&apos;s Trusted Recruitment Partner
             </p>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6">
+            <h1 className="font-display mb-5 text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
               Connecting the Right Talent with the Right Opportunity
             </h1>
-            <p className="text-primary-foreground/80 text-lg md:text-xl max-w-3xl mb-8">
+            <p className="mx-auto mb-8 max-w-3xl text-base text-primary-foreground/80 md:mx-0 md:text-xl">
               Skill Spark Consulting specializes in end-to-end recruitment solutions for companies
               across Pune, PCMC, and beyond - covering IT, Industrial, and Corporate sectors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
                 to="/employer"
-                className="inline-flex items-center justify-center bg-[#f3a900] text-primary font-semibold px-8 py-3 rounded-md hover:bg-[#d89500] transition-smooth"
+                className="inline-flex items-center justify-center rounded-md bg-[#f3a900] px-8 py-3 text-center font-semibold text-primary transition-smooth hover:bg-[#d89500]"
               >
                 Hire Talent <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center border-2 border-[#f3a900] bg-[#f3a900] text-primary font-semibold px-8 py-3 rounded-md hover:bg-[#d89500] hover:border-[#d89500] transition-smooth"
+                className="inline-flex items-center justify-center rounded-md border-2 border-[#f3a900] bg-[#f3a900] px-8 py-3 text-center font-semibold text-primary transition-smooth hover:border-[#d89500] hover:bg-[#d89500]"
               >
                 Find a Job <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
@@ -155,7 +155,7 @@ function Index() {
       </section>
 
       <section className="bg-primary/92 py-4">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-12 text-primary-foreground/80 text-sm">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-4 text-center text-sm text-primary-foreground/80 sm:px-6 md:gap-12 lg:px-8">
           {highlights.map((item) => (
             <span key={item.label} className="flex items-center gap-2">
               <item.icon className="w-4 h-4 text-accent" />
@@ -165,8 +165,8 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-secondary/55 py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+      <section className="bg-secondary/55 py-14 sm:py-16 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
           <div>
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary mb-6">
               We Don&apos;t Just Fill Positions. We Build Teams.
@@ -195,8 +195,8 @@ function Index() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-14 sm:py-16 md:py-20 bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Employer Hiring Solutions
           </h2>
@@ -204,7 +204,7 @@ function Index() {
             {services.map((service) => (
               <div
                 key={service.title}
-                className="bg-secondary/55 rounded-lg p-8 text-center border border-border hover:shadow-lg transition-smooth"
+                className="bg-secondary/55 rounded-lg p-6 sm:p-8 text-center border border-border hover:shadow-lg transition-smooth"
               >
                 <div className="text-accent mb-4 flex justify-center">
                   <service.icon className="w-10 h-10" />
@@ -226,14 +226,14 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-primary py-16 md:py-20 text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="bg-primary py-14 sm:py-16 md:py-20 text-primary-foreground">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-center mb-12">
             Why Skill Spark?
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {why.map((item) => (
-              <div key={item.title} className="border border-gold/30 rounded-lg p-6 bg-primary/60">
+              <div key={item.title} className="border border-gold/30 rounded-lg p-5 sm:p-6 bg-primary/60">
                 <div className="text-3xl mb-3">{item.icon}</div>
                 <h3 className="font-display text-lg font-semibold text-gold mb-2">{item.title}</h3>
                 <p className="text-primary-foreground/70 text-sm leading-relaxed">{item.desc}</p>
@@ -250,16 +250,16 @@ function Index() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-card">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-14 sm:py-16 md:py-20 bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Sectors We Specialize In
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6">
             {sectors.map((sector) => (
               <div
                 key={sector.label}
-                className="min-h-[168px] bg-secondary/55 rounded-lg p-6 flex flex-col items-center justify-center text-center border border-border hover:shadow-md transition-smooth"
+                className="min-h-[148px] sm:min-h-[168px] bg-secondary/55 rounded-lg p-5 sm:p-6 flex flex-col items-center justify-center text-center border border-border hover:shadow-md transition-smooth"
               >
                 <div className="text-accent mb-3">
                   <sector.icon className="w-8 h-8" />
@@ -279,7 +279,7 @@ function Index() {
       </section>
 
       <section className="grid md:grid-cols-2">
-        <div className="bg-primary text-primary-foreground py-16 px-8 md:px-16 flex flex-col justify-center">
+        <div className="bg-primary text-primary-foreground py-12 px-5 sm:px-8 md:py-16 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
             Are You an Employer?
           </h3>
@@ -287,13 +287,13 @@ function Index() {
             Looking to hire right the first time? Share your requirement and let us do the heavy
             lifting.
           </p>
-          <Button asChild variant="gold" size="lg" className="w-fit">
+          <Button asChild variant="gold" size="lg" className="w-full sm:w-fit">
             <Link to="/employer" hash="hiring-form">
               Submit Hiring Requirement
             </Link>
           </Button>
         </div>
-        <div className="bg-accent text-accent-foreground py-16 px-8 md:px-16 flex flex-col justify-center">
+        <div className="bg-accent text-accent-foreground py-12 px-5 sm:px-8 md:py-16 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
             Are You a Job Seeker?
           </h3>
@@ -304,21 +304,21 @@ function Index() {
           <Link
             to="/employer"
             hash="hiring-form"
-            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-md hover:bg-primary/90 transition-smooth w-fit"
+            className="inline-flex w-full items-center justify-center rounded-md bg-primary px-8 py-3 text-center font-semibold text-primary-foreground transition-smooth hover:bg-primary/90 sm:w-fit"
           >
             Register as a Candidate
           </Link>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-secondary/55">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-14 sm:py-16 md:py-20 bg-secondary/55">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             What Our Clients & Candidates Say
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((item, index) => (
-              <div key={index} className="bg-card rounded-lg p-8 border border-border shadow-soft">
+              <div key={index} className="bg-card rounded-lg p-6 sm:p-8 border border-border shadow-soft">
                 <Quote className="w-6 h-6 text-gold mb-4" />
                 <p className="text-black italic leading-relaxed mb-4">&quot;{item.quote}&quot;</p>
                 <p className="text-sm font-semibold text-primary">- {item.author}</p>

@@ -20,7 +20,7 @@ export function Section({
   containerClassName = "",
 }: SectionProps) {
   return (
-    <section className={`py-20 md:py-28 ${className}`}>
+    <section className={`py-14 sm:py-16 md:py-24 lg:py-28 ${className}`}>
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${containerClassName}`}>
         <div className={align === "center" ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}>
           {tag && (
@@ -30,14 +30,14 @@ export function Section({
               {tag}
             </div>
           )}
-          <h2 className="font-display text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight">
+          <h2 className="font-display text-3xl font-semibold mt-5 text-primary leading-tight md:text-5xl">
             {title}
           </h2>
           {subtitle && (
             <p className="mt-5 text-base md:text-lg text-black leading-relaxed">{subtitle}</p>
           )}
         </div>
-        {children && <div className="mt-14">{children}</div>}
+        {children && <div className="mt-10 md:mt-14">{children}</div>}
       </div>
     </section>
   );

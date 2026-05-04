@@ -91,7 +91,7 @@ function ProcessPage() {
           {steps.map((step) => (
             <div
               key={step.n}
-              className="relative rounded-2xl border border-border/50 bg-card p-8 shadow-card hover-lift overflow-hidden"
+              className="relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 shadow-card hover-lift sm:p-8"
             >
               <div className="absolute -top-5 -right-3 font-display text-7xl font-bold text-primary/8">
                 {step.n}
@@ -103,7 +103,7 @@ function ProcessPage() {
                 <div className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
                   Step {step.n}
                 </div>
-                <h3 className="mt-3 font-display text-2xl text-primary">{step.title}</h3>
+                <h3 className="mt-3 font-display text-xl text-primary sm:text-2xl">{step.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-black">{step.desc}</p>
               </div>
             </div>
@@ -112,13 +112,13 @@ function ProcessPage() {
       </Section>
 
       <Section title="Ready to start hiring with a clearer process?" align="center">
-        <div className="flex justify-center gap-4 flex-wrap">
-          <Button asChild variant="hero" size="xl">
+        <div className="flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
+          <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
             <Link to="/contact">
               Start Hiring <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
-          <Button asChild variant="outline" size="xl">
+          <Button asChild variant="outline" size="xl" className="w-full sm:w-auto">
             <Link to="/contact">Contact Us</Link>
           </Button>
         </div>

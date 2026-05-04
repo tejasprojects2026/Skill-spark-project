@@ -65,17 +65,17 @@ function AboutPage() {
       />
 
       <Section tag="Our Story" title="Born in PCMC. Built for Pune." align="left">
-        <div className="grid lg:grid-cols-2 gap-12 items-center -mt-4">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 lg:-mt-4">
           <div className="relative">
-            <div className="absolute -top-6 -left-6 w-32 h-32 rounded-2xl gradient-gold opacity-80 -z-10" />
-            <div className="absolute -bottom-6 -right-6 w-40 h-40 rounded-2xl gradient-primary opacity-90 -z-10" />
+            <div className="absolute -top-3 -left-3 h-20 w-20 rounded-2xl gradient-gold opacity-80 -z-10 sm:-top-6 sm:-left-6 sm:h-32 sm:w-32" />
+            <div className="absolute -bottom-3 -right-3 h-24 w-24 rounded-2xl gradient-primary opacity-90 -z-10 sm:-bottom-6 sm:-right-6 sm:h-40 sm:w-40" />
             <img
               src={aboutImg}
               alt="Skill Spark team"
               loading="lazy"
               width={1280}
               height={896}
-              className="rounded-2xl shadow-elegant w-full"
+              className="w-full rounded-2xl shadow-elegant"
             />
           </div>
           <div className="space-y-5 text-black leading-relaxed">
@@ -101,18 +101,18 @@ function AboutPage() {
       <Section
         tag="What Drives Us"
         title="Mission, Vision & Values"
-        className="gradient-soft -mt-20 md:-mt-28"
+        className="gradient-soft md:-mt-14 lg:-mt-20"
       >
         <div className="grid md:grid-cols-3 gap-6">
           {pillars.map((v) => (
             <div
               key={v.title}
-              className="bg-card rounded-2xl p-8 shadow-card border border-border/50 hover-lift"
+              className="bg-card rounded-2xl p-6 sm:p-8 shadow-card border border-border/50 hover-lift"
             >
               <div className="w-14 h-14 rounded-xl gradient-primary flex items-center justify-center shadow-soft">
                 <v.icon className="w-6 h-6 text-primary-foreground" />
               </div>
-              <h3 className="font-display text-2xl mt-6 text-primary">{v.title}</h3>
+              <h3 className="font-display text-xl sm:text-2xl mt-6 text-primary">{v.title}</h3>
               <p className="mt-3 text-black leading-relaxed">{v.text}</p>
             </div>
           ))}
@@ -142,21 +142,21 @@ function AboutPage() {
         </div>
       </Section>
 
-      <section className="bg-primary py-20 md:py-24 text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4 text-center">
+      <section className="bg-primary py-14 sm:py-20 md:py-24 text-primary-foreground">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-5xl font-semibold">
             Let&apos;s build your team, together.
           </h2>
-          <p className="mt-5 text-lg text-primary-foreground/80">
+          <p className="mt-5 text-base md:text-lg text-primary-foreground/80">
             Let&apos;s discuss your hiring needs and find the perfect talent for your team.
           </p>
-          <div className="mt-8 flex justify-center gap-4 flex-wrap">
-            <Button asChild variant="gold" size="xl">
+          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
+            <Button asChild variant="gold" size="xl" className="w-full sm:w-auto">
               <Link to="/contact">
                 Submit Hiring Requirement <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
-            <Button asChild variant="outlineLight" size="xl">
+            <Button asChild variant="outlineLight" size="xl" className="w-full sm:w-auto">
               <Link to="/employer">Explore Employer Solutions</Link>
             </Button>
           </div>

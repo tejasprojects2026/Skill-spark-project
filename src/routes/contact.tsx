@@ -63,8 +63,8 @@ function ContactPage() {
       />
 
       <Section title="" className="bg-background">
-        <div className="grid lg:grid-cols-5 gap-10 -mt-14">
-          <div className="lg:col-span-3 bg-card rounded-2xl p-8 md:p-10 shadow-elegant border border-border/50">
+        <div className="grid gap-8 lg:grid-cols-5 lg:gap-10 lg:-mt-14">
+          <div className="rounded-2xl border border-border/50 bg-card p-5 shadow-elegant sm:p-8 md:p-10 lg:col-span-3">
             <h3 className="font-display text-2xl text-primary">Send Us a Message</h3>
             <p className="text-sm text-black mt-1">We typically respond within one business day.</p>
             <form onSubmit={submit} className="mt-6 space-y-5">
@@ -126,7 +126,7 @@ function ContactPage() {
           </div>
 
           <div className="lg:col-span-2 space-y-5">
-            <div className="bg-primary text-primary-foreground rounded-2xl p-8 shadow-elegant">
+            <div className="rounded-2xl bg-primary p-5 text-primary-foreground shadow-elegant sm:p-8">
               <h3 className="font-display text-2xl">Contact Information</h3>
               <div className="mt-6 space-y-5 text-sm">
                 <ContactRow
@@ -153,7 +153,7 @@ function ContactPage() {
                 />
               </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-elegant border border-border h-72">
+            <div className="h-64 overflow-hidden rounded-2xl border border-border shadow-elegant sm:h-72">
               <iframe
                 title="Skill Spark Office — Gera's Imperium Gateway, PCMC, Pune"
                 src="https://www.google.com/maps?q=Gera%27s+Imperium+Gateway+Nashik+Phata+PCMC+Pune&output=embed"
@@ -183,9 +183,9 @@ function ContactRow({
   href?: string;
 }) {
   return (
-    <div className="flex items-start gap-3">
+    <div className="flex min-w-0 items-start gap-3">
       <Icon className="w-5 h-5 text-gold shrink-0 mt-0.5" />
-      <div>
+      <div className="min-w-0">
         <div className="font-semibold">{title}</div>
         {href ? (
           <a
@@ -195,7 +195,7 @@ function ContactRow({
             {value}
           </a>
         ) : (
-          <div className="text-primary-foreground/75 mt-0.5">{value}</div>
+          <div className="text-primary-foreground/75 mt-0.5 break-words">{value}</div>
         )}
       </div>
     </div>

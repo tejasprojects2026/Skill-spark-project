@@ -39,12 +39,12 @@ export function Header() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex h-16 items-center justify-between sm:h-20">
           <Link to="/" className="flex items-center gap-2.5 group">
             <img
               src={logo}
               alt="Skill Spark Consulting"
-              className="h-14 md:h-16 w-auto transition-smooth group-hover:scale-[1.03]"
+              className="h-11 w-auto transition-smooth group-hover:scale-[1.03] sm:h-14 md:h-16"
             />
           </Link>
 
@@ -103,7 +103,7 @@ export function Header() {
               </Link>
             ))}
             <div className="pt-3">
-              <Button asChild variant="hero" size="sm" className="flex-1">
+              <Button asChild variant="hero" size="sm" className="w-full">
                 <Link to="/contact">{t("cta.consult")}</Link>
               </Button>
             </div>
