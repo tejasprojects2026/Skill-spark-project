@@ -43,8 +43,8 @@ const dict: Record<string, { en: string; mr: string }> = {
   "contact.title": { en: "Let's Discuss Your Vision", mr: "Let's Discuss Your Vision" },
   "footer.rights": { en: "All rights reserved.", mr: "All rights reserved." },
   "footer.tagline": {
-    en: "People • Purpose • Placements",
-    mr: "People • Purpose • Placements",
+    en: "People • Purpose • Placement",
+    mr: "People • Purpose • Placement",
   },
 };
 

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import logo from "@/assets/skill spark.png";
+import footerLogo from "@/assets/footer logo .png";
 
 export function Footer() {
   const { t } = useI18n();
@@ -11,7 +11,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <div className="bg-primary-foreground rounded-xl p-3 inline-block mb-5">
-              <img src={logo} alt="Skill Spark Consulting" className="h-10 w-auto" />
+              <img src={footerLogo} alt="Skill Spark Consulting" className="h-10 w-auto" />
             </div>
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
               {t("footer.tagline")}
