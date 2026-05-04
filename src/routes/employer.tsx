@@ -455,23 +455,23 @@ function ServicesPage() {
                     </span>
                   </button>
                 </DialogTrigger>
-                <DialogContent className="max-h-[90vh] max-w-5xl overflow-y-auto rounded-2xl border-border p-0">
+                <DialogContent className="max-h-[88vh] max-w-3xl overflow-y-auto rounded-3xl border-border bg-card p-0 shadow-elegant [&>button]:flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white/10 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:ring-offset-primary hover:[&>button]:bg-white/20 [&>button>svg]:h-5 [&>button>svg]:w-5">
                   <article>
-                    <div className="bg-primary px-6 py-7 text-primary-foreground md:px-8">
+                    <div className="bg-primary px-6 py-7 text-primary-foreground md:px-7">
                       <DialogHeader className="text-left">
-                        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gold text-primary shadow-soft">
-                          <industry.icon className="h-7 w-7" />
+                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gold text-primary shadow-soft">
+                          <industry.icon className="h-6 w-6" />
                         </div>
-                        <DialogTitle className="font-display text-3xl font-semibold leading-tight md:text-4xl">
+                        <DialogTitle className="font-display text-3xl font-semibold leading-tight">
                           {industry.label} Recruitment Roles
                         </DialogTitle>
-                        <DialogDescription className="max-w-3xl text-base leading-relaxed text-primary-foreground/80">
+                        <DialogDescription className="max-w-2xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">
                           {industry.seoTitle}
                         </DialogDescription>
                       </DialogHeader>
                     </div>
 
-                    <div className="space-y-8 p-6 md:p-8">
+                    <div className="space-y-7 p-6 md:p-7">
                       <p className="text-black leading-relaxed">{industry.overview}</p>
 
                       <section aria-labelledby={`${industry.label}-services`}>
@@ -481,11 +481,11 @@ function ServicesPage() {
                         >
                           Services We Provide
                         </h3>
-                        <div className="mt-4 grid gap-3 md:grid-cols-3">
+                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
                           {industry.services.map((item) => (
                             <div
                               key={item}
-                              className="rounded-xl border border-gold/25 bg-gold/10 p-4 text-sm font-medium leading-relaxed text-primary"
+                              className="rounded-xl border border-gold/25 bg-gold/10 p-4 text-sm font-medium leading-relaxed text-primary shadow-card"
                             >
                               {item}
                             </div>
@@ -500,13 +500,13 @@ function ServicesPage() {
                         >
                           Sector Wise Roles We Hire
                         </h3>
-                        <div className="mt-4 grid gap-4 md:grid-cols-3">
+                        <div className="mt-4 grid gap-4 sm:grid-cols-2">
                           {industry.roleGroups.map((group) => (
                             <div
                               key={group.title}
-                              className="rounded-2xl border border-border bg-secondary/45 p-5"
+                              className="rounded-2xl border border-border bg-secondary/45 p-5 shadow-card"
                             >
-                              <h4 className="font-display text-xl font-semibold text-primary">
+                              <h4 className="font-display text-lg font-semibold text-primary">
                                 {group.title}
                               </h4>
                               <ul className="mt-4 space-y-2">
@@ -525,7 +525,7 @@ function ServicesPage() {
                         </div>
                       </section>
 
-                      <div className="rounded-2xl bg-primary/5 p-5">
+                      <div className="rounded-2xl border border-primary/10 bg-primary/5 p-5">
                         <p className="text-sm leading-relaxed text-black">
                           Looking for {industry.label.toLowerCase()} recruitment in Pune, PCMC, or
                           across India? Share your required roles, experience level, location, and
@@ -608,7 +608,7 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-primary py-16 md:py-20 text-primary-foreground">
+      <section id="hiring-form" className="bg-primary py-16 md:py-20 text-primary-foreground">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-display text-3xl md:text-5xl font-semibold">

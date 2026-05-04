@@ -288,7 +288,9 @@ function Index() {
             lifting.
           </p>
           <Button asChild variant="gold" size="lg" className="w-fit">
-            <Link to="/employer">Submit Hiring Requirement</Link>
+            <Link to="/employer" hash="hiring-form">
+              Submit Hiring Requirement
+            </Link>
           </Button>
         </div>
         <div className="bg-accent text-accent-foreground py-16 px-8 md:px-16 flex flex-col justify-center">
@@ -300,8 +302,9 @@ function Index() {
             company.
           </p>
           <Link
-            to="/contact"
-            className="inline-flex items-center justify-center bg-[#f3a900] text-primary font-semibold px-8 py-3 rounded-md hover:bg-[#d89500] transition-smooth w-fit"
+            to="/employer"
+            hash="hiring-form"
+            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-md hover:bg-primary/90 transition-smooth w-fit"
           >
             Register as a Candidate
           </Link>
