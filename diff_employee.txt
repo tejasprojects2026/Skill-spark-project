@@ -1,0 +1,410 @@
+diff --git a/src/routes/employee.tsx b/src/routes/employee.tsx
+index 58b3688..e27d9dd 100644
+--- a/src/routes/employee.tsx
++++ b/src/routes/employee.tsx
+@@ -1,17 +1,11 @@
+-import { createFileRoute, Link } from "@tanstack/react-router";
+-import {
+-  ArrowRight,
+-  CheckCircle2,
+-  Clock3,
+-  FileUser,
+-  MessagesSquare,
+-  Search,
+-  ShieldCheck,
+-  UserRoundCheck,
+-} from "lucide-react";
++import { createFileRoute } from "@tanstack/react-router";
++import { useState } from "react";
+ import { PageHero } from "@/components/site/PageHero";
+-import { Section } from "@/components/site/Section";
+ import { Button } from "@/components/ui/button";
++import { Input } from "@/components/ui/input";
++import { Textarea } from "@/components/ui/textarea";
++import { toast } from "sonner";
++import { z } from "zod";
+ 
+ export const Route = createFileRoute("/employee")({
+   head: () => ({
+@@ -33,46 +27,64 @@ export const Route = createFileRoute("/employee")({
+   component: EmployeePage,
+ });
+ 
+-const steps = [
+-  {
+-    n: "01",
+-    title: "Candidate Registration",
+-    desc: "Share your details, career goals, preferred location, experience, and the type of roles you are looking for.",
+-    icon: FileUser,
+-  },
+-  {
+-    n: "02",
+-    title: "Profile Review",
+-    desc: "We review your resume, skills, communication, availability, and fitment for active hiring requirements.",
+-    icon: ShieldCheck,
+-  },
+-  {
+-    n: "03",
+-    title: "Opportunity Matching",
+-    desc: "Your profile is matched with relevant openings across IT, manufacturing, logistics, healthcare, corporate, BFSI, and sales.",
+-    icon: Search,
+-  },
+-  {
+-    n: "04",
+-    title: "Interview Coordination",
+-    desc: "We coordinate interviews, share updates, and help keep communication clear between you and the employer.",
+-    icon: Clock3,
+-  },
+-  {
+-    n: "05",
+-    title: "Feedback Support",
+-    desc: "After each round, we gather feedback, guide next steps, and help you stay prepared through the selection process.",
+-    icon: MessagesSquare,
+-  },
+-  {
+-    n: "06",
+-    title: "Offer and Joining",
+-    desc: "From final discussion to joining coordination, we support you until you start the right role with confidence.",
+-    icon: UserRoundCheck,
+-  },
+-];
++const employeeFormSchema = z.object({
++  name: z.string().trim().min(2, "Name is required"),
++  phone: z.string().trim().min(7, "Phone number is required"),
++  email: z.string().trim().email("Enter a valid email"),
++  location: z.string().trim().min(2, "Location is required"),
++  address: z.string().trim().min(5, "Address is required"),
++  experience: z.string().trim().min(1, "Experience is required"),
++  highestQualification: z.string().trim().min(2, "Qualification is required"),
++  currentCompany: z.string().trim().optional(),
++  currentDesignation: z.string().trim().optional(),
++  preferredRole: z.string().trim().min(2, "Preferred role is required"),
++  skills: z.string().trim().min(5, "List your key skills"),
++  noticePeriod: z.string().trim().min(1, "Notice period is required"),
++  expectedSalary: z.string().trim().optional(),
++  availability: z.string().trim().optional(),
++  message: z.string().trim().optional(),
++  cv: z.instanceof(File).or(z.null()).refine((value) => value !== null, "Upload your CV"),
++});
++
++type EmployeeFormValues = z.infer<typeof employeeFormSchema>;
++
++const defaultEmployeeForm: EmployeeFormValues = {
++  name: "",
++  phone: "",
++  email: "",
++  location: "",
++  address: "",
++  experience: "",
++  highestQualification: "",
++  currentCompany: "",
++  currentDesignation: "",
++  preferredRole: "",
++  skills: "",
++  noticePeriod: "",
++  expectedSalary: "",
++  availability: "",
++  message: "",
++  cv: null,
++};
+ 
+ function EmployeePage() {
++  const [form, setForm] = useState<EmployeeFormValues>(defaultEmployeeForm);
++  const [loading, setLoading] = useState(false);
++
++  const submit = async (e: React.FormEvent) => {
++    e.preventDefault();
++    const parsed = employeeFormSchema.safeParse(form);
++    if (!parsed.success) {
++      toast.error(parsed.error.issues[0].message);
++      return;
++    }
++    setLoading(true);
++    await new Promise((resolve) => setTimeout(resolve, 700));
++    setLoading(false);
++    toast.success("Thank you! We received your details and will contact you soon.");
++    setForm(defaultEmployeeForm);
++  };
++
+   return (
+     <>
+       <PageHero
+@@ -82,91 +94,198 @@ function EmployeePage() {
+         breadcrumbs={[{ label: "Employee" }]}
+       />
+ 
+-      <Section
+-        tag="How We Help"
+-        title="From Profile to Joining"
+-        subtitle="Each step is designed to help candidates present their strengths clearly and move through hiring with confidence."
+-        className="bg-background"
+-      >
+-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+-          {steps.map((step, index) => (
+-            <div
+-              key={step.n}
+-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card transition-smooth hover:-translate-y-1 hover:border-gold/40 hover:shadow-elegant"
+-            >
+-              <div className="relative bg-primary px-6 py-5 text-primary-foreground sm:px-7">
+-                <div className="absolute inset-y-0 right-0 w-24 bg-gold/15" />
+-                <div className="relative flex items-center justify-between gap-4">
+-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gold text-primary shadow-soft transition-smooth group-hover:scale-105">
+-                    <step.icon className="h-6 w-6" />
+-                  </div>
+-                  <div className="text-right">
+-                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+-                      Step
+-                    </div>
+-                    <div className="font-display text-4xl font-semibold leading-none text-primary-foreground">
+-                      {step.n}
+-                    </div>
+-                  </div>
+-                </div>
++      <section className="pt-14 sm:pt-16 md:pt-20 pb-28 bg-primary text-primary-foreground">
++        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
++          <div className="text-center mb-10">
++            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/70">
++              Candidate Registration
++            </p>
++            <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary-foreground mt-4">
++              Share Your Profile and Resume
++            </h2>
++            <p className="mt-4 text-primary-foreground/75">
++              Fill in your details so our team can match you with the right job opportunities quickly.
++            </p>
++          </div>
++
++          <div className="rounded-[2rem] border border-primary-foreground/15 bg-white p-8 shadow-elegant">
++            <form onSubmit={submit} className="grid gap-5">
++            <div className="grid gap-5 sm:grid-cols-2">
++              <div>
++                <label className="text-sm font-medium text-primary">Full Name</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.name}
++                  onChange={(e) => setForm({ ...form, name: e.target.value })}
++                  placeholder="Your full name"
++                />
++              </div>
++              <div>
++                <label className="text-sm font-medium text-primary">Phone Number</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.phone}
++                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
++                  placeholder="+91 99999 99999"
++                />
++              </div>
++            </div>
++
++            <div className="grid gap-5 sm:grid-cols-2">
++              <div>
++                <label className="text-sm font-medium text-primary">Email Address</label>
++                <Input
++                  type="email"
++                  className="mt-2 h-11"
++                  value={form.email}
++                  onChange={(e) => setForm({ ...form, email: e.target.value })}
++                  placeholder="you@example.com"
++                />
++              </div>
++              <div>
++                <label className="text-sm font-medium text-primary">Current Location</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.location}
++                  onChange={(e) => setForm({ ...form, location: e.target.value })}
++                  placeholder="City, State"
++                />
+               </div>
++            </div>
++
++            <div>
++              <label className="text-sm font-medium text-primary">Address</label>
++              <Textarea
++                className="mt-2 min-h-[120px]"
++                value={form.address}
++                onChange={(e) => setForm({ ...form, address: e.target.value })}
++                placeholder="Your full address"
++              />
++            </div>
+ 
+-              <div className="relative p-6 sm:p-7">
+-                <div className="absolute right-6 top-6 font-display text-7xl font-bold leading-none text-primary/[0.04]">
+-                  {step.n}
+-                </div>
+-                <div className="relative">
+-                  <div className="mb-5 flex items-center gap-2">
+-                    {steps.map((dot) => (
+-                      <span
+-                        key={dot.n}
+-                        className={`h-2 rounded-full transition-smooth ${
+-                          Number(dot.n) <= Number(step.n) ? "w-6 bg-gold" : "w-2 bg-primary/15"
+-                        }`}
+-                      />
+-                    ))}
+-                  </div>
+-
+-                  <h3 className="font-display text-xl font-semibold leading-tight text-primary sm:text-2xl">
+-                    {step.title}
+-                  </h3>
+-                  <p className="mt-4 text-sm leading-relaxed text-black">{step.desc}</p>
+-
+-                  <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-4">
+-                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+-                      {index === steps.length - 1 ? "Complete" : "Next Step"}
+-                    </span>
+-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-smooth group-hover:bg-gold group-hover:text-primary">
+-                      {index === steps.length - 1 ? (
+-                        <CheckCircle2 className="h-4 w-4" />
+-                      ) : (
+-                        <ArrowRight className="h-4 w-4" />
+-                      )}
+-                    </span>
+-                  </div>
+-                </div>
++            <div className="grid gap-5 sm:grid-cols-2">
++              <div>
++                <label className="text-sm font-medium text-primary">Experience</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.experience}
++                  onChange={(e) => setForm({ ...form, experience: e.target.value })}
++                  placeholder="e.g. 5 years"
++                />
++              </div>
++              <div>
++                <label className="text-sm font-medium text-primary">Highest Qualification</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.highestQualification}
++                  onChange={(e) => setForm({ ...form, highestQualification: e.target.value })}
++                  placeholder="e.g. MBA, B.Tech"
++                />
+               </div>
+             </div>
+-          ))}
+-        </div>
+-      </Section>
+-
+-      <Section
+-        title="Ready to find your next opportunity?"
+-        align="center"
+-        className="bg-primary text-primary-foreground [&_h2]:text-primary-foreground"
+-      >
+-        <div className="flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
+-          <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
+-            <Link to="/contact">
+-              Register as a Candidate <ArrowRight className="w-4 h-4" />
+-            </Link>
+-          </Button>
+-          <Button asChild variant="outline" size="xl" className="w-full sm:w-auto">
+-            <Link to="/contact">Contact Us</Link>
+-          </Button>
++
++            <div className="grid gap-5 sm:grid-cols-2">
++              <div>
++                <label className="text-sm font-medium text-primary">Current Employer</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.currentCompany}
++                  onChange={(e) => setForm({ ...form, currentCompany: e.target.value })}
++                  placeholder="Current company"
++                />
++              </div>
++              <div>
++                <label className="text-sm font-medium text-primary">Current Designation</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.currentDesignation}
++                  onChange={(e) => setForm({ ...form, currentDesignation: e.target.value })}
++                  placeholder="Your job title"
++                />
++              </div>
++            </div>
++
++            <div className="grid gap-5 sm:grid-cols-2">
++              <div>
++                <label className="text-sm font-medium text-primary">Preferred Role</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.preferredRole}
++                  onChange={(e) => setForm({ ...form, preferredRole: e.target.value })}
++                  placeholder="Role you're seeking"
++                />
++              </div>
++              <div>
++                <label className="text-sm font-medium text-primary">Key Skills</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.skills}
++                  onChange={(e) => setForm({ ...form, skills: e.target.value })}
++                  placeholder="e.g. Java, Excel, Sales"
++                />
++              </div>
++            </div>
++
++            <div className="grid gap-5 sm:grid-cols-2">
++              <div>
++                <label className="text-sm font-medium text-primary">Notice Period</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.noticePeriod}
++                  onChange={(e) => setForm({ ...form, noticePeriod: e.target.value })}
++                  placeholder="e.g. Immediate, 30 days"
++                />
++              </div>
++              <div>
++                <label className="text-sm font-medium text-primary">Expected Salary</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.expectedSalary}
++                  onChange={(e) => setForm({ ...form, expectedSalary: e.target.value })}
++                  placeholder="e.g. Gé¦6 LPA"
++                />
++              </div>
++            </div>
++
++            <div className="grid gap-5 sm:grid-cols-2">
++              <div>
++                <label className="text-sm font-medium text-primary">Availability</label>
++                <Input
++                  className="mt-2 h-11"
++                  value={form.availability}
++                  onChange={(e) => setForm({ ...form, availability: e.target.value })}
++                  placeholder="When can you join?"
++                />
++              </div>
++              <div>
++                <label className="text-sm font-medium text-primary">Upload CV</label>
++                <input
++                  title="Upload CV"
++                  type="file"
++                  accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
++                  className="mt-2 block w-full rounded-2xl border border-border bg-card px-4 py-3 text-sm text-primary focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30"
++                  onChange={(e) => setForm({ ...form, cv: e.currentTarget.files?.[0] ?? null })}
++                />
++              </div>
++            </div>
++
++            <div>
++              <label className="text-sm font-medium text-primary">Additional Information</label>
++              <Textarea
++                className="mt-2 min-h-[120px]"
++                value={form.message}
++                onChange={(e) => setForm({ ...form, message: e.target.value })}
++                placeholder="Tell us about your career goals, location preferences, or anything else we should know."
++              />
++            </div>
++
++            <Button type="submit" variant="hero" size="lg" disabled={loading} className="w-full sm:w-auto">
++              {loading ? "Submitting..." : "Submit Your Profile"}
++            </Button>
++          </form>
+         </div>
+-      </Section>
++      </div>
++      </section>
+     </>
+   );
+ }

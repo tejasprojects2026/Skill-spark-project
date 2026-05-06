@@ -8,7 +8,7 @@ const dict: Record<string, { en: string; mr: string }> = {
   "nav.services": { en: "Employer", mr: "Employer" },
   "nav.employee": { en: "Employee", mr: "Employee" },
   "nav.contact": { en: "Contact Us", mr: "Contact Us" },
-  "cta.consult": { en: "Get Consultation", mr: "Get Consultation" },
+  "cta.consult": { en: "Request Consultation", mr: "Request Consultation" },
   "cta.learn": { en: "Learn More", mr: "Learn More" },
   "cta.explore": { en: "Explore Employer Solutions", mr: "Explore Employer Solutions" },
   "cta.apply": { en: "Apply Now", mr: "Apply Now" },

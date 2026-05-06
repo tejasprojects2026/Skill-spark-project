@@ -3,7 +3,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
 import aboutImg from "@/assets/about.jpg";
-import { Target, Eye, Heart, ArrowRight } from "lucide-react";
+import { Compass, Eye, Handshake, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -27,19 +27,32 @@ export const Route = createFileRoute("/about")({
 
 const pillars = [
   {
-    icon: Target,
+    icon: Compass,
     title: "Our Mission",
-    text: "To connect the right talent with the right opportunity — consistently, efficiently, and with integrity. We aim to be the recruitment partner that companies and candidates trust for life.",
+    points: [
+      "Connect the right talent with the right opportunity.",
+      "Make recruitment consistent, efficient, and transparent.",
+      "Support employers and candidates with honest guidance.",
+    ],
   },
   {
     icon: Eye,
     title: "Our Vision",
-    text: "To become Pune's most reliable and respected recruitment consultancy, known for quality placements, sector expertise, and long-term relationships.",
+    points: [
+      "Become Pune's most reliable recruitment consultancy.",
+      "Be known for quality placements and sector understanding.",
+      "Build long-term relationships with companies and candidates.",
+    ],
   },
   {
-    icon: Heart,
+    icon: Handshake,
     title: "Our Values",
-    text: "Integrity in every interaction. Quality over quantity. Deep respect for both the employer's time and the candidate's aspirations. Transparency at every step.",
+    points: [
+      "Integrity in every interaction.",
+      "Quality over quantity in every shortlist.",
+      "Respect for employer time and candidate aspirations.",
+      "Clear communication at every step.",
+    ],
   },
 ];
 
@@ -107,13 +120,21 @@ function AboutPage() {
           {pillars.map((v) => (
             <div
               key={v.title}
-              className="bg-card rounded-2xl p-6 sm:p-8 shadow-card border border-border/50 hover-lift"
+              className="relative overflow-hidden bg-card rounded-2xl p-6 sm:p-8 shadow-card border border-border/50 hover-lift"
             >
+              <div className="absolute right-0 top-0 h-24 w-24 rounded-bl-[3rem] bg-gold/10" />
               <div className="w-14 h-14 rounded-xl gradient-primary flex items-center justify-center shadow-soft">
                 <v.icon className="w-6 h-6 text-primary-foreground" />
               </div>
               <h3 className="font-display text-xl sm:text-2xl mt-6 text-primary">{v.title}</h3>
-              <p className="mt-3 text-black leading-relaxed">{v.text}</p>
+              <ul className="mt-5 space-y-3">
+                {v.points.map((point) => (
+                  <li key={point} className="flex items-start gap-3 text-sm leading-relaxed text-black">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -150,14 +171,11 @@ function AboutPage() {
           <p className="mt-5 text-base md:text-lg text-primary-foreground/80">
             Let&apos;s discuss your hiring needs and find the perfect talent for your team.
           </p>
-          <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
+          <div className="mt-8 flex justify-center">
             <Button asChild variant="gold" size="xl" className="w-full sm:w-auto">
               <Link to="/contact">
-                Submit Hiring Requirement <ArrowRight className="w-4 h-4" />
+                Contact Skill Spark <ArrowRight className="w-4 h-4" />
               </Link>
-            </Button>
-            <Button asChild variant="outlineLight" size="xl" className="w-full sm:w-auto">
-              <Link to="/employer">Explore Employer Solutions</Link>
             </Button>
           </div>
         </div>

@@ -1,29 +1,20 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   Briefcase,
-  Building2,
   Check,
   CheckCircle2,
-  Factory,
-  HeartPulse,
-  Package,
+  ClockAlert,
+  FileSearch,
   Send,
   ShieldCheck,
   Stethoscope,
-  Users,
+  UserRoundX,
+  UsersRound,
 } from "lucide-react";
 import executiveSearchImg from "@/assets/services/executive-search.jpg";
 import permanentStaffingImg from "@/assets/services/permanent-staffing.jpg";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
@@ -88,291 +79,28 @@ const services = [
   },
 ] as const;
 
-const industries = [
+const employerProblems = [
   {
-    icon: Users,
-    label: "Information Technology",
-    seoTitle: "IT Recruitment Services for Software, Cloud, Data, and Support Roles",
-    overview:
-      "Skill Spark supports IT hiring for startups, product companies, IT services firms, and enterprise technology teams across Pune, PCMC, and India. We help employers hire screened technology talent for permanent staffing, specialized recruitment, and leadership search.",
-    services: [
-      "Permanent staffing for software and IT support teams",
-      "Specialized recruitment for technology project teams",
-      "Executive search for engineering, product, and technology leaders",
-    ],
-    roleGroups: [
-      {
-        title: "Software & Web Development",
-        roles: [
-          "Frontend Developer",
-          "Backend Developer",
-          "Full Stack Developer",
-          "React Developer",
-          "Node.js Developer",
-          "Python Developer",
-        ],
-      },
-      {
-        title: "Cloud, Data & Infrastructure",
-        roles: [
-          "DevOps Engineer",
-          "Cloud Engineer",
-          "Data Analyst",
-          "Data Engineer",
-          "Database Administrator",
-          "Network Engineer",
-        ],
-      },
-      {
-        title: "Product, QA & Support",
-        roles: [
-          "QA Engineer",
-          "Automation Tester",
-          "Product Manager",
-          "Business Analyst",
-          "Technical Support Executive",
-          "IT Helpdesk Engineer",
-        ],
-      },
-    ],
+    title: "Too Many Irrelevant Applications",
+    desc: "Hiring teams spend hours filtering resumes, but many candidates do not match the role, location, salary range, or experience requirement.",
+    icon: FileSearch,
   },
   {
-    icon: Factory,
-    label: "Manufacturing & Engineering",
-    seoTitle: "Manufacturing and Engineering Recruitment for Plant, Production, and Quality Teams",
-    overview:
-      "We provide manufacturing recruitment and engineering staffing for factories, industrial units, fabrication businesses, and production-led companies. Our hiring support covers shop-floor, technical, supervisory, and senior plant roles.",
-    services: [
-      "Permanent staffing for production and engineering departments",
-      "Specialized recruitment for plant operations and project demand",
-      "Executive search for plant heads and operations leaders",
-    ],
-    roleGroups: [
-      {
-        title: "Production & Operations",
-        roles: [
-          "Production Manager",
-          "Production Supervisor",
-          "Machine Operator",
-          "CNC Operator",
-          "Assembly Line Supervisor",
-          "Shift Incharge",
-        ],
-      },
-      {
-        title: "Quality, Maintenance & EHS",
-        roles: [
-          "Quality Engineer",
-          "QA/QC Inspector",
-          "Maintenance Engineer",
-          "EHS Officer",
-          "Safety Officer",
-          "Utility Technician",
-        ],
-      },
-      {
-        title: "Engineering & Plant Leadership",
-        roles: [
-          "Design Engineer",
-          "Process Engineer",
-          "Plant Head",
-          "Operations Manager",
-          "Tool Room Engineer",
-          "Industrial Engineer",
-        ],
-      },
-    ],
+    title: "Slow Hiring and Lost Candidates",
+    desc: "When sourcing, screening, interviews, and follow-ups take too long, strong candidates accept other offers before closure.",
+    icon: ClockAlert,
   },
   {
-    icon: Package,
-    label: "Logistics & Supply Chain",
-    seoTitle: "Logistics and Supply Chain Hiring for Warehouse, Procurement, and Transport Roles",
-    overview:
-      "Skill Spark helps companies hire dependable logistics and supply chain professionals for warehousing, dispatch, procurement, inventory, and last-mile operations. We focus on practical screening, communication skills, and operational reliability.",
-    services: [
-      "Permanent staffing for logistics and supply chain functions",
-      "Bulk hiring support for warehouse and dispatch operations",
-      "Leadership hiring for procurement, warehouse, and distribution teams",
-    ],
-    roleGroups: [
-      {
-        title: "Warehouse & Inventory",
-        roles: [
-          "Warehouse Manager",
-          "Inventory Executive",
-          "Store Keeper",
-          "Picker Packer",
-          "Warehouse Supervisor",
-          "Stock Auditor",
-        ],
-      },
-      {
-        title: "Transport & Dispatch",
-        roles: [
-          "Dispatch Executive",
-          "Logistics Coordinator",
-          "Fleet Supervisor",
-          "Transport Manager",
-          "Delivery Operations Executive",
-          "Route Planner",
-        ],
-      },
-      {
-        title: "Procurement & Supply Chain",
-        roles: [
-          "Purchase Executive",
-          "Procurement Manager",
-          "Supply Chain Analyst",
-          "Vendor Development Executive",
-          "Import Export Executive",
-          "MIS Executive",
-        ],
-      },
-    ],
+    title: "Poor Candidate Fit",
+    desc: "A candidate may look good on paper but still fail on communication, stability, practical skills, culture fit, or joining commitment.",
+    icon: UserRoundX,
   },
   {
-    icon: HeartPulse,
-    label: "Healthcare & Nursing",
-    seoTitle: "Healthcare and Nursing Staffing for Hospitals, Clinics, and Care Facilities",
-    overview:
-      "We support healthcare recruitment for hospitals, clinics, diagnostic centers, home-care providers, and medical facilities. Our process focuses on verified experience, patient-care attitude, shift readiness, and role-specific screening.",
-    services: [
-      "Permanent staffing for clinical and hospital support roles",
-      "Focused recruitment for ward, patient-care, and facility requirements",
-      "Focused sourcing for nursing, diagnostics, and healthcare operations",
-    ],
-    roleGroups: [
-      {
-        title: "Nursing & Patient Care",
-        roles: [
-          "Staff Nurse",
-          "GNM Nurse",
-          "ANM Nurse",
-          "ICU Nurse",
-          "Nursing Assistant",
-          "Patient Care Attendant",
-        ],
-      },
-      {
-        title: "Diagnostics & Clinical Support",
-        roles: [
-          "Lab Technician",
-          "Radiology Technician",
-          "Phlebotomist",
-          "OT Technician",
-          "Dialysis Technician",
-          "Medical Records Executive",
-        ],
-      },
-      {
-        title: "Hospital Operations",
-        roles: [
-          "Hospital Administrator",
-          "Front Office Executive",
-          "Billing Executive",
-          "Ward Boy",
-          "Housekeeping Supervisor",
-          "Facility Coordinator",
-        ],
-      },
-    ],
+    title: "Pressure Across Multiple Roles",
+    desc: "Companies often need hiring support across IT, manufacturing, logistics, healthcare, admin, BFSI, and sales at the same time.",
+    icon: UsersRound,
   },
-  {
-    icon: Building2,
-    label: "Corporate & Admin",
-    seoTitle: "Corporate and Admin Recruitment for HR, Finance, Back Office, and Office Operations",
-    overview:
-      "Skill Spark recruits corporate and administrative talent for growing businesses that need dependable back-office, HR, finance, operations, and office support teams. We prioritize communication, stability, documentation accuracy, and role fit.",
-    services: [
-      "Permanent staffing for corporate and back-office functions",
-      "Focused hiring support for documentation, operations, and admin workload",
-      "Search support for HR, finance, and administration leadership",
-    ],
-    roleGroups: [
-      {
-        title: "Human Resources & Admin",
-        roles: [
-          "HR Executive",
-          "Recruiter",
-          "Admin Executive",
-          "Office Coordinator",
-          "Payroll Executive",
-          "Facility Executive",
-        ],
-      },
-      {
-        title: "Finance & Accounts",
-        roles: [
-          "Accountant",
-          "Accounts Executive",
-          "Billing Executive",
-          "Finance Executive",
-          "Tax Assistant",
-          "Accounts Manager",
-        ],
-      },
-      {
-        title: "Back Office & Operations",
-        roles: [
-          "Data Entry Operator",
-          "MIS Executive",
-          "Operations Executive",
-          "Customer Support Executive",
-          "Documentation Executive",
-          "Executive Assistant",
-        ],
-      },
-    ],
-  },
-  {
-    icon: Briefcase,
-    label: "BFSI & Sales",
-    seoTitle:
-      "BFSI and Sales Recruitment for Banking, Insurance, Field Sales, and Business Development",
-    overview:
-      "We help banking, financial services, insurance, fintech, and sales-led organizations hire target-driven professionals. Our screening focuses on communication, product understanding, field readiness, customer handling, and performance orientation.",
-    services: [
-      "Permanent staffing for sales, banking, and insurance teams",
-      "Bulk hiring support for field sales and customer acquisition",
-      "Leadership hiring for branch, sales, and business development roles",
-    ],
-    roleGroups: [
-      {
-        title: "Banking, Finance & Insurance",
-        roles: [
-          "Relationship Manager",
-          "Loan Officer",
-          "Credit Executive",
-          "Insurance Advisor",
-          "Branch Operations Executive",
-          "KYC Executive",
-        ],
-      },
-      {
-        title: "Sales & Business Development",
-        roles: [
-          "Sales Executive",
-          "Business Development Executive",
-          "Area Sales Manager",
-          "Field Sales Officer",
-          "Inside Sales Executive",
-          "Key Account Manager",
-        ],
-      },
-      {
-        title: "Customer & Revenue Operations",
-        roles: [
-          "Telecaller",
-          "Customer Service Executive",
-          "Collection Executive",
-          "Sales Coordinator",
-          "Channel Sales Executive",
-          "Team Leader Sales",
-        ],
-      },
-    ],
-  },
-] as const;
+];
 
 const processHighlights = [
   "Clear communication at every stage",
@@ -386,7 +114,17 @@ const hiringSchema = z.object({
   name: z.string().trim().min(1, "Contact name is required").max(100),
   email: z.string().trim().email("Invalid email").max(255),
   phone: z.string().trim().min(7, "Phone is required").max(20),
+  department: z.string().trim().min(1, "Department is required").max(120),
   roles: z.string().trim().min(2, "Tell us the role you want to hire for").max(200),
+  jobType: z.string().trim().min(1, "Job type is required").max(80),
+  location: z.string().trim().min(1, "Job location is required").max(160),
+  openings: z.string().trim().min(1, "Number of openings is required").max(20),
+  experience: z.string().trim().min(1, "Experience range is required").max(80),
+  salary: z.string().trim().max(80),
+  joiningTimeline: z.string().trim().max(80),
+  workMode: z.string().trim().max(80),
+  qualification: z.string().trim().max(160),
+  keySkills: z.string().trim().max(300),
   message: z.string().trim().min(10, "Tell us a bit more about your hiring needs").max(1000),
 });
 
@@ -396,7 +134,17 @@ function ServicesPage() {
     name: "",
     email: "",
     phone: "",
+    department: "",
     roles: "",
+    jobType: "",
+    location: "",
+    openings: "",
+    experience: "",
+    salary: "",
+    joiningTimeline: "",
+    workMode: "",
+    qualification: "",
+    keySkills: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
@@ -412,7 +160,24 @@ function ServicesPage() {
     await new Promise((resolve) => setTimeout(resolve, 700));
     setLoading(false);
     toast.success("Thank you! Our hiring team will reach out shortly.");
-    setForm({ company: "", name: "", email: "", phone: "", roles: "", message: "" });
+    setForm({
+      company: "",
+      name: "",
+      email: "",
+      phone: "",
+      department: "",
+      roles: "",
+      jobType: "",
+      location: "",
+      openings: "",
+      experience: "",
+      salary: "",
+      joiningTimeline: "",
+      workMode: "",
+      qualification: "",
+      keySkills: "",
+      message: "",
+    });
   };
 
   return (
@@ -432,110 +197,35 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-16 md:py-20 bg-card">
+      <section className="bg-card py-14 sm:py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
-            Industries We Serve
-          </h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
-            {industries.map((industry) => (
-              <Dialog key={industry.label}>
-                <DialogTrigger asChild>
-                  <button
-                    type="button"
-                    className="min-h-[150px] w-full rounded-2xl border border-border bg-secondary/45 p-5 text-center shadow-card hover-lift cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 sm:min-h-[166px] sm:p-6 flex flex-col items-center justify-center"
-                    aria-label={`View ${industry.label} recruitment roles and services`}
-                  >
-                    <div className="text-accent mb-3">
-                      <industry.icon className="w-8 h-8" />
-                    </div>
-                    <p className="text-sm font-semibold text-primary">{industry.label}</p>
-                    <span className="mt-3 text-xs font-semibold uppercase tracking-wide text-gold">
-                      View Roles
-                    </span>
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="max-h-[88vh] w-[calc(100%-1rem)] max-w-3xl overflow-y-auto rounded-2xl border-border bg-card p-0 shadow-elegant sm:w-[calc(100%-2rem)] sm:rounded-3xl [&>button]:flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white/10 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:ring-offset-primary hover:[&>button]:bg-white/20 [&>button>svg]:h-5 [&>button>svg]:w-5">
-                  <article>
-                    <div className="bg-primary px-5 py-7 pr-14 text-primary-foreground sm:px-6 md:px-7">
-                      <DialogHeader className="text-left">
-                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gold text-primary shadow-soft">
-                          <industry.icon className="h-6 w-6" />
-                        </div>
-                        <DialogTitle className="font-display text-2xl font-semibold leading-tight sm:text-3xl">
-                          {industry.label} Recruitment Roles
-                        </DialogTitle>
-                        <DialogDescription className="max-w-2xl text-sm leading-relaxed text-primary-foreground/80 md:text-base">
-                          {industry.seoTitle}
-                        </DialogDescription>
-                      </DialogHeader>
-                    </div>
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent">
+              Problems
+            </div>
+            <h2 className="font-display text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight">
+              Hiring Challenges Employers Face
+            </h2>
+            <p className="mt-5 text-base md:text-lg text-black leading-relaxed">
+              Before the right candidate joins, companies often lose time in screening, follow-ups,
+              coordination, and finding people who truly fit the role.
+            </p>
+          </div>
 
-                    <div className="space-y-7 p-5 sm:p-6 md:p-7">
-                      <p className="text-black leading-relaxed">{industry.overview}</p>
-
-                      <section aria-labelledby={`${industry.label}-services`}>
-                        <h3
-                          id={`${industry.label}-services`}
-                          className="font-display text-xl font-semibold text-primary sm:text-2xl"
-                        >
-                          Services We Provide
-                        </h3>
-                        <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                          {industry.services.map((item) => (
-                            <div
-                              key={item}
-                              className="rounded-xl border border-gold/25 bg-gold/10 p-4 text-sm font-medium leading-relaxed text-primary shadow-card"
-                            >
-                              {item}
-                            </div>
-                          ))}
-                        </div>
-                      </section>
-
-                      <section aria-labelledby={`${industry.label}-roles`}>
-                        <h3
-                          id={`${industry.label}-roles`}
-                          className="font-display text-xl font-semibold text-primary sm:text-2xl"
-                        >
-                          Sector Wise Roles We Hire
-                        </h3>
-                        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                          {industry.roleGroups.map((group) => (
-                            <div
-                              key={group.title}
-                              className="rounded-2xl border border-border bg-secondary/45 p-5 shadow-card"
-                            >
-                              <h4 className="font-display text-lg font-semibold text-primary">
-                                {group.title}
-                              </h4>
-                              <ul className="mt-4 space-y-2">
-                                {group.roles.map((role) => (
-                                  <li
-                                    key={role}
-                                    className="flex items-start gap-2 text-sm text-black"
-                                  >
-                                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                                    <span>{role}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-                      </section>
-
-                      <div className="rounded-2xl border border-primary/10 bg-primary/5 p-5">
-                        <p className="text-sm leading-relaxed text-black">
-                          Looking for {industry.label.toLowerCase()} recruitment in Pune, PCMC, or
-                          across India? Share your required roles, experience level, location, and
-                          timeline so Skill Spark Consulting can prepare a focused shortlist.
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                </DialogContent>
-              </Dialog>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {employerProblems.map((problem) => (
+              <div
+                key={problem.title}
+                className="rounded-2xl border border-border/60 bg-secondary/45 p-5 shadow-card transition-smooth hover:-translate-y-1 hover:border-gold/40 hover:bg-white hover:shadow-elegant sm:p-6"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-gold shadow-soft">
+                  <problem.icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 font-display text-xl font-semibold leading-tight text-primary">
+                  {problem.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-black">{problem.desc}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -661,6 +351,24 @@ function ServicesPage() {
                   placeholder="+91 99999 99999"
                 />
               </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Department</label>
+                <Input
+                  className="h-11"
+                  value={form.department}
+                  onChange={(e) => setForm({ ...form, department: e.target.value })}
+                  placeholder="E.g. Production, HR, Sales, IT"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Job Type</label>
+                <Input
+                  className="h-11"
+                  value={form.jobType}
+                  onChange={(e) => setForm({ ...form, jobType: e.target.value })}
+                  placeholder="E.g. Full-time, Contract, Temporary"
+                />
+              </div>
             </div>
             <div className="mt-5">
               <label className="text-sm font-medium block mb-1.5">Roles to Hire</label>
@@ -671,13 +379,91 @@ function ServicesPage() {
                 placeholder="E.g. Production Manager, HR Executive, Staff Nurse"
               />
             </div>
+            <div className="grid sm:grid-cols-2 gap-5 mt-5">
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Job Location</label>
+                <Input
+                  className="h-11"
+                  value={form.location}
+                  onChange={(e) => setForm({ ...form, location: e.target.value })}
+                  placeholder="E.g. Pune, PCMC, Chakan"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Number of Openings</label>
+                <Input
+                  className="h-11"
+                  value={form.openings}
+                  onChange={(e) => setForm({ ...form, openings: e.target.value })}
+                  placeholder="E.g. 3"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Experience Required</label>
+                <Input
+                  className="h-11"
+                  value={form.experience}
+                  onChange={(e) => setForm({ ...form, experience: e.target.value })}
+                  placeholder="E.g. 2-5 years"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Salary Range</label>
+                <Input
+                  className="h-11"
+                  value={form.salary}
+                  onChange={(e) => setForm({ ...form, salary: e.target.value })}
+                  placeholder="E.g. 3-6 LPA"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Joining Timeline</label>
+                <Input
+                  className="h-11"
+                  value={form.joiningTimeline}
+                  onChange={(e) => setForm({ ...form, joiningTimeline: e.target.value })}
+                  placeholder="E.g. Immediate, 15 days, 30 days"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Work Mode</label>
+                <Input
+                  className="h-11"
+                  value={form.workMode}
+                  onChange={(e) => setForm({ ...form, workMode: e.target.value })}
+                  placeholder="E.g. On-site, Hybrid, Remote"
+                />
+              </div>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-5 mt-5">
+              <div>
+                <label className="text-sm font-medium block mb-1.5">
+                  Required Qualification
+                </label>
+                <Input
+                  className="h-11"
+                  value={form.qualification}
+                  onChange={(e) => setForm({ ...form, qualification: e.target.value })}
+                  placeholder="E.g. B.Tech, MBA, GNM, Graduate"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium block mb-1.5">Key Skills Required</label>
+                <Input
+                  className="h-11"
+                  value={form.keySkills}
+                  onChange={(e) => setForm({ ...form, keySkills: e.target.value })}
+                  placeholder="E.g. Excel, CNC, React, Field Sales"
+                />
+              </div>
+            </div>
             <div className="mt-5">
               <label className="text-sm font-medium block mb-1.5">Hiring Requirement</label>
               <Textarea
                 className="min-h-32"
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                placeholder="Tell us about location, experience level, timeline, and number of openings..."
+                placeholder="Tell us about job responsibilities, shift timing, interview process, must-have skills, or any special hiring notes..."
               />
             </div>
             <Button type="submit" variant="hero" size="lg" disabled={loading} className="mt-6 w-full sm:w-auto">
@@ -695,3 +481,4 @@ function ServicesPage() {
     </>
   );
 }
+

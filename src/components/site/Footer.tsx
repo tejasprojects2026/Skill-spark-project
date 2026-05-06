@@ -78,7 +78,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 mt-0.5 text-gold shrink-0" />
-                <a href="tel:+917875803175" className="hover:text-gold transition-smooth">
+                <a href="tel:+917875803175" className="hover:text-gold transition-smooth whitespace-nowrap">
                   +91 78758 03175
                 </a>
               </li>
@@ -86,18 +86,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 mt-14 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-primary-foreground/50">
+        <div className="border-t border-primary-foreground/10 mt-14 pt-6 text-center text-xs text-primary-foreground/50">
           <p>
-            © {new Date().getFullYear()} Skill Spark Consulting. {t("footer.rights")}
+            © 2026 Skill Spark Consulting. All rights reserved. by{' '}
+            <a href="https://webakoof.com" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-primary-foreground transition-smooth">
+              Webakoof
+            </a>
           </p>
-          <div className="flex gap-5">
-            <a href="#" className="hover:text-gold transition-smooth">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-gold transition-smooth">
-              Terms
-            </a>
-          </div>
         </div>
       </div>
     </footer>

@@ -54,9 +54,9 @@ const why = [
     desc: "Our talent network spans Pune, PCMC, Pimpri-Chinchwad, Nashik, and beyond - across IT parks, industrial estates, and corporate corridors.",
   },
   {
-    icon: "🏭",
-    title: "Multi-Sector Expertise",
-    desc: "From ERP developers to CNC operators to HR managers - we understand the unique hiring needs of diverse industries.",
+    icon: "💰",
+    title: "Fair & Reasonable Pricing",
+    desc: "We keep our recruitment support transparent and practical, with pricing designed to give employers dependable hiring value without unnecessary cost.",
   },
 ] as const;
 
@@ -199,10 +199,15 @@ function Index() {
               </div>
             ))}
           </div>
-          <div className="text-center mt-10">
-            <Button asChild variant="gold" size="lg">
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
+            <Button asChild variant="gold" size="lg" className="w-full sm:w-auto">
+              <Link to="/employee">
+                Explore Employee <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="gold" size="lg" className="w-full sm:w-auto">
               <Link to="/employer">
-                Explore Employer Solutions <ArrowRight className="w-4 h-4" />
+                Explore Employer <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>
@@ -238,32 +243,29 @@ function Index() {
       <section className="grid md:grid-cols-2">
         <div className="bg-primary text-primary-foreground py-12 px-5 sm:px-8 md:py-16 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
-            Are You an Employer?
+            Employer Solutions
           </h3>
           <p className="text-primary-foreground/80 mb-6">
-            Looking to hire right the first time? Share your requirement and let us do the heavy
-            lifting.
+            Ready to fill your roles faster? Visit our employer page to share your hiring needs and get matched with qualified, pre-screened talent.
           </p>
           <Button asChild variant="gold" size="lg" className="w-full sm:w-fit">
             <Link to="/employer" hash="hiring-form">
-              Submit Hiring Requirement
+              Explore Employer
             </Link>
           </Button>
         </div>
         <div className="bg-accent text-accent-foreground py-12 px-5 sm:px-8 md:py-16 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
-            Are You a Job Seeker?
+            Candidate Services
           </h3>
           <p className="text-black mb-6">
-            Looking for your next big opportunity? Register with us and get placed with the right
-            company.
+            Looking for the next step in your career? Visit our employee page to register your profile and get matched with roles that fit your skills and goals.
           </p>
-          <Link
-            to="/employee"
-            className="inline-flex w-full items-center justify-center rounded-md bg-primary px-8 py-3 text-center font-semibold text-primary-foreground transition-smooth hover:bg-primary/90 sm:w-fit"
-          >
-            Register as a Candidate
-          </Link>
+          <Button asChild variant="primary" size="lg" className="w-full sm:w-fit bg-primary text-primary-foreground hover:bg-primary/90">
+            <Link to="/employee">
+              Explore Employee
+            </Link>
+          </Button>
         </div>
       </section>
 

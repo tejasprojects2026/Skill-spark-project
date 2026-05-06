@@ -190,7 +190,7 @@ function ContactRow({
         {href ? (
           <a
             href={href}
-            className="text-primary-foreground/75 hover:text-gold transition-smooth break-all"
+            className={`text-primary-foreground/75 hover:text-gold transition-smooth ${href.startsWith("tel:") ? "whitespace-nowrap" : "break-all"}`}
           >
             {value}
           </a>
