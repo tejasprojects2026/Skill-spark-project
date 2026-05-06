@@ -3,6 +3,7 @@ import {
   ArrowRight,
   CheckCircle2,
   Clock3,
+  FileUser,
   MessagesSquare,
   Search,
   ShieldCheck,
@@ -12,79 +13,79 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/process")({
+export const Route = createFileRoute("/employee")({
   head: () => ({
     meta: [
-      { title: "Our Process - Skill Spark Consulting" },
+      { title: "Employee - Skill Spark Consulting" },
       {
         name: "description",
         content:
-          "Explore Skill Spark Consulting's recruitment process, from understanding requirements and sourcing talent to onboarding the right candidate.",
+          "Find career opportunities with Skill Spark Consulting and get guided support from registration to joining.",
       },
-      { property: "og:title", content: "Our Process - Skill Spark Consulting" },
+      { property: "og:title", content: "Employee - Skill Spark Consulting" },
       {
         property: "og:description",
         content:
-          "A clear, structured recruitment workflow designed to help companies hire the right talent with confidence.",
+          "Candidate support designed to connect skilled professionals with the right employers.",
       },
     ],
   }),
-  component: ProcessPage,
+  component: EmployeePage,
 });
 
 const steps = [
   {
     n: "01",
-    title: "Understanding Requirements",
-    desc: "We begin with a deep dive into the role, business goals, team culture, and the profile that will create the most value for your organization.",
-    icon: MessagesSquare,
+    title: "Candidate Registration",
+    desc: "Share your details, career goals, preferred location, experience, and the type of roles you are looking for.",
+    icon: FileUser,
   },
   {
     n: "02",
-    title: "Targeted Sourcing",
-    desc: "Candidates are sourced through portals, internal databases, referrals, and focused outreach based on your sector and hiring priority.",
-    icon: Search,
+    title: "Profile Review",
+    desc: "We review your resume, skills, communication, availability, and fitment for active hiring requirements.",
+    icon: ShieldCheck,
   },
   {
     n: "03",
-    title: "Screening and Evaluation",
-    desc: "Every profile is reviewed for experience, communication, intent, and fit so your team only sees relevant and serious candidates.",
-    icon: ShieldCheck,
+    title: "Opportunity Matching",
+    desc: "Your profile is matched with relevant openings across IT, manufacturing, logistics, healthcare, corporate, BFSI, and sales.",
+    icon: Search,
   },
   {
     n: "04",
     title: "Interview Coordination",
-    desc: "We manage scheduling, candidate communication, and follow-ups to keep the hiring cycle smooth and responsive for both sides.",
+    desc: "We coordinate interviews, share updates, and help keep communication clear between you and the employer.",
     icon: Clock3,
   },
   {
     n: "05",
-    title: "Feedback and Shortlisting",
-    desc: "Structured feedback is gathered quickly so we can refine the shortlist, resolve concerns, and keep momentum through decision-making.",
-    icon: CheckCircle2,
+    title: "Feedback Support",
+    desc: "After each round, we gather feedback, guide next steps, and help you stay prepared through the selection process.",
+    icon: MessagesSquare,
   },
   {
     n: "06",
-    title: "Offer and Onboarding Support",
-    desc: "From final discussions to joining coordination, we stay involved until the selected candidate starts with clarity and confidence.",
+    title: "Offer and Joining",
+    desc: "From final discussion to joining coordination, we support you until you start the right role with confidence.",
     icon: UserRoundCheck,
   },
 ];
 
-function ProcessPage() {
+function EmployeePage() {
   return (
     <>
       <PageHero
-        tag="Our Process"
-        title="A Proven 6-Step Approach"
-        subtitle="Our structured recruitment process ensures quality, consistency, and speed - every single time."
-        breadcrumbs={[{ label: "Our Process" }]}
+        tag="Employee"
+        title="Find the Right Opportunity"
+        subtitle="Register with Skill Spark Consulting and get guided support from profile review to interview coordination and joining."
+        breadcrumbs={[{ label: "Employee" }]}
       />
 
       <Section
-        tag="How We Work"
-        title="From Requirement to Joining"
-        subtitle="Each step is deliberate, collaborative, and built to keep hiring organized from the first brief to the final offer."
+        tag="How We Help"
+        title="From Profile to Joining"
+        subtitle="Each step is designed to help candidates present their strengths clearly and move through hiring with confidence."
         className="bg-background"
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -120,9 +121,7 @@ function ProcessPage() {
                       <span
                         key={dot.n}
                         className={`h-2 rounded-full transition-smooth ${
-                          Number(dot.n) <= Number(step.n)
-                            ? "w-6 bg-gold"
-                            : "w-2 bg-primary/15"
+                          Number(dot.n) <= Number(step.n) ? "w-6 bg-gold" : "w-2 bg-primary/15"
                         }`}
                       />
                     ))}
@@ -153,14 +152,14 @@ function ProcessPage() {
       </Section>
 
       <Section
-        title="Ready to start hiring with a clearer process?"
+        title="Ready to find your next opportunity?"
         align="center"
         className="bg-primary text-primary-foreground [&_h2]:text-primary-foreground"
       >
         <div className="flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
           <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
             <Link to="/contact">
-              Start Hiring <ArrowRight className="w-4 h-4" />
+              Register as a Candidate <ArrowRight className="w-4 h-4" />
             </Link>
           </Button>
           <Button asChild variant="outline" size="xl" className="w-full sm:w-auto">

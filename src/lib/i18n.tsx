@@ -6,7 +6,7 @@ const dict: Record<string, { en: string; mr: string }> = {
   "nav.home": { en: "Home", mr: "Home" },
   "nav.about": { en: "About Us", mr: "About Us" },
   "nav.services": { en: "Employer", mr: "Employer" },
-  "nav.process": { en: "Our Process", mr: "Our Process" },
+  "nav.employee": { en: "Employee", mr: "Employee" },
   "nav.contact": { en: "Contact Us", mr: "Contact Us" },
   "cta.consult": { en: "Get Consultation", mr: "Get Consultation" },
   "cta.learn": { en: "Learn More", mr: "Learn More" },

@@ -10,7 +10,7 @@ const navItems = [
   { to: "/", key: "nav.home" },
   { to: "/about", key: "nav.about" },
   { to: "/employer", key: "nav.services" },
-  { to: "/process", key: "nav.process" },
+  { to: "/employee", key: "nav.employee" },
   { to: "/contact", key: "nav.contact" },
 ] as const;
 

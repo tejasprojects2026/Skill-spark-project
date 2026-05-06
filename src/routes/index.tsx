@@ -11,7 +11,6 @@ import {
   MapPin,
   Package,
   Quote,
-  ShieldCheck,
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -37,19 +36,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const services = [
-  {
-    icon: Briefcase,
-    title: "Permanent Staffing",
-    desc: "End-to-end hiring for full-time roles across mid to senior levels in IT, manufacturing, logistics, and corporate functions.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Executive Search",
-    desc: "Identifying and approaching high-caliber leadership talent who aren't actively job-seeking. Confidential, strategic, result-driven.",
-  },
-] as const;
 
 const why = [
   {
@@ -132,7 +118,7 @@ function Index() {
                 Hire Talent <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
               <Link
-                to="/contact"
+                to="/employee"
                 className="inline-flex items-center justify-center rounded-md border-2 border-[#f3a900] bg-[#f3a900] px-8 py-3 text-center font-semibold text-primary transition-smooth hover:border-[#d89500] hover:bg-[#d89500]"
               >
                 Find a Job <ArrowRight className="w-4 h-4 ml-2" />
@@ -198,61 +184,6 @@ function Index() {
       <section className="py-14 sm:py-16 md:py-20 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
-            Employer Hiring Solutions
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="bg-secondary/55 rounded-lg p-6 sm:p-8 text-center border border-border hover:shadow-lg transition-smooth"
-              >
-                <div className="text-accent mb-4 flex justify-center">
-                  <service.icon className="w-10 h-10" />
-                </div>
-                <h3 className="font-display text-xl font-semibold text-primary mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-black text-sm leading-relaxed">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Button asChild variant="gold" size="lg">
-              <Link to="/employer">
-                View Employer Solutions <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-primary py-14 sm:py-16 md:py-20 text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-center mb-12">
-            Why Skill Spark?
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {why.map((item) => (
-              <div key={item.title} className="border border-gold/30 rounded-lg p-5 sm:p-6 bg-primary/60">
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-display text-lg font-semibold text-gold mb-2">{item.title}</h3>
-                <p className="text-primary-foreground/70 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Button asChild variant="gold" size="lg">
-              <Link to="/process">
-                See Our Process <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14 sm:py-16 md:py-20 bg-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Sectors We Specialize In
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6">
@@ -278,6 +209,32 @@ function Index() {
         </div>
       </section>
 
+      <section className="bg-primary py-14 sm:py-16 md:py-20 text-primary-foreground">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-display text-3xl md:text-4xl font-semibold text-center mb-12">
+            Why Skill Spark?
+          </h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {why.map((item) => (
+              <div key={item.title} className="border border-gold/30 rounded-lg p-5 sm:p-6 bg-primary/60">
+                <div className="text-3xl mb-3">{item.icon}</div>
+                <h3 className="font-display text-lg font-semibold text-gold mb-2">{item.title}</h3>
+                <p className="text-primary-foreground/70 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Button asChild variant="gold" size="lg">
+              <Link to="/employee">
+                Visit Employee Page <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <div className="h-10 bg-background sm:h-12 md:h-16" />
+
       <section className="grid md:grid-cols-2">
         <div className="bg-primary text-primary-foreground py-12 px-5 sm:px-8 md:py-16 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
@@ -302,8 +259,7 @@ function Index() {
             company.
           </p>
           <Link
-            to="/employer"
-            hash="hiring-form"
+            to="/employee"
             className="inline-flex w-full items-center justify-center rounded-md bg-primary px-8 py-3 text-center font-semibold text-primary-foreground transition-smooth hover:bg-primary/90 sm:w-fit"
           >
             Register as a Candidate
