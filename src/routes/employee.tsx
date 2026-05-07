@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { buildSeoMeta } from "@/lib/seo";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -26,24 +27,20 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { industries } from "@/lib/recruitmentIndustries";
 
 export const Route = createFileRoute("/employee")({
   head: () => ({
-    meta: [
-      { title: "Employee - Skill Spark Consulting" },
-      {
-        name: "description",
-        content:
-          "Find career opportunities with Skill Spark Consulting and get guided support from registration to joining.",
-      },
-      { property: "og:title", content: "Employee - Skill Spark Consulting" },
-      {
-        property: "og:description",
-        content:
-          "Candidate support designed to connect skilled professionals with the right employers.",
-      },
-    ],
+    meta: buildSeoMeta({
+      title: "Employee - Skill Spark Consulting",
+      description:
+        "Find career opportunities with Skill Spark Consulting and get guided support from registration to joining.",
+      url: "https://skillsparkconsulting.lovable.app/employee",
+      keywords:
+        "employee job support, candidate registration, career matching, interview preparation, Pune job opportunities, candidate services",
+    }),
+    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/employee" }],
   }),
   component: EmployeePage,
 });
@@ -128,6 +125,44 @@ const profileFields = [
   { label: "Notice Period", name: "noticePeriod", placeholder: "eg. Immediate, 30 days" },
   { label: "Expected Salary", name: "expectedSalary", placeholder: "eg. 15 LPA" },
   { label: "Availability", name: "availability", placeholder: "When can you join?" },
+];
+
+const faqItems = [
+  {
+    question: "How does the registration process work?",
+    answer:
+      "Share your details, experience, preferred role, and updated CV through the form. Our team reviews your profile, matches it with relevant openings, and contacts you with suitable opportunities.",
+  },
+  {
+    question: "How long does it take to find a suitable job?",
+    answer:
+      "Timing depends on the role and market demand, but we focus on fast matching and keep you updated at every step so you can move quickly when a good opportunity appears.",
+  },
+  {
+    question: "How is my information kept confidential? What is shared and when?",
+    answer:
+      "We only share your CV and details with employers after you explicitly approve a specific role. Your current employer will never be contacted without your permission.",
+  },
+  {
+    question: "What does it cost? Are there any fees?",
+    answer:
+      "Candidate registration is free. Employers pay our placement fees, so you can use our services without any cost to you.",
+  },
+  {
+    question: "Will I get feedback after interviews?",
+    answer:
+      "Yes, we provide feedback whenever it is available and help you understand the next steps, whether you move forward or not.",
+  },
+  {
+    question: "What kind of roles do you handle?",
+    answer:
+      "We place candidates across IT, manufacturing, logistics, healthcare, corporate, BFSI, sales, and admin functions, based on your experience and career goals.",
+  },
+  {
+    question: "What happens after I get placed?",
+    answer:
+      "We support your offer discussion, document coordination, joining date confirmation, and follow through so you can transition smoothly into your new role.",
+  },
 ];
 
 function EmployeePage() {
@@ -215,25 +250,6 @@ function EmployeePage() {
 
               <div className="space-y-7 p-5 sm:p-6 md:p-7">
                 <p className="text-black leading-relaxed">{selectedIndustry.overview}</p>
-
-                <section aria-labelledby={`${selectedIndustry.label}-services`}>
-                  <h3
-                    id={`${selectedIndustry.label}-services`}
-                    className="font-display text-xl font-semibold text-primary sm:text-2xl"
-                  >
-                    Services We Provide
-                  </h3>
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    {selectedIndustry.services.map((service) => (
-                      <div
-                        key={service}
-                        className="rounded-xl border border-gold/25 bg-gold/10 p-4 text-sm font-medium leading-relaxed text-primary shadow-card"
-                      >
-                        {service}
-                      </div>
-                    ))}
-                  </div>
-                </section>
 
                 <section aria-labelledby={`${selectedIndustry.label}-roles`}>
                   <h3
@@ -351,6 +367,57 @@ function EmployeePage() {
           ))}
         </div>
       </Section>
+
+      <section className="bg-background py-10 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="font-display text-3xl font-semibold text-primary leading-tight md:text-4xl">
+              Questions, Answered
+            </h2>
+            <p className="mt-4 text-base text-black/80 leading-relaxed md:text-lg">
+              Everything you need to know before you register with us.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 max-w-4xl space-y-4">
+            <div className="overflow-hidden rounded-[32px] border border-border/60 bg-primary px-6 py-7 shadow-elegant sm:px-8 sm:py-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-3xl bg-gold/10 text-gold shadow-soft">
+                  <ShieldCheck className="h-6 w-6" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+                    Confidential Candidate Support
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold text-primary-foreground sm:text-3xl">
+                    Your Search Stays Strictly Confidential
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-primary-foreground/90">
+                    We never share your CV, name, or contact details with any employer without your explicit consent for that specific role. Your current employer will not know you're exploring options through us.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem
+                  key={item.question}
+                  value={`faq-${index}`}
+                  className="overflow-hidden rounded-[24px] border border-border/70 bg-white shadow-sm"
+                >
+                  <AccordionTrigger className="flex w-full items-center justify-between px-5 py-5 text-left text-base font-semibold text-primary transition-colors hover:bg-slate-50">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="border-t border-border/70 bg-slate-50 px-5 pb-5 pt-0 text-sm leading-relaxed text-black">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </section>
 
       <Section
         title="Submit Your Candidate Profile"

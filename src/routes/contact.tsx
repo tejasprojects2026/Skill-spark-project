@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { buildSeoMeta } from "@/lib/seo";
 import { useState } from "react";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
@@ -11,19 +12,15 @@ import { z } from "zod";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
-      { title: "Contact Us — Skill Spark Consulting" },
-      {
-        name: "description",
-        content:
-          "Have a question or want to discuss your hiring needs? We'd love to hear from you.",
-      },
-      { property: "og:title", content: "Contact Skill Spark Consulting" },
-      {
-        property: "og:description",
-        content: "Reach our PCMC office for hiring and recruitment conversations.",
-      },
-    ],
+    meta: buildSeoMeta({
+      title: "Contact Us — Skill Spark Consulting",
+      description:
+        "Have a question or want to discuss your hiring needs? We'd love to hear from you.",
+      url: "https://skillsparkconsulting.lovable.app/contact",
+      keywords:
+        "contact Skill Spark Consulting, recruitment inquiries, staffing support, hiring questions, candidate support contact",
+    }),
+    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/contact" }],
   }),
   component: ContactPage,
 });

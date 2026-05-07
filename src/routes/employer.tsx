@@ -1,4 +1,5 @@
 ﻿import { createFileRoute } from "@tanstack/react-router";
+import { buildSeoMeta } from "@/lib/seo";
 import { useState } from "react";
 import {
   Briefcase,
@@ -22,20 +23,15 @@ import { z } from "zod";
 
 export const Route = createFileRoute("/employer")({
   head: () => ({
-    meta: [
-      { title: "Employer - Skill Spark Consulting" },
-      {
-        name: "description",
-        content:
-          "Employer hiring solutions from permanent placements to executive search and healthcare recruitment.",
-      },
-      { property: "og:title", content: "Employer Solutions That Deliver - Skill Spark" },
-      {
-        property: "og:description",
-        content:
-          "Permanent staffing, executive search, and healthcare recruitment across Pune and PCMC.",
-      },
-    ],
+    meta: buildSeoMeta({
+      title: "Employer - Skill Spark Consulting",
+      description:
+        "Employer hiring solutions from permanent placements to executive search and healthcare recruitment across Pune, PCMC, and beyond.",
+      url: "https://skillsparkconsulting.lovable.app/employer",
+      keywords:
+        "employer staffing, permanent staffing, executive search, healthcare recruitment, talent acquisition, Pune recruitment consulting",
+    }),
+    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/employer" }],
   }),
   component: ServicesPage,
 });

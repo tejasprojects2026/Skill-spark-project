@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { buildSeoMeta } from "@/lib/seo";
 import aboutImg from "@/assets/about.jpg";
 import heroImg from "@/assets/hero.jpg";
 import {
@@ -17,22 +18,15 @@ import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Skill Spark Consulting - Pune's Trusted Recruitment Partner" },
-      {
-        name: "description",
-        content:
-          "Skill Spark Consulting specializes in end-to-end recruitment solutions for companies across Pune, PCMC, and beyond - covering IT, Industrial, and Corporate sectors.",
-      },
-      {
-        property: "og:title",
-        content: "Skill Spark Consulting - Pune's Trusted Recruitment Partner",
-      },
-      {
-        property: "og:description",
-        content: "Connecting the right talent with the right opportunity across Pune & PCMC.",
-      },
-    ],
+    meta: buildSeoMeta({
+      title: "Skill Spark Consulting - Pune's Trusted Recruitment Partner",
+      description:
+        "Skill Spark Consulting specializes in end-to-end recruitment solutions for companies across Pune, PCMC, and beyond - covering IT, industrial, healthcare and corporate staffing.",
+      url: "https://skillsparkconsulting.lovable.app/",
+      keywords:
+        "Skill Spark Consulting, recruitment agency Pune, PCMC recruitment, IT hiring, industrial staffing, candidate sourcing, employer hiring solutions, executive search",
+    }),
+    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/" }],
   }),
   component: Index,
 });

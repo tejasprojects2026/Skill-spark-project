@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { buildSeoMeta } from "@/lib/seo";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
@@ -7,20 +8,15 @@ import { Compass, Eye, Handshake, ArrowRight, CheckCircle2 } from "lucide-react"
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    meta: [
-      { title: "About Us — Skill Spark Consulting" },
-      {
-        name: "description",
-        content:
-          "Skill Spark Consulting was founded with a clear mission — to bridge the gap between exceptional talent and the companies that need them most.",
-      },
-      { property: "og:title", content: "About Skill Spark Consulting" },
-      {
-        property: "og:description",
-        content:
-          "Born from a deep understanding of Pune's evolving industrial and corporate landscape.",
-      },
-    ],
+    meta: buildSeoMeta({
+      title: "About Us — Skill Spark Consulting",
+      description:
+        "Skill Spark Consulting was founded with a clear mission — to bridge the gap between exceptional talent and the companies that need them most.",
+      url: "https://skillsparkconsulting.lovable.app/about",
+      keywords:
+        "About Skill Spark Consulting, recruitment consultancy Pune, staffing experts, candidate matching, employer hiring support",
+    }),
+    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/about" }],
   }),
   component: AboutPage,
 });

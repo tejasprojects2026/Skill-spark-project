@@ -2,6 +2,7 @@ import { createRootRoute, HeadContent, Link, Outlet, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 import favicon from "@/assets/favicon .png";
+import { buildSeoMeta } from "@/lib/seo";
 import { I18nProvider } from "@/lib/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -33,14 +34,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Skill Spark Consulting — Premium Strategy & Talent Consulting" },
-      { name: "description", content: "Skill Spark Consulting partners with ambitious organizations to design strategies, develop leaders, and unlock measurable growth." },
-      { property: "og:title", content: "Skill Spark Consulting" },
-      { property: "og:description", content: "Premium consulting for talent, strategy, and business growth." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      ...buildSeoMeta({
+        title: "Skill Spark Consulting — Premium Strategy & Talent Consulting",
+        description: "Skill Spark Consulting partners with ambitious organizations to design strategies, develop leaders, and unlock measurable growth.",
+        url: "https://skillsparkconsulting.lovable.app/",
+      }),
     ],
     links: [
+      { rel: "canonical", href: "https://skillsparkconsulting.lovable.app/" },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: favicon },
       { rel: "apple-touch-icon", href: favicon },
