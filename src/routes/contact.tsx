@@ -61,7 +61,10 @@ function ContactPage() {
 
       <Section title="" className="bg-background">
         <div className="grid gap-8 lg:grid-cols-5 lg:gap-10 lg:-mt-14">
-          <div className="rounded-2xl border border-border/50 bg-card p-5 shadow-elegant sm:p-8 md:p-10 lg:col-span-3">
+          <div
+            id="contact-form"
+            className="scroll-mt-24 rounded-2xl border border-border/50 bg-card p-5 shadow-elegant sm:p-8 md:p-10 lg:col-span-3"
+          >
             <h3 className="font-display text-2xl text-primary">Send Us a Message</h3>
             <p className="text-sm text-black mt-1">We typically respond within one business day.</p>
             <form onSubmit={submit} className="mt-6 space-y-5">

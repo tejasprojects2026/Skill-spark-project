@@ -13,11 +13,11 @@ import {
   UserRoundX,
   UsersRound,
 } from "lucide-react";
-import executiveSearchImg from "@/assets/services/executive-search.jpg";
-import permanentStaffingImg from "@/assets/services/permanent-staffing.jpg";
+import executiveSearchImg from "@/assets/services/executive-search.png";
+import healthcareStaffingImg from "@/assets/services/healthcare-staffing.png";
+import permanentStaffingImg from "@/assets/services/permanent-staffing.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -63,8 +63,8 @@ const services = [
   },
   {
     icon: Stethoscope,
-    title: "Healthcare & Nursing Staffing",
-    image: permanentStaffingImg,
+    title: "Healthcare Staffing",
+    image: healthcareStaffingImg,
     desc: "We source and shortlist dependable blue-collar healthcare talent for hospitals, clinics, diagnostic centers, and care facilities. Our focus is on reliable, pre-screened staff for patient care, diagnostics, facility operations, and administrative support.",
     points: [
       "Nurses and nursing assistants",
@@ -77,12 +77,12 @@ const services = [
 
 const employerProblems = [
   {
-    title: "Too Many Irrelevant Applications",
+    title: "Irrelevant Applications",
     desc: "Hiring teams spend hours filtering resumes, but many candidates do not match the role, location, salary range, or experience requirement.",
     icon: FileSearch,
   },
   {
-    title: "Slow Hiring and Lost Candidates",
+    title: "Slow Hiring",
     desc: "When sourcing, screening, interviews, and follow-ups take too long, strong candidates accept other offers before closure.",
     icon: ClockAlert,
   },
@@ -92,7 +92,7 @@ const employerProblems = [
     icon: UserRoundX,
   },
   {
-    title: "Pressure Across Multiple Roles",
+    title: "Multiple Role Pressure",
     desc: "Companies often need hiring support across IT, manufacturing, logistics, healthcare, admin, BFSI, and sales at the same time.",
     icon: UsersRound,
   },
@@ -119,9 +119,6 @@ const hiringSchema = z.object({
   salary: z.string().trim().max(80),
   joiningTimeline: z.string().trim().max(80),
   workMode: z.string().trim().max(80),
-  qualification: z.string().trim().max(160),
-  keySkills: z.string().trim().max(300),
-  message: z.string().trim().min(10, "Tell us a bit more about your hiring needs").max(1000),
 });
 
 function ServicesPage() {
@@ -139,9 +136,6 @@ function ServicesPage() {
     salary: "",
     joiningTimeline: "",
     workMode: "",
-    qualification: "",
-    keySkills: "",
-    message: "",
   });
   const [loading, setLoading] = useState(false);
 
@@ -170,21 +164,18 @@ function ServicesPage() {
       salary: "",
       joiningTimeline: "",
       workMode: "",
-      qualification: "",
-      keySkills: "",
-      message: "",
     });
   };
 
   return (
     <>
-      <section className="bg-primary py-12 text-primary-foreground sm:py-16 md:py-24">
+      <section className="bg-primary py-10 text-primary-foreground sm:py-12 md:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">
             Employer
           </p>
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold mb-5 md:mb-6">
-            Employer Solutions That Deliver
+          <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-semibold mb-5 md:mb-6 whitespace-nowrap">
+            Employer Hiring Solutions
           </h1>
           <p className="text-primary-foreground/80 text-base md:text-lg max-w-3xl mx-auto">
             From permanent placements to executive search and healthcare hiring - we cover the full
@@ -193,14 +184,14 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-card py-14 sm:py-16 md:py-20">
+      <section className="bg-card py-10 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent">
               Problems
             </div>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight">
-              Hiring Challenges Employers Face
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight whitespace-nowrap">
+              Employer Hiring Challenges
             </h2>
             <p className="mt-5 text-base md:text-lg text-black leading-relaxed">
               Before the right candidate joins, companies often lose time in screening, follow-ups,
@@ -217,7 +208,7 @@ function ServicesPage() {
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-gold shadow-soft">
                   <problem.icon className="h-6 w-6" />
                 </div>
-                <h3 className="mt-5 font-display text-xl font-semibold leading-tight text-primary">
+                <h3 className="mt-5 font-display text-xl font-semibold leading-tight text-primary whitespace-nowrap">
                   {problem.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-black">{problem.desc}</p>
@@ -227,17 +218,26 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-16 md:py-20 bg-secondary/55">
+      <section className="py-10 sm:py-12 md:py-16 bg-secondary/55">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14 md:space-y-16">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent">
+              Services
+            </div>
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight whitespace-nowrap">
+              Employer Hiring Services
+            </h2>
+          </div>
+
           {services.map((service, index) => (
             <div key={service.title} className="grid md:grid-cols-2 gap-8 lg:gap-10 items-center">
               <div className={index % 2 === 1 ? "md:order-2" : undefined}>
                 <div className="w-14 h-14 rounded-2xl gradient-primary flex items-center justify-center shadow-soft">
                   <service.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
-                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-primary mt-6">
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-semibold text-primary mt-6 whitespace-nowrap">
                   {service.title}
-                </h2>
+                </h3>
                 <p className="mt-5 text-black leading-relaxed">{service.desc}</p>
                 <ul className="mt-6 space-y-3">
                   {service.points.map((point) => (
@@ -266,14 +266,14 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="gradient-soft py-14 sm:py-16 md:py-20">
+      <section className="gradient-soft py-10 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent">
               Why It Works
             </div>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight">
-              Built for Clarity, Speed, and Better Hiring Outcomes
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight whitespace-nowrap">
+              Fast, Clear Hiring Results
             </h2>
             <p className="mt-5 text-base md:text-lg text-black leading-relaxed">
               We keep the process disciplined so employers save time and candidates stay engaged
@@ -294,11 +294,11 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section id="hiring-form" className="bg-primary py-14 sm:py-16 md:py-20 text-primary-foreground">
+      <section id="hiring-form" className="bg-primary py-10 sm:py-12 md:py-16 text-primary-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl md:text-5xl font-semibold">
-              Ready to start hiring with a clearer process?
+            <h2 className="font-display text-xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap">
+              Ready for transparent hiring?
             </h2>
             <p className="mt-4 text-primary-foreground/80">
               Share the roles you need to fill and we&apos;ll get back with a focused next step.
@@ -382,7 +382,7 @@ function ServicesPage() {
                   className="h-11"
                   value={form.location}
                   onChange={(e) => setForm({ ...form, location: e.target.value })}
-                  placeholder="E.g. Pune, PCMC, Chakan"
+                  placeholder="City, State"
                 />
               </div>
               <div>
@@ -431,37 +431,6 @@ function ServicesPage() {
                 />
               </div>
             </div>
-            <div className="grid sm:grid-cols-2 gap-5 mt-5">
-              <div>
-                <label className="text-sm font-medium block mb-1.5">
-                  Required Qualification
-                </label>
-                <Input
-                  className="h-11"
-                  value={form.qualification}
-                  onChange={(e) => setForm({ ...form, qualification: e.target.value })}
-                  placeholder="E.g. B.Tech, MBA, GNM, Graduate"
-                />
-              </div>
-              <div>
-                <label className="text-sm font-medium block mb-1.5">Key Skills Required</label>
-                <Input
-                  className="h-11"
-                  value={form.keySkills}
-                  onChange={(e) => setForm({ ...form, keySkills: e.target.value })}
-                  placeholder="E.g. Excel, CNC, React, Field Sales"
-                />
-              </div>
-            </div>
-            <div className="mt-5">
-              <label className="text-sm font-medium block mb-1.5">Hiring Requirement</label>
-              <Textarea
-                className="min-h-32"
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                placeholder="Tell us about job responsibilities, shift timing, interview process, must-have skills, or any special hiring notes..."
-              />
-            </div>
             <Button type="submit" variant="hero" size="lg" disabled={loading} className="mt-6 w-full sm:w-auto">
               {loading ? (
                 "Sending..."
@@ -477,4 +446,3 @@ function ServicesPage() {
     </>
   );
 }
-

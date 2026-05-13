@@ -132,6 +132,38 @@
     font-size: 1.0625rem;
     line-height: 1.75;
   }
+  p,
+  li {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  .text-center,
+  .text-center p,
+  .text-center li,
+  p.text-center,
+  li.text-center {
+    text-align: center;
+  }
+  .text-left,
+  .text-left p,
+  .text-left li,
+  p.text-left,
+  li.text-left {
+    text-align: left;
+  }
+  button,
+  button p,
+  button span,
+  .inline-flex,
+  .inline-flex p,
+  .inline-flex span {
+    text-align: center;
+  }
+  label,
+  input,
+  textarea {
+    text-align: left;
+  }
   p.text-sm {
     font-size: 0.98rem;
     line-height: 1.65;

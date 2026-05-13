@@ -3,7 +3,7 @@ import { buildSeoMeta } from "@/lib/seo";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { Button } from "@/components/ui/button";
-import aboutImg from "@/assets/about.jpg";
+import aboutImg from "@/assets/about.png";
 import { Compass, Eye, Handshake, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
@@ -54,11 +54,11 @@ const pillars = [
 
 const founders = [
   {
-    name: "Founder Name",
+    name: "Hemant Bhamre",
     image: aboutImg,
   },
   {
-    name: "Co-Founder Name",
+    name: "Parth Bhamre",
     image: aboutImg,
   },
 ];
@@ -136,7 +136,7 @@ function AboutPage() {
         </div>
       </Section>
 
-      <Section tag="Leadership" title="Meet Our Founders">
+      <Section tag="Leadership" title="Meet our Leadership team">
         <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {founders.map((founder) => (
             <div
@@ -159,7 +159,7 @@ function AboutPage() {
         </div>
       </Section>
 
-      <section className="bg-primary py-14 sm:py-20 md:py-24 text-primary-foreground">
+      <section className="bg-primary py-10 sm:py-14 md:py-16 text-primary-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl md:text-5xl font-semibold">
             Let&apos;s build your team, together.
@@ -169,8 +169,8 @@ function AboutPage() {
           </p>
           <div className="mt-8 flex justify-center">
             <Button asChild variant="gold" size="xl" className="w-full sm:w-auto">
-              <Link to="/contact">
-                Contact Skill Spark <ArrowRight className="w-4 h-4" />
+              <Link to="/contact" hash="contact-form">
+                Connect with us <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>

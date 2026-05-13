@@ -8,7 +8,7 @@ interface PageHeroProps {
 export function PageHero({ tag, title, subtitle }: PageHeroProps) {
   return (
     <section className="bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 md:py-16 lg:px-8 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 md:py-14 lg:px-8 lg:py-16">
         <div className="max-w-5xl mx-auto text-center">
           {tag && (
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">

@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   ArrowRight,
   Check,
-  CheckCircle2,
   Clock3,
   FileUser,
   FileWarning,
@@ -109,7 +108,7 @@ const employeeProblems = [
 
 const profileFields = [
   { label: "Full Name", name: "fullName", placeholder: "Your full name" },
-  { label: "Phone Number", name: "phone", placeholder: "eg. 9876543210", type: "tel" },
+  { label: "Phone / WhatsApp Number", name: "phone", placeholder: "eg. 9876543210", type: "tel" },
   { label: "Email Address", name: "email", placeholder: "you@example.com", type: "email" },
   { label: "Current Location", name: "location", placeholder: "City, State" },
   { label: "Experience", name: "experience", placeholder: "eg. 5 years" },
@@ -124,7 +123,6 @@ const profileFields = [
   { label: "Key Skills", name: "skills", placeholder: "eg. Java, Excel, Sales" },
   { label: "Notice Period", name: "noticePeriod", placeholder: "eg. Immediate, 30 days" },
   { label: "Expected Salary", name: "expectedSalary", placeholder: "eg. 15 LPA" },
-  { label: "Availability", name: "availability", placeholder: "When can you join?" },
 ];
 
 const faqItems = [
@@ -134,19 +132,14 @@ const faqItems = [
       "Share your details, experience, preferred role, and updated CV through the form. Our team reviews your profile, matches it with relevant openings, and contacts you with suitable opportunities.",
   },
   {
+    question: "What does it cost? Are there any fees?",
+    answer:
+      "A one-time candidate registration fee of Rs. 500/- is applicable. If any additional charges apply, our team will communicate them clearly before proceeding.",
+  },
+  {
     question: "How long does it take to find a suitable job?",
     answer:
       "Timing depends on the role and market demand, but we focus on fast matching and keep you updated at every step so you can move quickly when a good opportunity appears.",
-  },
-  {
-    question: "How is my information kept confidential? What is shared and when?",
-    answer:
-      "We only share your CV and details with employers after you explicitly approve a specific role. Your current employer will never be contacted without your permission.",
-  },
-  {
-    question: "What does it cost? Are there any fees?",
-    answer:
-      "Candidate registration is free. Employers pay our placement fees, so you can use our services without any cost to you.",
   },
   {
     question: "Will I get feedback after interviews?",
@@ -156,7 +149,7 @@ const faqItems = [
   {
     question: "What kind of roles do you handle?",
     answer:
-      "We place candidates across IT, manufacturing, logistics, healthcare, corporate, BFSI, sales, and admin functions, based on your experience and career goals.",
+      "We support roles across Information Technology, Manufacturing & Engineering, Logistics & Supply Chain, Healthcare & Nursing, Corporate & Admin, and BFSI & Sales. This includes software and web development, cloud, data, infrastructure, QA, support, production, operations, quality, maintenance, warehouse, dispatch, procurement, nursing, diagnostics, HR, admin, finance, accounts, back office, banking, insurance, sales, business development, customer service, and revenue operations.",
   },
   {
     question: "What happens after I get placed?",
@@ -203,7 +196,7 @@ function EmployeePage() {
         </div>
       </Section>
 
-      <section className="py-14 sm:py-16 md:py-20 bg-card">
+      <section className="py-10 sm:py-12 md:py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Industries We Serve
@@ -306,7 +299,7 @@ function EmployeePage() {
         className="bg-background"
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step, index) => (
+          {steps.map((step) => (
             <div
               key={step.n}
               className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-card transition-smooth hover:-translate-y-1 hover:border-gold/40 hover:shadow-elegant"
@@ -348,27 +341,22 @@ function EmployeePage() {
                     {step.title}
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-black">{step.desc}</p>
-
-                  <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-4">
-                    <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                      {index === steps.length - 1 ? "Complete" : "Next Step"}
-                    </span>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-smooth group-hover:bg-gold group-hover:text-primary">
-                      {index === steps.length - 1 ? (
-                        <CheckCircle2 className="h-4 w-4" />
-                      ) : (
-                        <ArrowRight className="h-4 w-4" />
-                      )}
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        <div className="mt-10 flex justify-center">
+          <Button asChild variant="gold" size="lg" className="w-full sm:w-auto">
+            <a href="#candidate-profile">
+              Sign Up <ArrowRight className="h-4 w-4" />
+            </a>
+          </Button>
+        </div>
       </Section>
 
-      <section className="bg-background py-10 sm:py-12">
+      <section className="bg-background pb-10 pt-0 sm:pb-12 md:pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="font-display text-3xl font-semibold text-primary leading-tight md:text-4xl">
@@ -428,7 +416,7 @@ function EmployeePage() {
       >
         <form
           id="candidate-profile"
-          className="mx-auto max-w-4xl rounded-2xl bg-white p-5 text-left shadow-elegant sm:p-7 md:p-9"
+          className="mx-auto max-w-4xl scroll-mt-24 rounded-2xl bg-white p-5 text-left shadow-elegant sm:p-7 md:p-9"
         >
           <div className="grid gap-4 md:grid-cols-2">
             {profileFields.map((field) => (
@@ -461,18 +449,6 @@ function EmployeePage() {
                 className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm file:mr-3 file:rounded-md file:bg-slate-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary focus-visible:ring-gold"
               />
             </div>
-          </div>
-
-          <div className="mt-4 space-y-2">
-            <label htmlFor="address" className="text-xs font-semibold text-primary sm:text-sm">
-              Address
-            </label>
-            <Textarea
-              id="address"
-              name="address"
-              placeholder="Your full address"
-              className="min-h-28 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm placeholder:text-slate-400 focus-visible:ring-gold"
-            />
           </div>
 
           <div className="mt-4 space-y-2">

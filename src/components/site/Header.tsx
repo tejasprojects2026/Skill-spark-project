@@ -74,7 +74,7 @@ export function Header() {
 
           <div className="flex items-center gap-2">
             <Button asChild variant="hero" size="sm" className="hidden md:inline-flex">
-              <Link to="/contact">{t("cta.consult")}</Link>
+              <Link to="/contact" hash="contact-form">{t("cta.consult")}</Link>
             </Button>
 
             <button
@@ -104,7 +104,7 @@ export function Header() {
             ))}
             <div className="pt-3">
               <Button asChild variant="hero" size="sm" className="w-full">
-                <Link to="/contact">{t("cta.consult")}</Link>
+                <Link to="/contact" hash="contact-form">{t("cta.consult")}</Link>
               </Button>
             </div>
           </div>

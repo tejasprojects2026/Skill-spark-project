@@ -1,4 +1,4 @@
-import ogImage from "@/assets/hero.jpg";
+import ogImage from "@/assets/hero.png";
 
 export const defaultSeoKeywords =
   "Skill Spark Consulting, recruitment agency Pune, PCMC recruitment, IT staffing, healthcare staffing, executive search, candidate registration, employer hiring solutions, talent acquisition";

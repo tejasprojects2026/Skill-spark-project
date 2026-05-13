@@ -6,22 +6,22 @@ import footerLogo from "@/assets/footer logo .png";
 export function Footer() {
   const { t } = useI18n();
   return (
-    <footer className="bg-primary text-primary-foreground mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-primary text-primary-foreground mt-10">
+      <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+        <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div>
-            <div className="bg-primary-foreground rounded-xl p-3 inline-block mb-5">
-              <img src={footerLogo} alt="Skill Spark Consulting" className="h-10 w-auto" />
+            <div className="bg-primary-foreground rounded-xl p-2.5 inline-block mb-3">
+              <img src={footerLogo} alt="Skill Spark Consulting" className="h-9 w-auto" />
             </div>
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
               {t("footer.tagline")}
             </p>
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 mt-4">
               {[Linkedin, Facebook, Instagram].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
-                  className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-gold hover:text-primary flex items-center justify-center transition-smooth"
+                  className="w-8 h-8 rounded-lg bg-primary-foreground/10 hover:bg-gold hover:text-primary flex items-center justify-center transition-smooth"
                   aria-label="Social link"
                 >
                   <Icon className="w-4 h-4" />
@@ -31,8 +31,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-base mb-5 text-gold">Quick Links</h4>
-            <ul className="space-y-3 text-sm">
+            <h4 className="font-display text-base mb-3 text-gold">Quick Links</h4>
+            <ul className="space-y-2 text-sm">
               {[
                 ["/about", "About Us"],
                 ["/employer", "Employer"],
@@ -52,8 +52,8 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-base mb-5 text-gold">Employer</h4>
-            <ul className="space-y-3 text-sm text-primary-foreground/70">
+            <h4 className="font-display text-base mb-3 text-gold">Employer</h4>
+            <ul className="space-y-2 text-sm text-primary-foreground/70">
               <li>Permanent Staffing</li>
               <li>Executive Search</li>
               <li>Talent Consulting</li>
@@ -61,13 +61,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-base mb-5 text-gold">Contact</h4>
-            <ul className="space-y-3 text-sm text-primary-foreground/70">
-              <li className="flex items-start gap-2.5">
+            <h4 className="font-display text-base mb-3 text-gold">Contact</h4>
+            <ul className="space-y-2 text-sm text-primary-foreground/70">
+              <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-gold shrink-0" />
                 <span>A-620, Gera's Imperium Gateway, Nashik Phata, PCMC, Pune – 411034</span>
               </li>
-              <li className="flex items-start gap-2.5">
+              <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 text-gold shrink-0" />
                 <a
                   href="mailto:skillsparkconsulting@gmail.com"
@@ -76,7 +76,7 @@ export function Footer() {
                   skillsparkconsulting@gmail.com
                 </a>
               </li>
-              <li className="flex items-start gap-2.5">
+              <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-0.5 text-gold shrink-0" />
                 <a href="tel:+917875803175" className="hover:text-gold transition-smooth whitespace-nowrap">
                   +91 78758 03175
@@ -86,7 +86,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 mt-14 pt-6 text-center text-xs text-primary-foreground/50">
+        <div className="border-t border-primary-foreground/10 mt-7 pt-4 text-center text-xs text-primary-foreground/50">
           <p>
             © 2026 Skill Spark Consulting. All rights reserved. by{' '}
             <a href="https://webakoof.com" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-primary-foreground transition-smooth">

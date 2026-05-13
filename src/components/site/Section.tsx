@@ -20,7 +20,7 @@ export function Section({
   containerClassName = "",
 }: SectionProps) {
   return (
-    <section className={`py-14 sm:py-16 md:py-24 lg:py-28 ${className}`}>
+    <section className={`py-10 sm:py-12 md:py-16 lg:py-20 ${className}`}>
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${containerClassName}`}>
         <div className={align === "center" ? "text-center max-w-3xl mx-auto" : "max-w-3xl"}>
           {tag && (
@@ -37,7 +37,7 @@ export function Section({
             <p className="mt-5 text-base md:text-lg text-black leading-relaxed">{subtitle}</p>
           )}
         </div>
-        {children && <div className="mt-10 md:mt-14">{children}</div>}
+        {children && <div className="mt-8 md:mt-10">{children}</div>}
       </div>
     </section>
   );

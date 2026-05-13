@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { buildSeoMeta } from "@/lib/seo";
-import aboutImg from "@/assets/about.jpg";
-import heroImg from "@/assets/hero.jpg";
+import aboutImg from "@/assets/about.png";
+import heroImg from "@/assets/hero.png";
 import {
   ArrowRight,
   Briefcase,
@@ -88,10 +88,19 @@ const testimonials = [
   },
 ] as const;
 
+const homeCtaClass =
+  "inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#f3a900] px-7 py-3 text-center text-base font-semibold text-primary shadow-soft transition-smooth hover:bg-[#d89500] sm:w-auto sm:min-w-[168px]";
+
+const splitEmployerCtaClass =
+  "inline-flex min-h-11 w-fit min-w-[150px] items-center justify-center gap-2 rounded-lg bg-[#f3a900] px-6 py-2.5 text-center text-base font-semibold text-primary shadow-soft transition-smooth hover:bg-[#d89500]";
+
+const splitCandidateCtaClass =
+  "inline-flex min-h-11 w-fit min-w-[150px] items-center justify-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-center text-base font-semibold text-primary-foreground shadow-soft transition-smooth hover:bg-primary/90";
+
 function Index() {
   return (
     <>
-      <section className="bg-primary py-14 text-primary-foreground sm:py-20 md:py-28">
+      <section className="bg-primary py-10 text-primary-foreground sm:py-14 md:py-20">
         <div className="max-w-7xl mx-auto grid items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div className="text-center md:text-left">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">
@@ -107,15 +116,17 @@ function Index() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link
                 to="/employer"
-                className="inline-flex items-center justify-center rounded-md bg-[#f3a900] px-8 py-3 text-center font-semibold text-primary transition-smooth hover:bg-[#d89500]"
+                hash="hiring-form"
+                className={homeCtaClass}
               >
-                Hire Talent <ArrowRight className="w-4 h-4 ml-2" />
+                Hire Talent <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/employee"
-                className="inline-flex items-center justify-center rounded-md border-2 border-[#f3a900] bg-[#f3a900] px-8 py-3 text-center font-semibold text-primary transition-smooth hover:border-[#d89500] hover:bg-[#d89500]"
+                hash="candidate-profile"
+                className={homeCtaClass}
               >
-                Find a Job <ArrowRight className="w-4 h-4 ml-2" />
+                Find a Job <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -145,9 +156,9 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-secondary/55 py-14 sm:py-16 md:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
-          <div>
+      <section className="bg-secondary/55 py-10 sm:py-12 md:py-16">
+        <div className="max-w-7xl mx-auto grid gap-10 px-4 sm:px-6 md:grid-cols-2 md:items-stretch lg:gap-12 lg:px-8">
+          <div className="flex h-full flex-col justify-center">
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary mb-6">
               We Don&apos;t Just Fill Positions. We Build Teams.
             </h2>
@@ -158,24 +169,24 @@ function Index() {
               ambitions, skills, and fitment. Our promise: every candidate we send to you has
               already been screened, assessed, and vetted by us. You receive quality, not quantity.
             </p>
-            <Button asChild variant="gold" size="lg">
+            <Button asChild variant="gold" size="lg" className="w-fit self-start">
               <Link to="/about">
                 Learn About Us <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>
-          <div className="overflow-hidden rounded-2xl h-64 md:h-80 shadow-card border border-border/40 bg-card">
+          <div className="h-64 overflow-hidden rounded-2xl border border-border/40 bg-card shadow-card md:h-auto md:min-h-0">
             <img
               src={aboutImg}
               alt="Skill Spark recruitment consulting team"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
               loading="lazy"
             />
           </div>
         </div>
       </section>
 
-      <section className="py-14 sm:py-16 md:py-20 bg-card">
+      <section className="py-10 sm:py-12 md:py-16 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             Sectors We Specialize In
@@ -194,24 +205,20 @@ function Index() {
             ))}
           </div>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
-            <Button asChild variant="gold" size="lg" className="w-full sm:w-auto">
-              <Link to="/employee">
-                Explore Employee <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="gold" size="lg" className="w-full sm:w-auto">
-              <Link to="/employer">
-                Explore Employer <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
+            <Link to="/employer" hash="hiring-form" className={homeCtaClass}>
+              Hire Talent <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/employee" hash="candidate-profile" className={homeCtaClass}>
+              Find a Job <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-primary py-14 sm:py-16 md:py-20 text-primary-foreground">
+      <section className="bg-primary py-10 sm:py-12 md:py-16 text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-center mb-12">
-            Why Skill Spark?
+            Why Skill Spark Consulting?
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {why.map((item) => (
@@ -225,45 +232,41 @@ function Index() {
           <div className="text-center mt-10">
             <Button asChild variant="gold" size="lg">
               <Link to="/employee">
-                Visit Employee Page <ArrowRight className="w-4 h-4" />
+                View more <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      <div className="h-10 bg-background sm:h-12 md:h-16" />
+      <div className="h-4 bg-background sm:h-6 md:h-8" />
 
       <section className="grid md:grid-cols-2">
-        <div className="bg-primary text-primary-foreground py-12 px-5 sm:px-8 md:py-16 md:px-16 flex flex-col justify-center">
+        <div className="bg-primary text-primary-foreground py-8 px-5 sm:px-8 md:py-10 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
             Employer Solutions
           </h3>
           <p className="text-primary-foreground/80 mb-6">
             Ready to fill your roles faster? Visit our employer page to share your hiring needs and get matched with qualified, pre-screened talent.
           </p>
-          <Button asChild variant="gold" size="lg" className="w-full sm:w-fit">
-            <Link to="/employer" hash="hiring-form">
-              Explore Employer
-            </Link>
-          </Button>
+          <Link to="/employer" hash="hiring-form" className={splitEmployerCtaClass}>
+            Hire Talent <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
-        <div className="bg-accent text-accent-foreground py-12 px-5 sm:px-8 md:py-16 md:px-16 flex flex-col justify-center">
+        <div className="bg-accent text-accent-foreground py-8 px-5 sm:px-8 md:py-10 md:px-16 flex flex-col justify-center">
           <h3 className="font-display text-2xl md:text-3xl font-semibold mb-4">
             Candidate Services
           </h3>
           <p className="text-black mb-6">
             Looking for the next step in your career? Visit our employee page to register your profile and get matched with roles that fit your skills and goals.
           </p>
-          <Button asChild variant="primary" size="lg" className="w-full sm:w-fit bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link to="/employee">
-              Explore Employee
-            </Link>
-          </Button>
+          <Link to="/employee" hash="candidate-profile" className={splitCandidateCtaClass}>
+            Find a Job <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 
-      <section className="py-14 sm:py-16 md:py-20 bg-secondary/55">
+      <section className="py-10 sm:py-12 md:py-16 bg-secondary/55">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             What Our Clients & Candidates Say
@@ -280,7 +283,7 @@ function Index() {
           <div className="text-center mt-10">
             <Button asChild variant="gold" size="lg">
               <Link to="/contact">
-                Talk to Our Team <ArrowRight className="w-4 h-4" />
+                Meet our team <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>
