@@ -1,4 +1,4 @@
-import ogImage from "@/assets/hero.png";
+import ogImage from "@/assets/hero.webp";
 
 export const siteConfig = {
   name: "Skill Spark Consulting",

@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/skill spark.png";
+import logo from "@/assets/skill-spark.webp";
 
 const navItems = [
   { to: "/", key: "nav.home" },
@@ -44,6 +44,10 @@ export function Header() {
             <img
               src={logo}
               alt="Skill Spark Consulting"
+              width={230}
+              height={90}
+              loading="lazy"
+              decoding="async"
               className="h-11 w-auto transition-smooth group-hover:scale-[1.03] sm:h-14 md:h-16"
             />
           </Link>

@@ -5,7 +5,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
 import { StructuredData } from "@/components/site/StructuredData";
 import { Button } from "@/components/ui/button";
-import aboutImg from "@/assets/about.png";
+import aboutImg from "@/assets/about.webp";
 import { Compass, Eye, Handshake, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const aboutSeo = {
@@ -99,6 +99,7 @@ function AboutPage() {
               src={aboutImg}
               alt="Skill Spark team"
               loading="lazy"
+              decoding="async"
               width={1280}
               height={896}
               className="w-full rounded-2xl shadow-elegant"
@@ -168,6 +169,7 @@ function AboutPage() {
                   src={founder.image}
                   alt={founder.name}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>

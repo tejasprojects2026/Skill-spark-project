@@ -1,5 +1,5 @@
-import logo from "@/assets/skill spark.png";
-import heroImage from "@/assets/hero.png";
+import logo from "@/assets/skill-spark.webp";
+import heroImage from "@/assets/hero.webp";
 import { siteConfig, toKeywordContent } from "@/lib/seo";
 
 export type JsonLd = Record<string, unknown>;

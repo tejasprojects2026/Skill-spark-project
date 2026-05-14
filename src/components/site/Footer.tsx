@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
-import footerLogo from "@/assets/footer logo .png";
+import footerLogo from "@/assets/footer-logo.webp";
 
 const socialLinks = [
   {
@@ -24,7 +24,15 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           <div>
             <div className="bg-primary-foreground rounded-xl p-2.5 inline-block mb-3">
-              <img src={footerLogo} alt="Skill Spark Consulting" className="h-9 w-auto" />
+              <img
+                src={footerLogo}
+                alt="Skill Spark Consulting"
+                width={230}
+                height={90}
+                loading="lazy"
+                decoding="async"
+                className="h-9 w-auto"
+              />
             </div>
             <p className="text-sm text-primary-foreground/70 leading-relaxed">
               {t("footer.tagline")}

@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { buildSeoMeta, pageSeoKeywords, siteConfig } from "@/lib/seo";
 import { breadcrumbJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/structuredData";
-import aboutImg from "@/assets/about.png";
-import heroImg from "@/assets/hero.png";
+import aboutImg from "@/assets/about.webp";
+import heroImg from "@/assets/hero.webp";
 import {
   ArrowRight,
   Briefcase,
@@ -152,6 +152,11 @@ function Index() {
               <img
                 src={heroImg}
                 alt="Professional recruitment and consulting"
+                width={1920}
+                height={1080}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="h-[480px] w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-primary/10 to-transparent" />
@@ -198,6 +203,7 @@ function Index() {
               alt="Skill Spark recruitment consulting team"
               className="h-full w-full object-cover"
               loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
