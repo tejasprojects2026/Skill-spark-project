@@ -59,7 +59,7 @@ const steps = [
   {
     n: "01",
     title: "Share Your Profile",
-    desc: "Fill the candidate form with your contact details, education, experience, skills, preferred role, salary expectation, notice period, location preference, and updated CV.",
+    desc: "Fill the candidate form with your contact details, education, experience, skills, preferred role, salary expectation, notice period, location preference, and updated CV link.",
     icon: FileUser,
   },
   {
@@ -149,6 +149,7 @@ const candidateProfileSchema = z.object({
   skills: z.string().trim().max(300),
   noticePeriod: z.string().trim().max(80),
   expectedSalary: z.string().trim().max(80),
+  resumeLink: z.string().trim().max(500),
   additionalInformation: z.string().trim().max(1000),
 });
 
@@ -156,7 +157,7 @@ const faqItems = [
   {
     question: "How does the registration process work?",
     answer:
-      "Share your details, experience, preferred role, and updated CV through the form. Our team reviews your profile, matches it with relevant openings, and contacts you with suitable opportunities.",
+      "Share your details, experience, preferred role, and updated CV link through the form. Our team reviews your profile, matches it with relevant openings, and contacts you with suitable opportunities.",
   },
   {
     question: "What does it cost? Are there any fees?",
@@ -210,6 +211,7 @@ function EmployeePage() {
       skills: getValue("skills"),
       noticePeriod: getValue("noticePeriod"),
       expectedSalary: getValue("expectedSalary"),
+      resumeLink: getValue("resumeLink"),
       additionalInformation: getValue("additionalInformation"),
     });
 
@@ -218,15 +220,12 @@ function EmployeePage() {
       return;
     }
 
-    const attachment = formData.get("attachment");
-    if (attachment instanceof File && attachment.size === 0) {
-      formData.delete("attachment");
-    }
-
     Object.entries(parsed.data).forEach(([key, value]) => {
       formData.set(key, value);
     });
     formData.set("name", parsed.data.fullName);
+    formData.set("CV / Resume Link", parsed.data.resumeLink || "Not provided");
+    formData.delete("resumeLink");
 
     setProfileLoading(true);
     try {
@@ -526,7 +525,6 @@ function EmployeePage() {
         <form
           id="candidate-profile"
           onSubmit={submitCandidateProfile}
-          encType="multipart/form-data"
           className="mx-auto max-w-4xl scroll-mt-24 rounded-2xl bg-white p-5 text-left shadow-elegant sm:p-7 md:p-9"
         >
           <div className="grid gap-4 md:grid-cols-2">
@@ -549,15 +547,18 @@ function EmployeePage() {
             ))}
 
             <div className="space-y-2">
-              <label htmlFor="resume" className="text-xs font-semibold text-primary sm:text-sm">
-                Upload CV
+              <label
+                htmlFor="resumeLink"
+                className="text-xs font-semibold text-primary sm:text-sm"
+              >
+                CV / Resume Link
               </label>
               <Input
-                id="resume"
-                name="attachment"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm file:mr-3 file:rounded-md file:bg-slate-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary focus-visible:ring-gold"
+                id="resumeLink"
+                name="resumeLink"
+                type="url"
+                placeholder="Google Drive, Dropbox, or LinkedIn URL"
+                className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm placeholder:text-slate-400 focus-visible:ring-gold"
               />
             </div>
           </div>
