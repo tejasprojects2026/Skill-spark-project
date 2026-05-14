@@ -1,9 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import footerLogo from "@/assets/footer-logo.webp";
 
 const socialLinks = [
+  {
+    href: "https://www.facebook.com/61589978150086",
+    label: "Skill Spark Consulting on Facebook",
+    icon: Facebook,
+  },
   {
     href: "https://www.linkedin.com/company/skill-spark-pune/",
     label: "Skill Spark Consulting on LinkedIn",
