@@ -2,10 +2,12 @@ import { createRootRoute, HeadContent, Link, Outlet, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 import favicon from "@/assets/favicon .png";
-import { buildSeoMeta } from "@/lib/seo";
+import { buildSeoMeta, pageSeoKeywords, siteConfig } from "@/lib/seo";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/structuredData";
 import { I18nProvider } from "@/lib/i18n";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { StructuredData } from "@/components/site/StructuredData";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -35,13 +37,15 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       ...buildSeoMeta({
-        title: "Skill Spark Consulting — Premium Strategy & Talent Consulting",
-        description: "Skill Spark Consulting partners with ambitious organizations to design strategies, develop leaders, and unlock measurable growth.",
-        url: "https://skillsparkconsulting.lovable.app/",
+        title: "Skill Spark Consulting | Recruitment Agency in Pune & PCMC",
+        description:
+          "Skill Spark Consulting is a Pune and PCMC recruitment agency for employers and job seekers across IT, manufacturing, healthcare, logistics, BFSI, sales, and executive hiring.",
+        url: `${siteConfig.url}/`,
+        keywords: pageSeoKeywords.home,
       }),
     ],
     links: [
-      { rel: "canonical", href: "https://skillsparkconsulting.lovable.app/" },
+      { rel: "canonical", href: `${siteConfig.url}/` },
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: favicon },
       { rel: "apple-touch-icon", href: favicon },
@@ -60,7 +64,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <head>
         <HeadContent />
       </head>
@@ -76,6 +80,7 @@ function RootComponent() {
   return (
     <I18nProvider>
       <div className="flex min-h-screen flex-col">
+        <StructuredData data={[organizationJsonLd, websiteJsonLd]} />
         <Header />
         <main className="flex-1">
           <Outlet />

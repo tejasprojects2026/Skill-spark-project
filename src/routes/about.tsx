@@ -1,22 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { buildSeoMeta } from "@/lib/seo";
+import { buildSeoMeta, pageSeoKeywords, siteConfig } from "@/lib/seo";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/structuredData";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
+import { StructuredData } from "@/components/site/StructuredData";
 import { Button } from "@/components/ui/button";
 import aboutImg from "@/assets/about.png";
 import { Compass, Eye, Handshake, ArrowRight, CheckCircle2 } from "lucide-react";
 
+const aboutSeo = {
+  title: "About Skill Spark Consulting | Recruitment Consultancy in Pune & PCMC",
+  description:
+    "Learn about Skill Spark Consulting, a recruitment consultancy in Pune and PCMC helping employers hire pre-vetted talent and candidates find relevant roles across IT, manufacturing, healthcare, logistics, BFSI, sales, and corporate sectors.",
+  url: `${siteConfig.url}/about`,
+  keywords: pageSeoKeywords.about,
+};
+
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: buildSeoMeta({
-      title: "About Us — Skill Spark Consulting",
-      description:
-        "Skill Spark Consulting was founded with a clear mission — to bridge the gap between exceptional talent and the companies that need them most.",
-      url: "https://skillsparkconsulting.lovable.app/about",
-      keywords:
-        "About Skill Spark Consulting, recruitment consultancy Pune, staffing experts, candidate matching, employer hiring support",
+      title: aboutSeo.title,
+      description: aboutSeo.description,
+      url: aboutSeo.url,
+      keywords: aboutSeo.keywords,
     }),
-    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/about" }],
+    links: [{ rel: "canonical", href: aboutSeo.url }],
   }),
   component: AboutPage,
 });
@@ -66,14 +74,23 @@ const founders = [
 function AboutPage() {
   return (
     <>
+      <StructuredData
+        data={[
+          webPageJsonLd(aboutSeo),
+          breadcrumbJsonLd([
+            { name: "Home", url: `${siteConfig.url}/` },
+            { name: "About Skill Spark Consulting", url: aboutSeo.url },
+          ]),
+        ]}
+      />
       <PageHero
         tag="About Us"
-        title="We're More Than Just Recruiters"
-        subtitle="Skill Spark Consulting was founded with a clear mission — to bridge the gap between exceptional talent and the companies that need them most."
+        title="Pune Recruitment Consultants Focused on Quality Hiring"
+        subtitle="Skill Spark Consulting bridges the gap between exceptional talent and employers across Pune, PCMC, and growing business hubs in Maharashtra."
         breadcrumbs={[{ label: "About" }]}
       />
 
-      <Section tag="Our Story" title="Born in PCMC. Built for Pune." align="left">
+      <Section tag="Our Story" title="Born in PCMC. Built for Pune Recruitment." align="left">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12 lg:-mt-4">
           <div className="relative">
             <div className="absolute -top-3 -left-3 h-20 w-20 rounded-2xl gradient-gold opacity-80 -z-10 sm:-top-6 sm:-left-6 sm:h-32 sm:w-32" />
@@ -91,17 +108,17 @@ function AboutPage() {
             <p>
               Born from a deep understanding of Pune's evolving industrial and corporate landscape,
               Skill Spark Consulting was established to deliver recruitment solutions that are
-              precise, personal, and results-driven.
+              precise, personal, and results-driven for employers and job seekers.
             </p>
             <p>
-              Based in the heart of PCMC — Pune's fastest-growing industrial corridor — we have a
+              Based in the heart of PCMC - Pune's fastest-growing industrial corridor - we have a
               unique vantage point. We understand the needs of manufacturing plants, IT parks,
               logistics hubs, and corporate offices because we're right here, embedded in the
-              ecosystem.
+              ecosystem as a local recruitment consultancy.
             </p>
             <p>
               Our team combines industry experience with a consultative approach. We don't just
-              match resumes to job descriptions — we match people to purpose.
+              match resumes to job descriptions - we match people to purpose.
             </p>
           </div>
         </div>
@@ -125,7 +142,10 @@ function AboutPage() {
               <h3 className="font-display text-xl sm:text-2xl mt-6 text-primary">{v.title}</h3>
               <ul className="mt-5 space-y-3">
                 {v.points.map((point) => (
-                  <li key={point} className="flex items-start gap-3 text-sm leading-relaxed text-black">
+                  <li
+                    key={point}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-black"
+                  >
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
                     <span>{point}</span>
                   </li>

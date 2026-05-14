@@ -1,5 +1,6 @@
 ﻿import { createFileRoute } from "@tanstack/react-router";
-import { buildSeoMeta } from "@/lib/seo";
+import { buildSeoMeta, pageSeoKeywords, siteConfig } from "@/lib/seo";
+import { breadcrumbJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/structuredData";
 import { useState } from "react";
 import {
   Briefcase,
@@ -18,20 +19,23 @@ import healthcareStaffingImg from "@/assets/services/healthcare-staffing.png";
 import permanentStaffingImg from "@/assets/services/permanent-staffing.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { StructuredData } from "@/components/site/StructuredData";
 import { toast } from "sonner";
 import { z } from "zod";
+import { submitWeb3Form } from "@/lib/web3forms";
+
+const employerSeo = {
+  title: "Employer Hiring Solutions in Pune & PCMC | Skill Spark Consulting",
+  description:
+    "Hire pre-vetted candidates with Skill Spark Consulting's recruitment services in Pune and PCMC, including permanent staffing, executive search, healthcare hiring, IT staffing, manufacturing recruitment, and logistics hiring.",
+  url: `${siteConfig.url}/employer`,
+  keywords: pageSeoKeywords.employer,
+};
 
 export const Route = createFileRoute("/employer")({
   head: () => ({
-    meta: buildSeoMeta({
-      title: "Employer - Skill Spark Consulting",
-      description:
-        "Employer hiring solutions from permanent placements to executive search and healthcare recruitment across Pune, PCMC, and beyond.",
-      url: "https://skillsparkconsulting.lovable.app/employer",
-      keywords:
-        "employer staffing, permanent staffing, executive search, healthcare recruitment, talent acquisition, Pune recruitment consulting",
-    }),
-    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/employer" }],
+    meta: buildSeoMeta(employerSeo),
+    links: [{ rel: "canonical", href: employerSeo.url }],
   }),
   component: ServicesPage,
 });
@@ -147,39 +151,74 @@ function ServicesPage() {
       return;
     }
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 700));
-    setLoading(false);
-    toast.success("Thank you! Our hiring team will reach out shortly.");
-    setForm({
-      company: "",
-      name: "",
-      email: "",
-      phone: "",
-      department: "",
-      roles: "",
-      jobType: "",
-      location: "",
-      openings: "",
-      experience: "",
-      salary: "",
-      joiningTimeline: "",
-      workMode: "",
-    });
+    try {
+      await submitWeb3Form({
+        data: parsed.data,
+        formSource: "Employer Page - Hiring Requirement Form",
+        subject: "New employer hiring requirement | Skill Spark Website",
+      });
+      toast.success("Thank you! Our hiring team will reach out shortly.");
+      setForm({
+        company: "",
+        name: "",
+        email: "",
+        phone: "",
+        department: "",
+        roles: "",
+        jobType: "",
+        location: "",
+        openings: "",
+        experience: "",
+        salary: "",
+        joiningTimeline: "",
+        workMode: "",
+      });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to send your requirement.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
+      <StructuredData
+        data={[
+          webPageJsonLd(employerSeo),
+          breadcrumbJsonLd([
+            { name: "Home", url: `${siteConfig.url}/` },
+            { name: "Employer Hiring Solutions", url: employerSeo.url },
+          ]),
+          serviceJsonLd({
+            name: "Employer recruitment and staffing services in Pune and PCMC",
+            description:
+              "Permanent staffing, executive search, healthcare staffing, IT recruitment, manufacturing hiring, logistics recruitment, BFSI hiring, and sales hiring for employers.",
+            serviceTypes: [
+              "Permanent staffing",
+              "Executive search",
+              "Healthcare staffing",
+              "IT recruitment",
+              "Manufacturing recruitment",
+              "Logistics recruitment",
+              "BFSI hiring",
+              "Sales hiring",
+            ],
+            url: employerSeo.url,
+          }),
+        ]}
+      />
       <section className="bg-primary py-10 text-primary-foreground sm:py-12 md:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">
             Employer
           </p>
-          <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-semibold mb-5 md:mb-6 whitespace-nowrap">
-            Employer Hiring Solutions
+          <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-semibold mb-5 md:mb-6">
+            Recruitment Services for Employers in Pune & PCMC
           </h1>
           <p className="text-primary-foreground/80 text-base md:text-lg max-w-3xl mx-auto">
-            From permanent placements to executive search and healthcare hiring - we cover the full
-            spectrum of talent acquisition.
+            From permanent staffing to executive search, IT recruitment, manufacturing hiring,
+            healthcare staffing, logistics recruitment, BFSI hiring, and sales roles - we cover the
+            full spectrum of talent acquisition.
           </p>
         </div>
       </section>
@@ -224,8 +263,8 @@ function ServicesPage() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-xs font-semibold uppercase tracking-wider text-accent">
               Services
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight whitespace-nowrap">
-              Employer Hiring Services
+            <h2 className="font-display text-2xl sm:text-3xl md:text-5xl font-semibold mt-5 text-primary leading-tight">
+              Employer Hiring Services Across Pune, PCMC & India
             </h2>
           </div>
 
@@ -284,7 +323,7 @@ function ServicesPage() {
             {processHighlights.map((item) => (
               <div
                 key={item}
-              className="flex items-start gap-3 rounded-2xl border border-border/50 bg-card p-5 sm:p-6 shadow-card"
+                className="flex items-start gap-3 rounded-2xl border border-border/50 bg-card p-5 sm:p-6 shadow-card"
               >
                 <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                 <p className="text-black">{item}</p>
@@ -294,7 +333,10 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section id="hiring-form" className="bg-primary py-10 sm:py-12 md:py-16 text-primary-foreground">
+      <section
+        id="hiring-form"
+        className="bg-primary py-10 sm:py-12 md:py-16 text-primary-foreground"
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-display text-xl sm:text-3xl md:text-5xl font-semibold whitespace-nowrap">
@@ -431,7 +473,13 @@ function ServicesPage() {
                 />
               </div>
             </div>
-            <Button type="submit" variant="hero" size="lg" disabled={loading} className="mt-6 w-full sm:w-auto">
+            <Button
+              type="submit"
+              variant="hero"
+              size="lg"
+              disabled={loading}
+              className="mt-6 w-full sm:w-auto"
+            >
               {loading ? (
                 "Sending..."
               ) : (

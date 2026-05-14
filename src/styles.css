@@ -206,6 +206,9 @@
   .shadow-gold { box-shadow: var(--shadow-gold); }
   .shadow-card { box-shadow: var(--shadow-card); }
   .transition-smooth { transition: var(--transition-smooth); }
+  .phone-number {
+    font-family: "Times New Roman", Times, serif;
+  }
 
   .animate-fade-in-up {
     animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;

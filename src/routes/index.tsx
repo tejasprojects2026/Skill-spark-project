@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { buildSeoMeta } from "@/lib/seo";
+import { buildSeoMeta, pageSeoKeywords, siteConfig } from "@/lib/seo";
+import { breadcrumbJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/structuredData";
 import aboutImg from "@/assets/about.png";
 import heroImg from "@/assets/hero.png";
 import {
@@ -15,18 +16,20 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { StructuredData } from "@/components/site/StructuredData";
+
+const homeSeo = {
+  title: "Recruitment Agency in Pune & PCMC | Skill Spark Consulting",
+  description:
+    "Skill Spark Consulting provides recruitment services in Pune and PCMC for employers and job seekers across IT, manufacturing, logistics, healthcare, BFSI, sales, and executive hiring.",
+  url: `${siteConfig.url}/`,
+  keywords: pageSeoKeywords.home,
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: buildSeoMeta({
-      title: "Skill Spark Consulting - Pune's Trusted Recruitment Partner",
-      description:
-        "Skill Spark Consulting specializes in end-to-end recruitment solutions for companies across Pune, PCMC, and beyond - covering IT, industrial, healthcare and corporate staffing.",
-      url: "https://skillsparkconsulting.lovable.app/",
-      keywords:
-        "Skill Spark Consulting, recruitment agency Pune, PCMC recruitment, IT hiring, industrial staffing, candidate sourcing, employer hiring solutions, executive search",
-    }),
-    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/" }],
+    meta: buildSeoMeta(homeSeo),
+    links: [{ rel: "canonical", href: homeSeo.url }],
   }),
   component: Index,
 });
@@ -100,6 +103,25 @@ const splitCandidateCtaClass =
 function Index() {
   return (
     <>
+      <StructuredData
+        data={[
+          webPageJsonLd(homeSeo),
+          breadcrumbJsonLd([{ name: "Home", url: homeSeo.url }]),
+          serviceJsonLd({
+            name: "Recruitment services in Pune and PCMC",
+            description:
+              "Employer hiring, permanent staffing, executive search, candidate registration, and job placement support across Pune, PCMC, and nearby markets.",
+            serviceTypes: [
+              "Recruitment consulting",
+              "Permanent staffing",
+              "Executive search",
+              "Candidate registration",
+              "Job placement support",
+            ],
+            url: homeSeo.url,
+          }),
+        ]}
+      />
       <section className="bg-primary py-10 text-primary-foreground sm:py-14 md:py-20">
         <div className="max-w-7xl mx-auto grid items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div className="text-center md:text-left">
@@ -107,25 +129,18 @@ function Index() {
               Pune&apos;s Trusted Recruitment Partner
             </p>
             <h1 className="font-display mb-5 text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Connecting the Right Talent with the Right Opportunity
+              Pune & PCMC Recruitment Agency for Employers and Job Seekers
             </h1>
             <p className="mx-auto mb-8 max-w-3xl text-base text-primary-foreground/80 md:mx-0 md:text-xl">
-              Skill Spark Consulting specializes in end-to-end recruitment solutions for companies
-              across Pune, PCMC, and beyond - covering IT, Industrial, and Corporate sectors.
+              Skill Spark Consulting specializes in end-to-end recruitment solutions, permanent
+              staffing, executive search, and candidate job placement support across IT,
+              manufacturing, logistics, healthcare, BFSI, sales, and corporate sectors.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link
-                to="/employer"
-                hash="hiring-form"
-                className={homeCtaClass}
-              >
+              <Link to="/employer" hash="hiring-form" className={homeCtaClass}>
                 Hire Talent <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                to="/employee"
-                hash="candidate-profile"
-                className={homeCtaClass}
-              >
+              <Link to="/employee" hash="candidate-profile" className={homeCtaClass}>
                 Find a Job <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -160,13 +175,15 @@ function Index() {
         <div className="max-w-7xl mx-auto grid gap-10 px-4 sm:px-6 md:grid-cols-2 md:items-stretch lg:gap-12 lg:px-8">
           <div className="flex h-full flex-col justify-center">
             <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary mb-6">
-              We Don&apos;t Just Fill Positions. We Build Teams.
+              Pune Recruitment Consultants Who Build Stronger Teams
             </h2>
             <p className="text-black leading-relaxed mb-6">
               Skill Spark Consulting is a Pune-based recruitment consultancy with deep roots in the
               PCMC and Pune industrial belt. We work closely with companies to understand their
               culture, goals, and hiring challenges - and with candidates to understand their
-              ambitions, skills, and fitment. Our promise: every candidate we send to you has
+              ambitions, skills, and fitment. Our recruitment services cover IT staffing,
+              manufacturing hiring, logistics recruitment, healthcare staffing, BFSI roles, sales
+              hiring, and corporate functions. Our promise: every candidate we send to you has
               already been screened, assessed, and vetted by us. You receive quality, not quantity.
             </p>
             <Button asChild variant="gold" size="lg" className="w-fit self-start">
@@ -222,7 +239,10 @@ function Index() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {why.map((item) => (
-              <div key={item.title} className="border border-gold/30 rounded-lg p-5 sm:p-6 bg-primary/60">
+              <div
+                key={item.title}
+                className="border border-gold/30 rounded-lg p-5 sm:p-6 bg-primary/60"
+              >
                 <div className="text-3xl mb-3">{item.icon}</div>
                 <h3 className="font-display text-lg font-semibold text-gold mb-2">{item.title}</h3>
                 <p className="text-primary-foreground/70 text-sm leading-relaxed">{item.desc}</p>
@@ -247,7 +267,8 @@ function Index() {
             Employer Solutions
           </h3>
           <p className="text-primary-foreground/80 mb-6">
-            Ready to fill your roles faster? Visit our employer page to share your hiring needs and get matched with qualified, pre-screened talent.
+            Ready to fill your roles faster? Visit our employer page to share your hiring needs and
+            get matched with qualified, pre-screened talent.
           </p>
           <Link to="/employer" hash="hiring-form" className={splitEmployerCtaClass}>
             Hire Talent <ArrowRight className="w-4 h-4" />
@@ -258,7 +279,8 @@ function Index() {
             Candidate Services
           </h3>
           <p className="text-black mb-6">
-            Looking for the next step in your career? Visit our employee page to register your profile and get matched with roles that fit your skills and goals.
+            Looking for the next step in your career? Visit our employee page to register your
+            profile and get matched with roles that fit your skills and goals.
           </p>
           <Link to="/employee" hash="candidate-profile" className={splitCandidateCtaClass}>
             Find a Job <ArrowRight className="w-4 h-4" />
@@ -273,7 +295,10 @@ function Index() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((item, index) => (
-              <div key={index} className="bg-card rounded-lg p-6 sm:p-8 border border-border shadow-soft">
+              <div
+                key={index}
+                className="bg-card rounded-lg p-6 sm:p-8 border border-border shadow-soft"
+              >
                 <Quote className="w-6 h-6 text-gold mb-4" />
                 <p className="text-black italic leading-relaxed mb-4">&quot;{item.quote}&quot;</p>
                 <p className="text-sm font-semibold text-primary">- {item.author}</p>

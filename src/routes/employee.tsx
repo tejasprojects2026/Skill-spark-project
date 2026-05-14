@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { buildSeoMeta } from "@/lib/seo";
+import { buildSeoMeta, pageSeoKeywords, siteConfig } from "@/lib/seo";
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webPageJsonLd } from "@/lib/structuredData";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -16,6 +17,7 @@ import {
 } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
+import { StructuredData } from "@/components/site/StructuredData";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -26,20 +28,29 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { industries } from "@/lib/recruitmentIndustries";
+import { submitWeb3Form } from "@/lib/web3forms";
+import { toast } from "sonner";
+import { z } from "zod";
+
+const employeeSeo = {
+  title: "Job Placement & Candidate Registration in Pune | Skill Spark Consulting",
+  description:
+    "Register your candidate profile with Skill Spark Consulting for job placement support in Pune and PCMC across IT, manufacturing, logistics, healthcare, BFSI, sales, admin, finance, and corporate roles.",
+  url: `${siteConfig.url}/employee`,
+  keywords: pageSeoKeywords.employee,
+};
 
 export const Route = createFileRoute("/employee")({
   head: () => ({
-    meta: buildSeoMeta({
-      title: "Employee - Skill Spark Consulting",
-      description:
-        "Find career opportunities with Skill Spark Consulting and get guided support from registration to joining.",
-      url: "https://skillsparkconsulting.lovable.app/employee",
-      keywords:
-        "employee job support, candidate registration, career matching, interview preparation, Pune job opportunities, candidate services",
-    }),
-    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/employee" }],
+    meta: buildSeoMeta(employeeSeo),
+    links: [{ rel: "canonical", href: employeeSeo.url }],
   }),
   component: EmployeePage,
 });
@@ -125,6 +136,22 @@ const profileFields = [
   { label: "Expected Salary", name: "expectedSalary", placeholder: "eg. 15 LPA" },
 ];
 
+const candidateProfileSchema = z.object({
+  fullName: z.string().trim().min(1, "Full name is required").max(120),
+  phone: z.string().trim().min(7, "Phone / WhatsApp number is required").max(20),
+  email: z.string().trim().email("Invalid email").max(255),
+  location: z.string().trim().min(1, "Current location is required").max(160),
+  experience: z.string().trim().max(80),
+  qualification: z.string().trim().max(120),
+  employer: z.string().trim().max(120),
+  designation: z.string().trim().max(120),
+  preferredRole: z.string().trim().min(1, "Preferred role is required").max(160),
+  skills: z.string().trim().max(300),
+  noticePeriod: z.string().trim().max(80),
+  expectedSalary: z.string().trim().max(80),
+  additionalInformation: z.string().trim().max(1000),
+});
+
 const faqItems = [
   {
     question: "How does the registration process work?",
@@ -162,19 +189,96 @@ function EmployeePage() {
   const [selectedIndustry, setSelectedIndustry] = useState<(typeof industries)[number] | null>(
     null,
   );
+  const [profileLoading, setProfileLoading] = useState(false);
+
+  const submitCandidateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formElement = e.currentTarget;
+    const formData = new FormData(formElement);
+    const getValue = (name: string) => String(formData.get(name) ?? "");
+
+    const parsed = candidateProfileSchema.safeParse({
+      fullName: getValue("fullName"),
+      phone: getValue("phone"),
+      email: getValue("email"),
+      location: getValue("location"),
+      experience: getValue("experience"),
+      qualification: getValue("qualification"),
+      employer: getValue("employer"),
+      designation: getValue("designation"),
+      preferredRole: getValue("preferredRole"),
+      skills: getValue("skills"),
+      noticePeriod: getValue("noticePeriod"),
+      expectedSalary: getValue("expectedSalary"),
+      additionalInformation: getValue("additionalInformation"),
+    });
+
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0].message);
+      return;
+    }
+
+    const attachment = formData.get("attachment");
+    if (attachment instanceof File && attachment.size === 0) {
+      formData.delete("attachment");
+    }
+
+    Object.entries(parsed.data).forEach(([key, value]) => {
+      formData.set(key, value);
+    });
+    formData.set("name", parsed.data.fullName);
+
+    setProfileLoading(true);
+    try {
+      await submitWeb3Form({
+        data: formData,
+        formSource: "Employee Page - Candidate Profile Form",
+        subject: "New candidate profile submission | Skill Spark Website",
+      });
+      toast.success("Thank you! Our team will review your profile and contact you shortly.");
+      formElement.reset();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to send your profile.");
+    } finally {
+      setProfileLoading(false);
+    }
+  };
 
   return (
     <>
+      <StructuredData
+        data={[
+          webPageJsonLd(employeeSeo),
+          breadcrumbJsonLd([
+            { name: "Home", url: `${siteConfig.url}/` },
+            { name: "Candidate Job Placement", url: employeeSeo.url },
+          ]),
+          serviceJsonLd({
+            name: "Candidate registration and job placement support in Pune",
+            description:
+              "Profile review, resume guidance, job matching, interview coordination, feedback updates, offer support, and joining support for candidates in Pune, PCMC, and across India.",
+            serviceTypes: [
+              "Candidate registration",
+              "Job placement support",
+              "Profile review",
+              "Interview coordination",
+              "Offer and joining support",
+            ],
+            url: employeeSeo.url,
+          }),
+          faqJsonLd(faqItems),
+        ]}
+      />
       <PageHero
         tag="Employee"
-        title="Find the Right Opportunity"
-        subtitle="Register with Skill Spark Consulting and get guided support from profile review to interview coordination and joining."
+        title="Job Placement Support for Pune & PCMC Candidates"
+        subtitle="Register with Skill Spark Consulting for career opportunities across IT, manufacturing, logistics, healthcare, BFSI, sales, admin, finance, and corporate roles."
         breadcrumbs={[{ label: "Employee" }]}
       />
 
       <Section
         tag="Problems"
-        title="What Job Seekers Commonly Face"
+        title="What Job Seekers in Pune Commonly Face"
         subtitle="Before the right opportunity appears, candidates often deal with unclear communication, irrelevant openings, and uncertainty about next steps."
         className="bg-secondary/55"
       >
@@ -223,7 +327,10 @@ function EmployeePage() {
         </div>
       </section>
 
-      <Dialog open={Boolean(selectedIndustry)} onOpenChange={(open) => !open && setSelectedIndustry(null)}>
+      <Dialog
+        open={Boolean(selectedIndustry)}
+        onOpenChange={(open) => !open && setSelectedIndustry(null)}
+      >
         <DialogContent className="max-h-[88vh] w-[calc(100%-1rem)] max-w-3xl overflow-y-auto rounded-2xl border-border bg-card p-0 shadow-elegant sm:w-[calc(100%-2rem)] sm:rounded-3xl [&>button]:flex [&>button]:h-9 [&>button]:w-9 [&>button]:items-center [&>button]:justify-center [&>button]:rounded-full [&>button]:bg-white/10 [&>button]:p-0 [&>button]:text-white [&>button]:opacity-100 [&>button]:ring-offset-primary hover:[&>button]:bg-white/20 [&>button>svg]:h-5 [&>button>svg]:w-5">
           {selectedIndustry && (
             <article>
@@ -381,7 +488,9 @@ function EmployeePage() {
                     Your Search Stays Strictly Confidential
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm leading-relaxed text-primary-foreground/90">
-                    We never share your CV, name, or contact details with any employer without your explicit consent for that specific role. Your current employer will not know you're exploring options through us.
+                    We never share your CV, name, or contact details with any employer without your
+                    explicit consent for that specific role. Your current employer will not know
+                    you're exploring options through us.
                   </p>
                 </div>
               </div>
@@ -416,6 +525,8 @@ function EmployeePage() {
       >
         <form
           id="candidate-profile"
+          onSubmit={submitCandidateProfile}
+          encType="multipart/form-data"
           className="mx-auto max-w-4xl scroll-mt-24 rounded-2xl bg-white p-5 text-left shadow-elegant sm:p-7 md:p-9"
         >
           <div className="grid gap-4 md:grid-cols-2">
@@ -443,7 +554,7 @@ function EmployeePage() {
               </label>
               <Input
                 id="resume"
-                name="resume"
+                name="attachment"
                 type="file"
                 accept=".pdf,.doc,.docx"
                 className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm file:mr-3 file:rounded-md file:bg-slate-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary focus-visible:ring-gold"
@@ -466,8 +577,13 @@ function EmployeePage() {
             />
           </div>
 
-          <Button type="submit" variant="gold" className="mt-5 h-12 w-full rounded-lg">
-            Submit Your Profile
+          <Button
+            type="submit"
+            variant="gold"
+            className="mt-5 h-12 w-full rounded-lg"
+            disabled={profileLoading}
+          >
+            {profileLoading ? "Sending..." : "Submit Your Profile"}
           </Button>
         </form>
       </Section>

@@ -1,7 +1,20 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import footerLogo from "@/assets/footer logo .png";
+
+const socialLinks = [
+  {
+    href: "https://www.linkedin.com/company/skill-spark-pune/",
+    label: "Skill Spark Consulting on LinkedIn",
+    icon: Linkedin,
+  },
+  {
+    href: "https://www.instagram.com/skillsparkconsulting/",
+    label: "Skill Spark Consulting on Instagram",
+    icon: Instagram,
+  },
+] as const;
 
 export function Footer() {
   const { t } = useI18n();
@@ -17,12 +30,14 @@ export function Footer() {
               {t("footer.tagline")}
             </p>
             <div className="flex gap-3 mt-4">
-              {[Linkedin, Facebook, Instagram].map((Icon, i) => (
+              {socialLinks.map(({ href, label, icon: Icon }) => (
                 <a
-                  key={i}
-                  href="#"
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg bg-primary-foreground/10 hover:bg-gold hover:text-primary flex items-center justify-center transition-smooth"
-                  aria-label="Social link"
+                  aria-label={label}
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -78,7 +93,7 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 mt-0.5 text-gold shrink-0" />
-                <a href="tel:+917875803175" className="hover:text-gold transition-smooth whitespace-nowrap">
+                <a href="tel:+917875803175" className="phone-number hover:text-gold transition-smooth whitespace-nowrap">
                   +91 78758 03175
                 </a>
               </li>

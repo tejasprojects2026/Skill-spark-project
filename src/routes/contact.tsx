@@ -1,26 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { buildSeoMeta } from "@/lib/seo";
+import { buildSeoMeta, pageSeoKeywords, siteConfig } from "@/lib/seo";
+import { breadcrumbJsonLd, webPageJsonLd } from "@/lib/structuredData";
 import { useState } from "react";
 import { PageHero } from "@/components/site/PageHero";
 import { Section } from "@/components/site/Section";
+import { StructuredData } from "@/components/site/StructuredData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
 import { z } from "zod";
+import { submitWeb3Form } from "@/lib/web3forms";
+
+const contactSeo = {
+  title: "Contact Skill Spark Consulting | Recruitment Agency in PCMC Pune",
+  description:
+    "Contact Skill Spark Consulting for hiring support, recruitment services, candidate registration, staffing inquiries, and job placement guidance in Pune and PCMC.",
+  url: `${siteConfig.url}/contact`,
+  keywords: pageSeoKeywords.contact,
+};
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: buildSeoMeta({
-      title: "Contact Us — Skill Spark Consulting",
-      description:
-        "Have a question or want to discuss your hiring needs? We'd love to hear from you.",
-      url: "https://skillsparkconsulting.lovable.app/contact",
-      keywords:
-        "contact Skill Spark Consulting, recruitment inquiries, staffing support, hiring questions, candidate support contact",
+      title: contactSeo.title,
+      description: contactSeo.description,
+      url: contactSeo.url,
+      keywords: contactSeo.keywords,
     }),
-    links: [{ rel: "canonical", href: "https://skillsparkconsulting.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: contactSeo.url }],
   }),
   component: ContactPage,
 });
@@ -44,18 +53,36 @@ function ContactPage() {
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 700));
-    setLoading(false);
-    toast.success("Thank you! Our team will reach out shortly.");
-    setForm({ name: "", email: "", phone: "", message: "" });
+    try {
+      await submitWeb3Form({
+        data: parsed.data,
+        formSource: "Contact Page - Send Us a Message",
+        subject: "New enquiry from Contact Form | Skill Spark Website",
+      });
+      toast.success("Thank you! Our team will reach out shortly.");
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to send your enquiry.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
+      <StructuredData
+        data={[
+          webPageJsonLd(contactSeo),
+          breadcrumbJsonLd([
+            { name: "Home", url: `${siteConfig.url}/` },
+            { name: "Contact Skill Spark Consulting", url: contactSeo.url },
+          ]),
+        ]}
+      />
       <PageHero
         tag="Contact Us"
-        title="Get in Touch"
-        subtitle="Have a question or want to discuss your hiring needs? We'd love to hear from you."
+        title="Contact Our Pune Recruitment Team"
+        subtitle="Talk to Skill Spark Consulting for employer hiring support, candidate registration, staffing inquiries, and job placement guidance in Pune and PCMC."
         breadcrumbs={[{ label: "Contact" }]}
       />
 
@@ -190,7 +217,7 @@ function ContactRow({
         {href ? (
           <a
             href={href}
-            className={`text-primary-foreground/75 hover:text-gold transition-smooth ${href.startsWith("tel:") ? "whitespace-nowrap" : "break-all"}`}
+            className={`text-primary-foreground/75 hover:text-gold transition-smooth ${href.startsWith("tel:") ? "phone-number whitespace-nowrap" : "break-all"}`}
           >
             {value}
           </a>

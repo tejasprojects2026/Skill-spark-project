@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skillsparkconsulting.lovable.app/sitemap.xml
+
