@@ -123,20 +123,23 @@ function Index() {
         ]}
       />
       <section className="bg-primary py-10 text-primary-foreground sm:py-14 md:py-20">
-        <div className="max-w-7xl mx-auto grid items-center gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <div className="text-center md:text-left">
+        <div className="mx-auto grid max-w-[1680px] items-center gap-8 px-4 sm:px-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(480px,0.9fr)] lg:px-10 xl:gap-12">
+          <div className="text-left">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">
               Pune&apos;s Trusted Recruitment Partner
             </p>
-            <h1 className="font-display mb-5 text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-6xl">
-              Pune & PCMC Recruitment Agency for Employers and Job Seekers
+            <h1 className="font-display mb-3 max-w-none text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
+              Pune & PCMC Recruitment Agency
             </h1>
-            <p className="mx-auto mb-8 max-w-3xl text-base text-primary-foreground/80 md:mx-0 md:text-xl">
+            <p className="font-display mb-5 text-left text-2xl font-semibold leading-tight text-primary-foreground sm:text-3xl md:text-4xl">
+              For Employers and Job Seekers
+            </p>
+            <p className="mb-8 max-w-none text-left text-base text-primary-foreground/80 md:text-xl">
               Skill Spark Consulting specializes in end-to-end recruitment solutions, permanent
               staffing, executive search, and candidate job placement support across IT,
               manufacturing, logistics, healthcare, BFSI, sales, and corporate sectors.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <div className="flex flex-col justify-start gap-4 sm:flex-row">
               <Link to="/employer" hash="hiring-form" className={homeCtaClass}>
                 Hire Talent <ArrowRight className="w-4 h-4" />
               </Link>

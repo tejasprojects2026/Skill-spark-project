@@ -6,6 +6,8 @@ import { Section } from "@/components/site/Section";
 import { StructuredData } from "@/components/site/StructuredData";
 import { Button } from "@/components/ui/button";
 import aboutImg from "@/assets/about.webp";
+import hemantImg from "@/assets/team/Hemant.png";
+import parthImg from "@/assets/team/Parth.png";
 import { Compass, Eye, Handshake, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const aboutSeo = {
@@ -63,11 +65,11 @@ const pillars = [
 const founders = [
   {
     name: "Hemant Bhamre",
-    image: aboutImg,
+    image: hemantImg,
   },
   {
     name: "Parth Bhamre",
-    image: aboutImg,
+    image: parthImg,
   },
 ];
 
@@ -87,7 +89,7 @@ function AboutPage() {
         tag="About Us"
         title="Pune Recruitment Consultants Focused on Quality Hiring"
         subtitle="Skill Spark Consulting bridges the gap between exceptional talent and employers across Pune, PCMC, and growing business hubs in Maharashtra."
-        breadcrumbs={[{ label: "About" }]}
+        breadcrumbs={[{ label: "About Us" }]}
       />
 
       <Section tag="Our Story" title="Born in PCMC. Built for Pune Recruitment." align="left">

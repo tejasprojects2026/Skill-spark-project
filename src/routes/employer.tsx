@@ -210,9 +210,9 @@ function ServicesPage() {
       <section className="bg-primary py-10 text-primary-foreground sm:py-12 md:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-accent sm:text-sm">
-            Employer
+            For Employers
           </p>
-          <h1 className="font-display text-2xl sm:text-4xl md:text-5xl font-semibold mb-5 md:mb-6">
+          <h1 className="font-display text-2xl font-semibold mb-5 sm:text-3xl md:mb-6 md:text-4xl lg:text-5xl">
             Recruitment Services for Employers in Pune & PCMC
           </h1>
           <p className="text-primary-foreground/80 text-base md:text-lg max-w-3xl mx-auto">

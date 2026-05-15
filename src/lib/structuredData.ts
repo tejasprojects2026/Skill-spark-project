@@ -1,4 +1,4 @@
-import logo from "@/assets/skill-spark.webp";
+import logo from "@/assets/skill spark.png";
 import heroImage from "@/assets/hero.webp";
 import { siteConfig, toKeywordContent } from "@/lib/seo";
 

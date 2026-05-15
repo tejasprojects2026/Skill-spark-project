@@ -8,6 +8,7 @@ import { StructuredData } from "@/components/site/StructuredData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { skillSparkMapEmbedUrl } from "@/lib/location";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
 import { z } from "zod";
@@ -83,7 +84,7 @@ function ContactPage() {
         tag="Contact Us"
         title="Contact Our Pune Recruitment Team"
         subtitle="Talk to Skill Spark Consulting for employer hiring support, candidate registration, staffing inquiries, and job placement guidance in Pune and PCMC."
-        breadcrumbs={[{ label: "Contact" }]}
+        breadcrumbs={[{ label: "Contact Us" }]}
       />
 
       <Section title="" className="bg-background">
@@ -183,10 +184,11 @@ function ContactPage() {
             <div className="h-64 overflow-hidden rounded-2xl border border-border shadow-elegant sm:h-72">
               <iframe
                 title="Skill Spark Office — Gera's Imperium Gateway, PCMC, Pune"
-                src="https://www.google.com/maps?q=Gera%27s+Imperium+Gateway+Nashik+Phata+PCMC+Pune&output=embed"
+                src={skillSparkMapEmbedUrl}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
+                allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

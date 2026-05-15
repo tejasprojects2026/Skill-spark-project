@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/skill-spark.webp";
+import logo from "@/assets/skill spark.png";
 
 const navItems = [
   { to: "/", key: "nav.home" },
@@ -57,7 +57,7 @@ export function Header() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="relative px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-smooth"
+                className="relative inline-flex h-11 min-w-[128px] items-center justify-center px-3 text-center text-sm font-medium text-foreground/80 transition-smooth hover:text-primary"
                 activeProps={{ className: "text-primary" }}
                 activeOptions={{ exact: item.to === "/" }}
               >
@@ -66,7 +66,7 @@ export function Header() {
                     <span>{t(item.key)}</span>
                     <span
                       className={cn(
-                        "absolute left-4 right-4 -bottom-0.5 h-0.5 rounded-full bg-gold transition-smooth origin-left",
+                        "absolute bottom-0 left-1/2 h-0.5 w-16 -translate-x-1/2 rounded-full bg-gold transition-smooth origin-left",
                         isActive ? "scale-x-100" : "scale-x-0",
                       )}
                     />
@@ -99,7 +99,7 @@ export function Header() {
               <Link
                 key={item.to}
                 to={item.to}
-                className="block px-3 py-2.5 rounded-lg text-sm font-medium text-foreground/80 hover:bg-secondary hover:text-primary transition-smooth"
+                className="flex h-11 items-center rounded-lg px-3 text-sm font-medium text-foreground/80 transition-smooth hover:bg-secondary hover:text-primary"
                 activeProps={{ className: "bg-secondary text-primary" }}
                 activeOptions={{ exact: item.to === "/" }}
               >

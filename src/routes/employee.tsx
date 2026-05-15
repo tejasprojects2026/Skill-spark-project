@@ -250,7 +250,7 @@ function EmployeePage() {
           webPageJsonLd(employeeSeo),
           breadcrumbJsonLd([
             { name: "Home", url: `${siteConfig.url}/` },
-            { name: "Candidate Job Placement", url: employeeSeo.url },
+            { name: "For Employee", url: employeeSeo.url },
           ]),
           serviceJsonLd({
             name: "Candidate registration and job placement support in Pune",
@@ -269,10 +269,10 @@ function EmployeePage() {
         ]}
       />
       <PageHero
-        tag="Employee"
+        tag="For Employee"
         title="Job Placement Support for Pune & PCMC Candidates"
         subtitle="Register with Skill Spark Consulting for career opportunities across IT, manufacturing, logistics, healthcare, BFSI, sales, admin, finance, and corporate roles."
-        breadcrumbs={[{ label: "Employee" }]}
+        breadcrumbs={[{ label: "For Employee" }]}
       />
 
       <Section

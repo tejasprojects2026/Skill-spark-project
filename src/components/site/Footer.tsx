@@ -114,9 +114,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 mt-7 pt-4 text-center text-xs text-primary-foreground/50">
-          <p>
-            © 2026 Skill Spark Consulting. All rights reserved. by{' '}
+        <div className="border-t border-primary-foreground/10 mt-7 pt-4 text-center">
+          <p className="text-[0.68rem] leading-relaxed text-primary-foreground/45 sm:text-xs">
+            &copy; 2026 Skill Spark Consulting. All rights reserved. by{' '}
             <a href="https://webakoof.com" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-primary-foreground transition-smooth">
               Webakoof
             </a>

@@ -15,7 +15,7 @@ export function PageHero({ tag, title, subtitle }: PageHeroProps) {
               {tag}
             </p>
           )}
-          <h1 className="font-display text-3xl font-semibold leading-tight animate-fade-in-up sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="font-display text-3xl font-semibold leading-tight animate-fade-in-up sm:text-4xl md:text-[2.75rem] lg:text-5xl">
             {title}
           </h1>
           {subtitle && (
