@@ -41,9 +41,9 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       ...buildSeoMeta({
-        title: "Skill Spark Consulting | Recruitment Agency in Pune & PCMC",
+        title: "Skill Spark Consulting | Recruitment Agency in Pune & PCMC (Official Website)",
         description:
-          "Skill Spark Consulting is a Pune and PCMC recruitment agency for employers and job seekers across IT, manufacturing, healthcare, logistics, BFSI, sales, and executive hiring.",
+          "Official website of Skill Spark Consulting, a Pune and PCMC recruitment agency for employers and job seekers across IT, manufacturing, healthcare, logistics, BFSI, sales, and executive hiring.",
         url: `${siteConfig.url}/`,
         keywords: pageSeoKeywords.home,
       }),

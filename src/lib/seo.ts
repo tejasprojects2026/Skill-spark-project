@@ -89,6 +89,19 @@ export function toKeywordContent(keywords: readonly string[] | string) {
   return Array.isArray(keywords) ? Array.from(new Set(keywords)).join(", ") : keywords;
 }
 
+export function toAbsoluteUrl(pathOrUrl: string) {
+  if (!pathOrUrl) {
+    return siteConfig.url;
+  }
+
+  if (/^https?:\/\//i.test(pathOrUrl)) {
+    return pathOrUrl;
+  }
+
+  const normalizedPath = pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`;
+  return `${siteConfig.url}${normalizedPath}`;
+}
+
 function withAllSeoKeywords(keywords: readonly string[] | string) {
   if (Array.isArray(keywords)) {
     return Array.from(new Set([...keywords, ...allSeoKeywords]));
@@ -111,6 +124,8 @@ export function buildSeoMeta({
   image?: string;
 }) {
   const keywordContent = toKeywordContent(withAllSeoKeywords(keywords));
+  const absoluteImage = toAbsoluteUrl(image);
+  const absoluteUrl = toAbsoluteUrl(url);
 
   return [
     { title },
@@ -125,15 +140,16 @@ export function buildSeoMeta({
     { property: "og:title", content: title },
     { property: "og:description", content: description },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: url },
-    { property: "og:image", content: image },
+    { property: "og:url", content: absoluteUrl },
+    { property: "og:image", content: absoluteImage },
+    { property: "og:image:url", content: absoluteImage },
     { property: "og:image:alt", content: "Skill Spark Consulting preview image" },
     { property: "og:site_name", content: "Skill Spark Consulting" },
     { property: "og:locale", content: "en_IN" },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
-    { name: "twitter:image", content: image },
+    { name: "twitter:image", content: absoluteImage },
     { name: "twitter:image:alt", content: "Skill Spark Consulting preview image" },
     {
       name: "robots",

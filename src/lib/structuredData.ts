@@ -1,6 +1,6 @@
 import logo from "@/assets/skill spark.png";
 import heroImage from "@/assets/hero.webp";
-import { siteConfig, toKeywordContent } from "@/lib/seo";
+import { siteConfig, toAbsoluteUrl, toKeywordContent } from "@/lib/seo";
 
 export type JsonLd = Record<string, unknown>;
 
@@ -43,9 +43,10 @@ export const organizationJsonLd: JsonLd = {
   "@type": "EmploymentAgency",
   "@id": businessId,
   name: siteConfig.name,
+  alternateName: ["Skill Spark Consulting", "SkillSpark Consulting"],
   url: siteConfig.url,
-  logo,
-  image: heroImage,
+  logo: toAbsoluteUrl(logo),
+  image: toAbsoluteUrl(heroImage),
   telephone: siteConfig.phoneHref,
   email: siteConfig.email,
   address,
@@ -76,6 +77,7 @@ export const websiteJsonLd: JsonLd = {
   "@type": "WebSite",
   "@id": websiteId,
   name: siteConfig.name,
+  alternateName: "Skill Spark Consulting Official Website",
   url: siteConfig.url,
   publisher: { "@id": businessId },
   inLanguage: "en-IN",
@@ -102,7 +104,7 @@ export function webPageJsonLd({
     about: { "@id": businessId },
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: heroImage,
+      url: toAbsoluteUrl(heroImage),
     },
     keywords: toKeywordContent(keywords),
     inLanguage: "en-IN",

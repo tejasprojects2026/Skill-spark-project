@@ -19,9 +19,9 @@ import { Button } from "@/components/ui/button";
 import { StructuredData } from "@/components/site/StructuredData";
 
 const homeSeo = {
-  title: "Recruitment Agency in Pune & PCMC | Skill Spark Consulting",
+  title: "Skill Spark Consulting | Recruitment Agency in Pune & PCMC (Official Website)",
   description:
-    "Skill Spark Consulting provides recruitment services in Pune and PCMC for employers and job seekers across IT, manufacturing, logistics, healthcare, BFSI, sales, and executive hiring.",
+    "Official website of Skill Spark Consulting. We provide recruitment and staffing services in Pune and PCMC for employers and job seekers across IT, manufacturing, logistics, healthcare, BFSI, sales, and executive hiring.",
   url: `${siteConfig.url}/`,
   keywords: pageSeoKeywords.home,
 };
@@ -139,7 +139,7 @@ function Index() {
               Pune&apos;s Trusted Recruitment Partner
             </p>
             <h1 className="font-display mb-3 max-w-none text-3xl font-semibold leading-tight sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]">
-              Pune & PCMC Recruitment Agency
+              Skill Spark Consulting - Pune & PCMC Recruitment Agency
             </h1>
             <p className="font-display mb-5 text-left text-2xl font-semibold leading-tight text-primary-foreground sm:text-3xl md:text-4xl">
               For Employers and Job Seekers
@@ -164,7 +164,7 @@ function Index() {
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 shadow-elegant">
               <img
                 src={heroImg}
-                alt="Professional recruitment and consulting"
+                alt="Skill Spark Consulting professional recruitment team in Pune and PCMC"
                 width={1920}
                 height={1080}
                 loading="eager"
