@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/accordion";
 import { industries } from "@/lib/recruitmentIndustries";
 import { submitWeb3Form } from "@/lib/web3forms";
+import { trackLead } from "@/lib/analytics";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -246,6 +247,7 @@ function EmployeePage() {
         formSource: "Employee Page - Candidate Profile Form",
         subject: "New candidate profile submission | Skill Spark Website",
       });
+      trackLead("employee_profile");
       toast.success("Thank you! Our team will review your profile and contact you shortly.");
       formElement.reset();
     } catch (error) {

@@ -23,6 +23,7 @@ import { StructuredData } from "@/components/site/StructuredData";
 import { toast } from "sonner";
 import { z } from "zod";
 import { submitWeb3Form } from "@/lib/web3forms";
+import { trackLead } from "@/lib/analytics";
 
 const employerSeo = {
   title: "Employer Hiring Solutions in Pune & PCMC | Skill Spark Consulting",
@@ -157,6 +158,7 @@ function ServicesPage() {
         formSource: "Employer Page - Hiring Requirement Form",
         subject: "New employer hiring requirement | Skill Spark Website",
       });
+      trackLead("employer_requirement");
       toast.success("Thank you! Our hiring team will reach out shortly.");
       setForm({
         company: "",
