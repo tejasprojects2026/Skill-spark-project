@@ -76,6 +76,16 @@ const highlights = [
 const testimonials = [
   {
     quote:
+      "Skill Spark Consulting has been a dependable hiring partner for our team. Their understanding of our requirements and fast coordination made hiring smoother.",
+    author: "Vijayshree Girhe, Manager - Talent Acquisition, Company3 Method India Pvt Ltd",
+  },
+  {
+    quote:
+      "We received well-matched profiles and consistent support throughout the hiring process. The team is responsive and professional in execution.",
+    author: "Rajendra Ahire, Manager - HR, Company3 Method India Pvt Ltd",
+  },
+  {
+    quote:
       "Skill Spark found us a Production Manager within 10 days. The candidate was already pre-screened and joined without any issues.",
     author: "HR Head, Manufacturing Company, Pune",
   },

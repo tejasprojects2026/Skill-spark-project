@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://skillsparkconsulting.lovable.app/</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://skillsparkconsulting.in/</loc>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://skillsparkconsulting.lovable.app/employer</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://skillsparkconsulting.in/employer</loc>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://skillsparkconsulting.lovable.app/employee</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://skillsparkconsulting.in/employee</loc>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://skillsparkconsulting.lovable.app/about</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://skillsparkconsulting.in/about</loc>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://skillsparkconsulting.lovable.app/contact</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://skillsparkconsulting.in/contact</loc>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
-

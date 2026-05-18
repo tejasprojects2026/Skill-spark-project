@@ -136,18 +136,30 @@ const profileFields = [
   { label: "Expected Salary", name: "expectedSalary", placeholder: "eg. 15 LPA" },
 ];
 
+const requiredProfileFieldNames = new Set([
+  "fullName",
+  "phone",
+  "email",
+  "location",
+  "experience",
+  "qualification",
+  "preferredRole",
+  "skills",
+  "noticePeriod",
+]);
+
 const candidateProfileSchema = z.object({
   fullName: z.string().trim().min(1, "Full name is required").max(120),
   phone: z.string().trim().min(7, "Phone / WhatsApp number is required").max(20),
-  email: z.string().trim().email("Invalid email").max(255),
+  email: z.string().trim().min(1, "Email address is required").email("Invalid email").max(255),
   location: z.string().trim().min(1, "Current location is required").max(160),
-  experience: z.string().trim().max(80),
-  qualification: z.string().trim().max(120),
+  experience: z.string().trim().min(1, "Experience is required").max(80),
+  qualification: z.string().trim().min(1, "Highest qualification is required").max(120),
   employer: z.string().trim().max(120),
   designation: z.string().trim().max(120),
   preferredRole: z.string().trim().min(1, "Preferred role is required").max(160),
-  skills: z.string().trim().max(300),
-  noticePeriod: z.string().trim().max(80),
+  skills: z.string().trim().min(1, "Key skills are required").max(300),
+  noticePeriod: z.string().trim().min(1, "Notice period is required").max(80),
   expectedSalary: z.string().trim().max(80),
   resumeLink: z.string().trim().max(500),
   additionalInformation: z.string().trim().max(1000),
@@ -541,6 +553,7 @@ function EmployeePage() {
                   name={field.name}
                   type={field.type ?? "text"}
                   placeholder={field.placeholder}
+                  required={requiredProfileFieldNames.has(field.name)}
                   className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm placeholder:text-slate-400 focus-visible:ring-gold"
                 />
               </div>
@@ -561,6 +574,7 @@ function EmployeePage() {
                 className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm placeholder:text-slate-400 focus-visible:ring-gold"
               />
             </div>
+
           </div>
 
           <div className="mt-4 space-y-2">

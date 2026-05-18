@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://skillsparkconsulting.lovable.app/sitemap.xml
-
+Sitemap: https://skillsparkconsulting.in/sitemap.xml

@@ -115,14 +115,14 @@ const hiringSchema = z.object({
   email: z.string().trim().email("Invalid email").max(255),
   phone: z.string().trim().min(7, "Phone is required").max(20),
   department: z.string().trim().min(1, "Department is required").max(120),
-  roles: z.string().trim().min(2, "Tell us the role you want to hire for").max(200),
+  roles: z.string().trim().max(200),
   jobType: z.string().trim().min(1, "Job type is required").max(80),
   location: z.string().trim().min(1, "Job location is required").max(160),
-  openings: z.string().trim().min(1, "Number of openings is required").max(20),
-  experience: z.string().trim().min(1, "Experience range is required").max(80),
+  openings: z.string().trim().max(20),
+  experience: z.string().trim().max(80),
   salary: z.string().trim().max(80),
-  joiningTimeline: z.string().trim().max(80),
-  workMode: z.string().trim().max(80),
+  joiningTimeline: z.string().trim().min(1, "Joining timeline is required").max(80),
+  workMode: z.string().trim().min(1, "Work mode is required").max(80),
 });
 
 function ServicesPage() {
@@ -359,6 +359,7 @@ function ServicesPage() {
                   value={form.company}
                   onChange={(e) => setForm({ ...form, company: e.target.value })}
                   placeholder="Your company"
+                  required
                 />
               </div>
               <div>
@@ -368,6 +369,7 @@ function ServicesPage() {
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder="Your name"
+                  required
                 />
               </div>
               <div>
@@ -378,6 +380,7 @@ function ServicesPage() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="you@company.com"
+                  required
                 />
               </div>
               <div>
@@ -387,6 +390,7 @@ function ServicesPage() {
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                   placeholder="+91 99999 99999"
+                  required
                 />
               </div>
               <div>
@@ -396,6 +400,7 @@ function ServicesPage() {
                   value={form.department}
                   onChange={(e) => setForm({ ...form, department: e.target.value })}
                   placeholder="E.g. Production, HR, Sales, IT"
+                  required
                 />
               </div>
               <div>
@@ -405,6 +410,7 @@ function ServicesPage() {
                   value={form.jobType}
                   onChange={(e) => setForm({ ...form, jobType: e.target.value })}
                   placeholder="E.g. Full-time, Contract, Temporary"
+                  required
                 />
               </div>
             </div>
@@ -425,6 +431,7 @@ function ServicesPage() {
                   value={form.location}
                   onChange={(e) => setForm({ ...form, location: e.target.value })}
                   placeholder="City, State"
+                  required
                 />
               </div>
               <div>
@@ -461,6 +468,7 @@ function ServicesPage() {
                   value={form.joiningTimeline}
                   onChange={(e) => setForm({ ...form, joiningTimeline: e.target.value })}
                   placeholder="E.g. Immediate, 15 days, 30 days"
+                  required
                 />
               </div>
               <div>
@@ -470,6 +478,7 @@ function ServicesPage() {
                   value={form.workMode}
                   onChange={(e) => setForm({ ...form, workMode: e.target.value })}
                   placeholder="E.g. On-site, Hybrid, Remote"
+                  required
                 />
               </div>
             </div>

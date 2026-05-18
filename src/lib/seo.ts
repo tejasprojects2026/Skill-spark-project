@@ -2,7 +2,7 @@ import ogImage from "@/assets/hero.webp";
 
 export const siteConfig = {
   name: "Skill Spark Consulting",
-  url: "https://skillsparkconsulting.lovable.app",
+  url: "https://skillsparkconsulting.in",
   phone: "+91 78758 03175",
   phoneHref: "+917875803175",
   email: "skillsparkconsulting@gmail.com",
