@@ -3,6 +3,8 @@ import ogImage from "@/assets/hero.webp";
 export const siteConfig = {
   name: "Skill Spark Consulting",
   url: "https://skillsparkconsulting.in",
+  primaryDomain: "skillsparkconsulting.in",
+  secondaryDomains: ["skillsparkconsulting.com", "www.skillsparkconsulting.com"],
   phone: "+91 78758 03175",
   phoneHref: "+917875803175",
   email: "skillsparkconsulting@gmail.com",
@@ -10,6 +12,11 @@ export const siteConfig = {
   city: "Pune",
   region: "Maharashtra",
   country: "India",
+  socialProfiles: [
+    "https://www.facebook.com/61589978150086",
+    "https://www.linkedin.com/company/skill-spark-pune/",
+    "https://www.instagram.com/skillsparkconsulting/",
+  ],
 } as const;
 
 export const defaultSeoKeywords = [

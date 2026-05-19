@@ -40,13 +40,14 @@ const knowsAbout = [
 
 export const organizationJsonLd: JsonLd = {
   "@context": "https://schema.org",
-  "@type": "EmploymentAgency",
+  "@type": ["Organization", "EmploymentAgency"],
   "@id": businessId,
   name: siteConfig.name,
   alternateName: ["Skill Spark Consulting", "SkillSpark Consulting"],
   url: siteConfig.url,
   logo: toAbsoluteUrl(logo),
   image: toAbsoluteUrl(heroImage),
+  sameAs: [...siteConfig.socialProfiles],
   telephone: siteConfig.phoneHref,
   email: siteConfig.email,
   address,

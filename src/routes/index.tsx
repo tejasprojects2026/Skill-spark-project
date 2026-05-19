@@ -77,27 +77,44 @@ const testimonials = [
   {
     quote:
       "Skill Spark Consulting has been a dependable hiring partner for our team. Their understanding of our requirements and fast coordination made hiring smoother.",
-    author: "Vijayshree Girhe, Manager - Talent Acquisition, Company3 Method India Pvt Ltd",
+    name: "Vijayshree Girhe",
+    designation: "Manager - Talent Acquisition",
+    company: "Company3 Method India Pvt Ltd",
   },
   {
     quote:
       "We received well-matched profiles and consistent support throughout the hiring process. The team is responsive and professional in execution.",
-    author: "Rajendra Ahire, Manager - HR, Company3 Method India Pvt Ltd",
+    name: "Rajendra Ahire",
+    designation: "Manager - HR",
+    company: "Company3 Method India Pvt Ltd",
   },
   {
     quote:
       "Skill Spark found us a Production Manager within 10 days. The candidate was already pre-screened and joined without any issues.",
-    author: "HR Head, Manufacturing Company, Pune",
+    name: "HR Head",
+    designation: "People Operations",
+    company: "Manufacturing Company, Pune",
   },
   {
     quote:
       "I was placed at a great company within 3 weeks of registering. The team was professional and guided me throughout.",
-    author: "Placed Candidate, IT Sector",
+    name: "Placed Candidate",
+    designation: "Software Engineer",
+    company: "IT Sector",
   },
   {
     quote:
       "Their understanding of our industry helped them deliver exactly the kind of talent we needed for our expansion project.",
-    author: "Operations Director, Logistics Firm, PCMC",
+    name: "Operations Director",
+    designation: "Supply Chain Leadership",
+    company: "Logistics Firm, PCMC",
+  },
+  {
+    quote:
+      "The profile quality was strong from day one. Their team was proactive, kept timelines tight, and helped us close a key role quickly.",
+    name: "Anjali Patil",
+    designation: "Senior HR Business Partner",
+    company: "Engineering Services Company, Pune",
   },
 ] as const;
 
@@ -312,15 +329,18 @@ function Index() {
           <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-12">
             What Our Clients & Candidates Say
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:[grid-auto-rows:1fr]">
             {testimonials.map((item, index) => (
               <div
                 key={index}
-                className="bg-card rounded-lg p-6 sm:p-8 border border-border shadow-soft"
+                className="h-full bg-card rounded-lg p-6 sm:p-8 border border-border shadow-soft flex flex-col"
               >
                 <Quote className="w-6 h-6 text-gold mb-4" />
-                <p className="text-black italic leading-relaxed mb-4">&quot;{item.quote}&quot;</p>
-                <p className="text-sm font-semibold text-primary">- {item.author}</p>
+                <p className="text-black italic leading-relaxed flex-1">&quot;{item.quote}&quot;</p>
+                <div className="mt-5 text-sm text-primary leading-snug">
+                  <p className="font-semibold">- {item.company}</p>
+                  <p className="font-semibold">{item.name}, {item.designation}</p>
+                </div>
               </div>
             ))}
           </div>
