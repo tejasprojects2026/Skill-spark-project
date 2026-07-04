@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { skillSparkMapUrl } from "@/lib/location";
 import footerLogo from "@/assets/footer-logo.webp";
 
 const socialLinks = [
@@ -18,6 +19,11 @@ const socialLinks = [
     href: "https://www.instagram.com/skillsparkconsulting/",
     label: "Skill Spark Consulting on Instagram",
     icon: Instagram,
+  },
+  {
+    href: skillSparkMapUrl,
+    label: "Skill Spark Consulting location on Google Maps",
+    icon: MapPin,
   },
 ] as const;
 
@@ -93,7 +99,14 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-primary-foreground/70">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 text-gold shrink-0" />
-                <span>A-620, Gera's Imperium Gateway, Nashik Phata, PCMC, Pune – 411034</span>
+                <a
+                  href={skillSparkMapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold transition-smooth"
+                >
+                  <span>A-620, Gera's Imperium Gateway, Nashik Phata, PCMC, Pune – 411034</span>
+                </a>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-0.5 text-gold shrink-0" />
@@ -116,10 +129,7 @@ export function Footer() {
 
         <div className="border-t border-primary-foreground/10 mt-7 pt-4 text-center">
           <p className="text-[0.68rem] leading-relaxed text-primary-foreground/45 sm:text-xs">
-            &copy; 2026 Skill Spark Consulting. All rights reserved. by{' '}
-            <a href="https://webakoof.com" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-primary-foreground transition-smooth">
-              Webakoof
-            </a>
+            &copy; 2026 Skill Spark Consulting
           </p>
         </div>
       </div>
