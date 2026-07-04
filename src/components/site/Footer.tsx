@@ -86,11 +86,18 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display text-base mb-3 text-gold">Employer</h4>
-            <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li>Permanent Staffing</li>
-              <li>Executive Search</li>
-              <li>Talent Consulting</li>
+            <h4 className="font-display text-base mb-3 text-gold">Our Services</h4>
+            <ul className="space-y-2 text-sm">
+              {["Permanent Staffing", "Executive Search", "Talent Consulting"].map((label) => (
+                <li key={label}>
+                  <Link
+                    to="/employer"
+                    className="text-primary-foreground/70 hover:text-gold transition-smooth"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

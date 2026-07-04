@@ -8,7 +8,7 @@ import { StructuredData } from "@/components/site/StructuredData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { skillSparkMapEmbedUrl } from "@/lib/location";
+import { skillSparkMapEmbedUrl, skillSparkMapUrl } from "@/lib/location";
 import { toast } from "sonner";
 import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
 import { z } from "zod";
@@ -173,6 +173,7 @@ function ContactPage() {
                   icon={MapPin}
                   title="Address"
                   value="A-620, Gera's Imperium Gateway, Nashik Phata, PCMC, Pune – 411034"
+                  href={skillSparkMapUrl}
                 />
                 <ContactRow
                   icon={Clock}
@@ -211,6 +212,8 @@ function ContactRow({
   value: string;
   href?: string;
 }) {
+  const isExternal = href?.startsWith("http");
+
   return (
     <div className="flex min-w-0 items-start gap-3">
       <Icon className="w-5 h-5 text-gold shrink-0 mt-0.5" />
@@ -219,6 +222,8 @@ function ContactRow({
         {href ? (
           <a
             href={href}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
             className={`text-primary-foreground/75 hover:text-gold transition-smooth ${href.startsWith("tel:") ? "phone-number whitespace-nowrap" : "break-all"}`}
           >
             {value}
