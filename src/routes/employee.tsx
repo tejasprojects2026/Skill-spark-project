@@ -60,7 +60,7 @@ const steps = [
   {
     n: "01",
     title: "Share Your Profile",
-    desc: "Fill the candidate form with your contact details, education, experience, skills, preferred role, salary expectation, notice period, location preference, and updated CV link.",
+    desc: "Fill the candidate form with your contact details, education, experience, current salary CTC, preferred role, salary expectation, notice period, location preference, and updated CV link.",
     icon: FileUser,
   },
   {
@@ -132,7 +132,7 @@ const profileFields = [
   { label: "Current Employer", name: "employer", placeholder: "Current company" },
   { label: "Current Designation", name: "designation", placeholder: "Your job title" },
   { label: "Preferred Role", name: "preferredRole", placeholder: "Role you're seeking" },
-  { label: "Key Skills", name: "skills", placeholder: "eg. Java, Excel, Sales" },
+  { label: "Current Salary CTC", name: "currentSalaryCtc", placeholder: "eg. 10 LPA" },
   { label: "Notice Period", name: "noticePeriod", placeholder: "eg. Immediate, 30 days" },
   { label: "Expected Salary", name: "expectedSalary", placeholder: "eg. 15 LPA" },
 ];
@@ -145,7 +145,7 @@ const requiredProfileFieldNames = new Set([
   "experience",
   "qualification",
   "preferredRole",
-  "skills",
+  "currentSalaryCtc",
   "noticePeriod",
 ]);
 
@@ -159,7 +159,7 @@ const candidateProfileSchema = z.object({
   employer: z.string().trim().max(120),
   designation: z.string().trim().max(120),
   preferredRole: z.string().trim().min(1, "Preferred role is required").max(160),
-  skills: z.string().trim().min(1, "Key skills are required").max(300),
+  currentSalaryCtc: z.string().trim().min(1, "Current salary CTC is required").max(80),
   noticePeriod: z.string().trim().min(1, "Notice period is required").max(80),
   expectedSalary: z.string().trim().max(80),
   resumeLink: z.string().trim().max(500),
@@ -221,7 +221,7 @@ function EmployeePage() {
       employer: getValue("employer"),
       designation: getValue("designation"),
       preferredRole: getValue("preferredRole"),
-      skills: getValue("skills"),
+      currentSalaryCtc: getValue("currentSalaryCtc"),
       noticePeriod: getValue("noticePeriod"),
       expectedSalary: getValue("expectedSalary"),
       resumeLink: getValue("resumeLink"),
@@ -237,6 +237,8 @@ function EmployeePage() {
       formData.set(key, value);
     });
     formData.set("name", parsed.data.fullName);
+    formData.set("Current Salary CTC", parsed.data.currentSalaryCtc);
+    formData.delete("currentSalaryCtc");
     formData.set("CV / Resume Link", parsed.data.resumeLink || "Not provided");
     formData.delete("resumeLink");
 
@@ -575,6 +577,11 @@ function EmployeePage() {
                 placeholder="Google Drive, Dropbox, or LinkedIn URL"
                 className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm placeholder:text-slate-400 focus-visible:ring-gold"
               />
+              <div className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-semibold leading-relaxed text-amber-950">
+                Note: Please provide open access to your CV document before submitting the link. We
+                are currently unable to view some CV links because the required access permission
+                has not been granted.
+              </div>
             </div>
 
           </div>
