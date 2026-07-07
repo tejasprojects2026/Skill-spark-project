@@ -578,9 +578,7 @@ function EmployeePage() {
                 className="h-11 rounded-lg border-slate-200 bg-white text-sm text-foreground shadow-sm placeholder:text-slate-400 focus-visible:ring-gold"
               />
               <div className="rounded-md border border-amber-300 bg-amber-50 px-3 py-2 text-xs font-semibold leading-relaxed text-amber-950">
-                Note: Please provide open access to your CV document before submitting the link. We
-                are currently unable to view some CV links because the required access permission
-                has not been granted.
+                Note: Please provide open access to your CV document before submitting the link.
               </div>
             </div>
 
